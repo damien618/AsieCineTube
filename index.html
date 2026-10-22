@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AsieCinéTube FR - Films Coréens, Japonais & Chinois (VOSTFR) sur YouTube</title>
+  <meta name="description" content="Découvrez et regardez plus de 500 films coréens, japonais et chinois disponibles avec sous-titres français sur YouTube, triés par date décroissante de publication.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff0000'%3E%3Cpath d='M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z'/%3E%3C/svg%3E">
+  
+  <!-- Polices Google Fonts (Roboto) style YouTube -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header Principal Fixe (Style YouTube) -->
+  <header class="yt-header" id="mainHeader">
+    <div class="header-left">
+      <a href="./" class="brand-logo" aria-label="K-CinéTube Accueil">
+        <div class="yt-icon-wrapper">
+          <svg class="yt-play-svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-name">AsieCiné<span class="brand-tube">Tube</span></span>
+          <span class="badge-vostfr">🇰🇷 🇯🇵 🇨🇳 ST-FR</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Barre de Recherche Centrale -->
+    <div class="header-center">
+      <form class="search-form" id="searchForm" role="search">
+        <div class="search-input-box">
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Rechercher un film coréen, japonais ou chinois, un acteur, un genre..." 
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Rechercher des films asiatiques"
+          >
+          <button type="button" id="clearSearchBtn" class="clear-btn hidden" aria-label="Effacer la recherche">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <button type="submit" id="searchBtn" class="search-btn" aria-label="Lancer la recherche" title="Rechercher">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Actions Droite & Filtres -->
+    <div class="header-right">
+      <!-- Filtre sous-titres -->
+      <div class="filter-wrapper" title="Filtrer selon le type de sous-titre français">
+        <svg class="sub-filter-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h10M4 18h6"/>
+        </svg>
+        <select id="subFilter" class="select-sub-filter" aria-label="Filtre de sous-titrage">
+          <option value="all">🇫🇷 Tous ST-FR (Natif + Auto)</option>
+          <option value="native">✨ ST-FR Natif uniquement</option>
+        </select>
+      </div>
+
+      <!-- Bouton Actualiser -->
+      <button id="refreshBtn" class="btn-refresh" aria-label="Actualiser depuis YouTube" title="Actualiser le catalogue depuis YouTube">
+        <svg class="refresh-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+        </svg>
+        <span class="refresh-text">Actualiser</span>
+      </button>
+
+      <!-- Badge de tri fixe YouTube -->
+      <div class="sort-badge" id="sortBadge" title="Classement permanent">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M19 12l-7 7-7-7"/>
+        </svg>
+        <span>Tri : Date de publication ↓ (plus récent)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation par Puces (Chips) Horizontale -->
+  <nav class="chips-container" aria-label="Pays, catégories et genres">
+    <div class="chips-track" id="chipsTrack">
+      <button class="chip active" data-category="all">
+        <span>🌏 Tous les films (Corée • Japon • Chine)</span>
+      </button>
+      <button class="chip chip-sooner" data-category="sooner" title="Films asiatiques en location ou abonnement sur la chaîne officielle YouTube @soonerfrance">
+        <span class="yt-paid-dot" aria-hidden="true"></span>
+        <span>Sooner (@soonerfrance)</span>
+      </button>
+      <button class="chip" data-category="kr">
+        <span>🇰🇷 Films Coréens</span>
+      </button>
+      <button class="chip" data-category="kofa" title="Films coréens classiques restaurés de la chaîne officielle @KoreanFilm (Korean Film Archive)">
+        <span>🏛️ @KoreanFilm (KOFA)</span>
+      </button>
+      <button class="chip" data-category="jp">
+        <span>🇯🇵 Films Japonais</span>
+      </button>
+      <button class="chip" data-category="cn">
+        <span>🇨🇳 Films Chinois</span>
+      </button>
+      <button class="chip" data-category="native">
+        <span>⭐ ST-FR / VF Natif</span>
+      </button>
+      <button class="chip" data-category="thriller">
+        <span>🔪 Thriller, Action & Arts Martiaux</span>
+      </button>
+      <button class="chip" data-category="drama">
+        <span>🎭 Drame, Romance & Historique</span>
+      </button>
+      <button class="chip" data-category="horror">
+        <span>👻 Horreur & Mystère</span>
+      </button>
+      <button class="chip" data-category="comedy">
+        <span>🍿 Comédie</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Bandeau d'état discret sous les puces -->
+  <section class="status-bar" id="statusBar">
+    <div class="status-left">
+      <span class="status-count" id="movieCount">Chargement des films coréens...</span>
+      <span class="status-bullet">•</span>
+      <span class="status-sort">Triés par date décroissante de publication sur YouTube</span>
+    </div>
+    <div class="status-right" id="statusRight">
+      <!-- Filtres appliqués ou état recherche -->
+      <span id="activeFilterBadge" class="filter-pill-label"></span>
+    </div>
+  </section>
+
+  <!-- Zone Principale : Grille des Films / Squelettes -->
+  <main class="main-content">
+    <div class="movies-grid" id="moviesGrid">
+      <!-- Les cartes de films ou squelettes seront injectés par app.js -->
+    </div>
+
+    <!-- État Vide (No results) -->
+    <div class="empty-state hidden" id="emptyState">
+      <div class="empty-icon-wrap">
+        <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="#555" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <path d="M8 11h6" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <h2 class="empty-title">Aucun film coréen trouvé</h2>
+      <p class="empty-desc" id="emptyDesc">Essayez avec d'autres mots-clés ou réinitialisez vos filtres de sous-titrage.</p>
+      <button class="btn-reset" id="resetFiltersBtn">Réinitialiser tous les filtres</button>
+    </div>
+
+    <!-- État Erreur Réseau / Serveur -->
+    <div class="error-state hidden" id="errorState">
+      <div class="empty-icon-wrap">
+        <svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="#ff4444" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <h2 class="empty-title">Impossible de charger les films</h2>
+      <p class="empty-desc" id="errorMsg">Une erreur est survenue lors de la communication avec l'API.</p>
+      <button class="btn-reset" id="retryFetchBtn">Réessayer</button>
+    </div>
+  </main>
+
+  <!-- Modale Lecteur Cinéma Intégré -->
+  <div class="modal-backdrop hidden" id="movieModal" role="dialog" aria-modal="true" aria-labelledby="modalMovieTitle">
+    <div class="modal-window">
+      <!-- Bouton Fermeture -->
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Fermer le lecteur" title="Fermer (Échap)">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Lecteur Vidéo Responsive 16:9 avec ratio verrouillé et Plein Écran -->
+      <div class="modal-player-container" id="modalPlayerContainer">
+        <iframe 
+          id="modalIframe"
+          src="" 
+          title="Lecteur Vidéo YouTube"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
+          allowfullscreen="true"
+          webkitallowfullscreen="true"
+          mozallowfullscreen="true">
+        </iframe>
+
+        <!-- Bouton flottant Plein Écran sur le lecteur -->
+        <button type="button" class="player-overlay-fs-btn" id="overlayFullscreenBtn" title="Visionner en plein écran (Touche F)" aria-label="Plein écran">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Bandeau d'aide sous-titres FR -->
+      <div class="sub-help-banner" id="modalSubHelp">
+        <div class="sub-help-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+        </div>
+        <div class="sub-help-text" id="modalSubHelpText">
+          Sous-titres français activés automatiquement.
+        </div>
+      </div>
+
+      <!-- Métadonnées & Description du Film -->
+      <div class="modal-details">
+        <div class="modal-header-info">
+          <div class="modal-title-row">
+            <h1 class="modal-title" id="modalMovieTitle">Titre du Film</h1>
+            <div class="modal-action-buttons">
+              <!-- Bouton Plein Écran dédié -->
+              <button type="button" class="btn-fullscreen" id="fullscreenBtn" title="Visionner en plein écran (Touche F)">
+                <svg class="fs-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                </svg>
+                <span id="fullscreenBtnText">Plein écran</span>
+              </button>
+
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn-yt-external" id="modalYtLink" title="Ouvrir sur le site YouTube">
+                <span>Regarder sur YouTube ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="modal-meta-row">
+            <div class="channel-info-group">
+              <div class="channel-avatar" id="modalChannelAvatar"></div>
+              <div class="channel-names">
+                <div class="channel-name-wrapper">
+                  <span class="channel-name" id="modalChannelName">Nom de la chaîne</span>
+                  <span class="verified-badge hidden" id="modalChannelVerified" title="Chaîne vérifiée">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  </span>
+                </div>
+                <span class="modal-stats" id="modalStatsText">0 vues • Publié le 1 janvier 2024</span>
+              </div>
+            </div>
+
+            <div class="modal-badges-group">
+              <span class="badge-subtitle" id="modalSubtitleBadge">🇫🇷 ST-FR Natif</span>
+              <span class="badge-duration" id="modalDurationBadge">1:45:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description du Film -->
+        <div class="modal-description-box">
+          <div class="desc-header">Description & Informations :</div>
+          <p class="desc-text" id="modalDescription">Description non disponible.</p>
+          <div class="modal-subtitles-languages" id="modalSubtitlesLanguages">
+            <strong>Sous-titres disponibles :</strong> <span id="modalSubLanguagesList">Français (FR)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast hidden" id="toastNotification">
+    <span class="toast-message" id="toastMessage"></span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
