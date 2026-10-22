@@ -1,0 +1,43 @@
+name: 🎬 Actualisation Automatique AsieCinéTube
+
+on:
+  # Exécution quotidienne à 03h00 UTC (05h00 heure de Paris)
+  schedule:
+    - cron: '0 3 * * *'
+  
+  # Déclenchement manuel en 1 clic depuis l'onglet Actions de GitHub
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-movies:
+    name: Moissonnage YouTube & Mise à jour movies.json
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Récupération du dépôt
+        uses: actions/checkout@v4
+
+      - name: 🐍 Configuration de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🔍 Recherche de nouveaux films sur YouTube
+        run: |
+          python3 updater.py
+
+      - name: 🚀 Commit et publication des changements
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add movies.json cache_movies.json
+          if git diff --staged --quiet; then
+            echo "ℹ️ Le catalogue est déjà parfaitement à jour. Aucun commit nécessaire."
+          else
+            git commit -m "🤖 Actualisation auto: nouveaux films YouTube ($(date -u +'%Y-%m-%d')) [skip ci]"
+            git push
+            echo "✅ Nouveaux films publiés avec succès sur GitHub Pages !"
+          fi

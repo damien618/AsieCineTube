@@ -1,39 +1,50 @@
 /**
- * K-CinéTube FR - Application JavaScript
- * Catalogue de films coréens avec sous-titres français sur YouTube
- * Triés par date décroissante de publication sur YouTube
+ * AsieCinéTube FR - Application Client
+ * Films Coréens, Japonais et Chinois (VOSTFR / CC-FR) sur YouTube
+ * Triés par date de publication décroissante.
+ * 
+ * Compatible hébergement statique GitHub Pages (damien618.github.io/AsieCineTube)
+ * et serveur local Python (server.py).
  */
 
 (function () {
   'use strict';
 
-  // =========================================================================
-  // ÉTAT DE L'APPLICATION
-  // =========================================================================
+  // ==========================================================================
+  // ÉTAT GLOBAL DE L'APPLICATION
+  // ==========================================================================
   const state = {
-    movies: [],
-    currentCategory: 'all',
-    currentSubFilter: 'all', // 'all' ou 'native'
-    currentQuery: '',
+    allMovies: [],         // Tous les films chargés en mémoire
+    filteredMovies: [],    // Films filtrés selon les critères actifs
+    currentCategory: 'all',// Puce sélectionnée ('all', 'sooner', 'kr', 'kofa', 'jp', 'cn', 'native', etc.)
+    subFilter: 'all',      // 'all' ou 'native'
+    searchQuery: '',       // Chaîne de recherche saisie
     isLoading: false,
-    selectedMovie: null
+    selectedMovie: null    // Film actuellement affiché dans la modale
   };
 
-  // =========================================================================
-  // ÉLÉMENTS DU DOM
-  // =========================================================================
+  // ==========================================================================
+  // RÉFÉRENCES DOM
+  // ==========================================================================
   const DOM = {
+    // Header & Recherche
     searchForm: document.getElementById('searchForm'),
     searchInput: document.getElementById('searchInput'),
     clearSearchBtn: document.getElementById('clearSearchBtn'),
     searchBtn: document.getElementById('searchBtn'),
     subFilter: document.getElementById('subFilter'),
     refreshBtn: document.getElementById('refreshBtn'),
+
+    // Barre de puces (Chips)
     chipsTrack: document.getElementById('chipsTrack'),
     chips: document.querySelectorAll('.chip'),
+
+    // Bandeau d'état
     statusBar: document.getElementById('statusBar'),
     movieCount: document.getElementById('movieCount'),
     activeFilterBadge: document.getElementById('activeFilterBadge'),
+
+    // Grille de films & États
     moviesGrid: document.getElementById('moviesGrid'),
     emptyState: document.getElementById('emptyState'),
     emptyDesc: document.getElementById('emptyDesc'),
@@ -41,18 +52,19 @@
     errorState: document.getElementById('errorState'),
     errorMsg: document.getElementById('errorMsg'),
     retryFetchBtn: document.getElementById('retryFetchBtn'),
-    // Modale
+
+    // Modale Lecteur
     movieModal: document.getElementById('movieModal'),
     closeModalBtn: document.getElementById('closeModalBtn'),
     modalPlayerContainer: document.getElementById('modalPlayerContainer'),
     modalIframe: document.getElementById('modalIframe'),
+    overlayFullscreenBtn: document.getElementById('overlayFullscreenBtn'),
     fullscreenBtn: document.getElementById('fullscreenBtn'),
     fullscreenBtnText: document.getElementById('fullscreenBtnText'),
-    overlayFullscreenBtn: document.getElementById('overlayFullscreenBtn'),
+    modalYtLink: document.getElementById('modalYtLink'),
     modalSubHelp: document.getElementById('modalSubHelp'),
     modalSubHelpText: document.getElementById('modalSubHelpText'),
     modalMovieTitle: document.getElementById('modalMovieTitle'),
-    modalYtLink: document.getElementById('modalYtLink'),
     modalChannelAvatar: document.getElementById('modalChannelAvatar'),
     modalChannelName: document.getElementById('modalChannelName'),
     modalChannelVerified: document.getElementById('modalChannelVerified'),
@@ -60,774 +72,568 @@
     modalSubtitleBadge: document.getElementById('modalSubtitleBadge'),
     modalDurationBadge: document.getElementById('modalDurationBadge'),
     modalDescription: document.getElementById('modalDescription'),
+    modalSubtitlesLanguages: document.getElementById('modalSubtitlesLanguages'),
     modalSubLanguagesList: document.getElementById('modalSubLanguagesList'),
+
     // Toast
     toast: document.getElementById('toastNotification'),
     toastMessage: document.getElementById('toastMessage')
   };
 
-  // =========================================================================
-  // DONNÉES DE SECOURS (Si l'API /api/movies n'est pas encore démarrée)
-  // Permet de tester le Frontend immédiatement avec de vrais films coréens KOFA / VOSTFR
-  // =========================================================================
-  const FALLBACK_MOVIES = [
-    {
-      id: "o0w7v-e2vY0",
-      videoId: "o0w7v-e2vY0",
-      title: "Aimless Bullet (Obaltan, 오발탄) - Chef-d'œuvre du cinéma coréen (1961)",
-      channelName: "Korean Film Archive (KOFA)",
-      channelAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_n4g-aO0kHhJkW8B98ZJ6e8z8eZ7_Gz8m4n=s176-c-k-c0x00ffffff-no-rj",
-      channelVerified: true,
-      thumbnail: "https://i.ytimg.com/vi/o0w7v-e2vY0/hqdefault.jpg",
-      duration: "1:47:20",
-      durationFormatted: "1:47:20",
-      subtitleType: "native_fr",
-      subtitleLanguages: ["Français", "Anglais", "Coréen"],
-      viewCount: 382400,
-      viewCountFormatted: "382 k vues",
-      publishedAt: "2024-10-15T10:00:00Z",
-      publishDate: "2024-10-15",
-      publishedFormatted: "15 oct. 2024",
-      publishedRelative: "il y a 6 jours",
-      publishedTimestamp: 1729000000000,
-      description: "Le chef-d'œuvre indémodable du cinéma classique coréen réalisé par Yu Hyun-mok. À Séoul au lendemain de la guerre de Corée, une famille tente de survivre dans la misère et le traumatisme.",
-      category: "drama"
-    },
-    {
-      id: "uKq3sW4nZ8s",
-      videoId: "uKq3sW4nZ8s",
-      title: "The Housemaid (Hanyeo, 하녀) - Thriller psychologique culte de Kim Ki-young (1960)",
-      channelName: "Korean Film Archive (KOFA)",
-      channelAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_n4g-aO0kHhJkW8B98ZJ6e8z8eZ7_Gz8m4n=s176-c-k-c0x00ffffff-no-rj",
-      channelVerified: true,
-      thumbnail: "https://i.ytimg.com/vi/uKq3sW4nZ8s/hqdefault.jpg",
-      duration: "1:51:30",
-      durationFormatted: "1:51:30",
-      subtitleType: "native_fr",
-      subtitleLanguages: ["Français", "Anglais", "Coréen"],
-      viewCount: 1250000,
-      viewCountFormatted: "1,2 M de vues",
-      publishedAt: "2024-09-28T14:30:00Z",
-      publishDate: "2024-09-28",
-      publishedFormatted: "28 sept. 2024",
-      publishedRelative: "il y a 3 semaines",
-      publishedTimestamp: 1727533800000,
-      description: "L'un des thrillers les plus influents du cinéma coréen, cité par Bong Joon-ho comme inspiration majeure pour Parasite. Un professeur de musique embauche une jeune servante qui va semer la discorde.",
-      category: "thriller"
-    },
-    {
-      id: "3e5a7b8c9d0",
-      videoId: "3e5a7b8c9d0",
-      title: "Chilsu and Mansu (칠수와 만수) - Chronique sociale & Comédie dramatique (1988)",
-      channelName: "Korean Classic Film",
-      channelAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_n4g-aO0kHhJkW8B98ZJ6e8z8eZ7_Gz8m4n=s176-c-k-c0x00ffffff-no-rj",
-      channelVerified: true,
-      thumbnail: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=640&q=80",
-      duration: "1:44:10",
-      durationFormatted: "1:44:10",
-      subtitleType: "auto_fr",
-      subtitleLanguages: ["Coréen (original)", "Traduction automatique FR disponible"],
-      viewCount: 94000,
-      viewCountFormatted: "94 k vues",
-      publishedAt: "2024-08-14T09:00:00Z",
-      publishDate: "2024-08-14",
-      publishedFormatted: "14 août 2024",
-      publishedRelative: "il y a 2 mois",
-      publishedTimestamp: 1723626000000,
-      description: "Film emblématique de Park Kwang-su mettant en vedette Park Joong-hoon et Ahn Sung-ki. Deux peintres d'enseignes publicitaires perchés au sommet d'un gratte-ciel de Séoul se retrouvent pris dans un quiproquo géant.",
-      category: "comedy"
-    },
-    {
-      id: "7f8g9h0i1j2",
-      videoId: "7f8g9h0i1j2",
-      title: "Suddenly in Dark Night (깊은 밤 갑자기) - Horreur & Mystère Coréen (1981)",
-      channelName: "Korean Film Archive (KOFA)",
-      channelAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_n4g-aO0kHhJkW8B98ZJ6e8z8eZ7_Gz8m4n=s176-c-k-c0x00ffffff-no-rj",
-      channelVerified: true,
-      thumbnail: "https://images.unsplash.com/photo-1509281373149-e957c6296406?w=640&q=80",
-      duration: "1:38:45",
-      durationFormatted: "1:38:45",
-      subtitleType: "native_fr",
-      subtitleLanguages: ["Français", "Anglais"],
-      viewCount: 420000,
-      viewCountFormatted: "420 k vues",
-      publishedAt: "2024-07-02T16:20:00Z",
-      publishDate: "2024-07-02",
-      publishedFormatted: "2 juil. 2024",
-      publishedRelative: "il y a 3 mois",
-      publishedTimestamp: 1719937200000,
-      description: "Un chef-d'œuvre du cinéma d'horreur psychologique et gothique coréen des années 80 par Go Yeong-nam. Une poupée de chaman ancestrale et une jeune servante troublent une maîtresse de maison.",
-      category: "horror"
-    },
-    {
-      id: "2b4c6d8e0f1",
-      videoId: "2b4c6d8e0f1",
-      title: "Sopyonje (서편제) - Drame musical Pansori traditionnel (1993)",
-      channelName: "Korean Classic Film",
-      channelAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_n4g-aO0kHhJkW8B98ZJ6e8z8eZ7_Gz8m4n=s176-c-k-c0x00ffffff-no-rj",
-      channelVerified: true,
-      thumbnail: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=640&q=80",
-      duration: "1:52:00",
-      durationFormatted: "1:52:00",
-      subtitleType: "native_fr",
-      subtitleLanguages: ["Français", "Anglais", "Coréen"],
-      viewCount: 890000,
-      viewCountFormatted: "890 k vues",
-      publishedAt: "2024-05-19T11:15:00Z",
-      publishDate: "2024-05-19",
-      publishedFormatted: "19 mai 2024",
-      publishedRelative: "il y a 5 mois",
-      publishedTimestamp: 1716117300000,
-      description: "Réalisé par le maître Im Kwon-taek, premier film coréen à dépasser le million d'entrées à Séoul. L'histoire poignante d'une famille d'artistes ambulants de pansori à travers la Corée rurale.",
-      category: "drama"
-    },
-    {
-      id: "9k8j7h6g5f4",
-      videoId: "9k8j7h6g5f4",
-      title: "The Coachman (Mabu, 마부) - Ours d'Argent Berlin 1961 (Drame)",
-      channelName: "Korean Film Archive (KOFA)",
-      channelAvatar: "https://yt3.googleusercontent.com/ytc/AIdro_n4g-aO0kHhJkW8B98ZJ6e8z8eZ7_Gz8m4n=s176-c-k-c0x00ffffff-no-rj",
-      channelVerified: true,
-      thumbnail: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=640&q=80",
-      duration: "1:45:00",
-      durationFormatted: "1:45:00",
-      subtitleType: "native_fr",
-      subtitleLanguages: ["Français", "Anglais", "Allemand"],
-      viewCount: 215000,
-      viewCountFormatted: "215 k vues",
-      publishedAt: "2024-03-10T08:00:00Z",
-      publishDate: "2024-03-10",
-      publishedFormatted: "10 mars 2024",
-      publishedRelative: "il y a 7 mois",
-      publishedTimestamp: 1710057600000,
-      description: "Premier film coréen à remporter un prix majeur dans un festival international (Ours d'argent extraordinaire à la Berlinale 1961). Réalisé par Kang Dae-jin avec Kim Seung-ho.",
-      category: "drama"
-    }
-  ];
+  let searchDebounceTimer = null;
+  let toastTimer = null;
 
-  // =========================================================================
-  // FONCTIONS UTILITAIRES & FORMATAGE
-  // =========================================================================
+  // ==========================================================================
+  // INITIALISATION
+  // ==========================================================================
+  function init() {
+    setupEventListeners();
+    loadMovies(false);
+  }
+
+  // ==========================================================================
+  // GESTION DES REQUÊTES (GITHUB PAGES + LOCALHOST)
+  // ==========================================================================
 
   /**
-   * Trie défensivement une liste de films par date de publication décroissante
+   * Détermine si le site est hébergé en mode statique (ex: GitHub Pages)
    */
-  function defensiveSortByDateDesc(movies) {
-    if (!Array.isArray(movies)) return [];
-    return [...movies].sort((a, b) => {
-      const timeA = getTimestamp(a);
-      const timeB = getTimestamp(b);
-      return timeB - timeA;
-    });
+  function isStaticHosting() {
+    const hostname = window.location.hostname;
+    return (
+      hostname.includes('github.io') ||
+      window.location.protocol === 'file:' ||
+      window.location.port === '' && hostname !== 'localhost' && hostname !== '127.0.0.1'
+    );
   }
 
   /**
-   * Extrait un timestamp numérique depuis les champs variés d'un film
+   * Charge le catalogue de films.
+   * Fonctionne en toute transparence sur GitHub Pages (damien618.github.io/AsieCineTube)
+   * et en local avec Python server.py.
+   * 
+   * @param {boolean} isRefresh - S'il s'agit d'une actualisation manuelle par l'utilisateur
    */
-  function getTimestamp(movie) {
-    if (!movie) return 0;
-    if (typeof movie.publishedTimestamp === 'number' && !isNaN(movie.publishedTimestamp)) {
+  async function loadMovies(isRefresh = false) {
+    if (state.isLoading) return;
+
+    state.isLoading = true;
+    showLoadingState(isRefresh);
+
+    const isStatic = isStaticHosting();
+    const cacheBuster = `_t=${Date.now()}`;
+
+    // Sur GitHub Pages, nous utilisons le fichier statique movies.json avec cache-buster
+    // pour forcer la récupération de la dernière version déployée sans passer par le cache CDN.
+    let primaryUrl = isStatic
+      ? `./movies.json?${cacheBuster}`
+      : `./api/movies${isRefresh ? '?refresh=1&' + cacheBuster : ''}`;
+
+    let fallbackUrl = `./movies.json?${cacheBuster}`;
+
+    try {
+      let data = null;
+      let fetchedFromApi = false;
+
+      try {
+        const response = await fetch(primaryUrl);
+        if (response.ok) {
+          const contentType = response.headers.get('content-type') || '';
+          if (contentType.includes('application/json') || primaryUrl.includes('.json')) {
+            data = await response.json();
+            fetchedFromApi = !isStatic;
+          }
+        }
+      } catch (err) {
+        console.warn(`Échec de récupération sur ${primaryUrl}, tentative de fallback...`, err);
+      }
+
+      // Si l'API échoue ou renvoie 404 (cas typique sur GitHub Pages ou si le serveur local n'a pas l'API)
+      if (!data && primaryUrl !== fallbackUrl) {
+        console.info(`Basculement sur le catalogue statique : ${fallbackUrl}`);
+        const fallbackResponse = await fetch(fallbackUrl);
+        if (fallbackResponse.ok) {
+          data = await fallbackResponse.json();
+        } else {
+          throw new Error(`Catalogue statique introuvable (${fallbackResponse.status})`);
+        }
+      }
+
+      if (!data || !Array.isArray(data.movies)) {
+        throw new Error('Données reçues invalides ou corrompues');
+      }
+
+      // Traitement et tri strict par date décroissante
+      state.allMovies = sortMoviesByDateDesc(data.movies);
+      applyFiltersAndRender();
+
+      hideErrorState();
+
+      if (isRefresh) {
+        showToast(`Catalogue actualisé avec succès (${state.allMovies.length} films disponibles)`);
+      }
+    } catch (err) {
+      console.error('Erreur lors du chargement des films:', err);
+      if (state.allMovies.length === 0) {
+        showErrorState(err.message || 'Impossible de charger le catalogue.');
+      } else {
+        // Si on a déjà des films en mémoire, on n'efface pas l'écran, on avertit juste l'utilisateur
+        showToast('Impossible d\'actualiser pour le moment. Conservation du catalogue actuel.');
+      }
+    } finally {
+      state.isLoading = false;
+      hideLoadingState();
+    }
+  }
+
+  // ==========================================================================
+  // TRI STRICT PAR DATE DÉCROISSANTE (PLUS RÉCENT EN PREMIER)
+  // ==========================================================================
+  function sortMoviesByDateDesc(movies) {
+    return [...movies].sort((a, b) => {
+      const tsA = getMovieTimestamp(a);
+      const tsB = getMovieTimestamp(b);
+      return tsB - tsA;
+    });
+  }
+
+  function getMovieTimestamp(movie) {
+    if (typeof movie.publishedTimestamp === 'number' && movie.publishedTimestamp > 0) {
       return movie.publishedTimestamp;
     }
-    const dateStr = movie.publishedAt || movie.publishDate || movie.publishedDate || movie.date;
-    if (dateStr) {
-      const ts = new Date(dateStr).getTime();
-      if (!isNaN(ts)) return ts;
+    if (movie.publishDate) {
+      const parsed = Date.parse(movie.publishDate);
+      if (!isNaN(parsed)) return Math.floor(parsed / 1000);
     }
     return 0;
   }
 
-  /**
-   * Échappement HTML sécurisé pour éviter toute faille XSS
-   */
-  function escapeHTML(str) {
-    if (str === null || str === undefined) return '';
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
+  // ==========================================================================
+  // FILTRAGE CÔTÉ CLIENT
+  // ==========================================================================
+  function applyFiltersAndRender() {
+    const query = state.searchQuery.trim().toLowerCase();
+    const category = state.currentCategory;
+    const subFilter = state.subFilter;
 
-  /**
-   * Formate la durée (e.g. "1:45:20" ou "52:10")
-   */
-  function formatDuration(movie) {
-    if (movie.durationFormatted) return movie.durationFormatted;
-    if (typeof movie.duration === 'string') return movie.duration;
-    if (typeof movie.duration === 'number' && !isNaN(movie.duration)) {
-      const totalSec = Math.floor(movie.duration);
-      const h = Math.floor(totalSec / 3600);
-      const m = Math.floor((totalSec % 3600) / 60);
-      const s = totalSec % 60;
-      if (h > 0) {
-        return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+    let filtered = state.allMovies.filter(movie => {
+      // 1. Filtre Sous-titres
+      if (subFilter === 'native') {
+        if (movie.subtitleType !== 'native_fr') return false;
       }
-      return `${m}:${s < 10 ? '0' : ''}${s}`;
+
+      // 2. Filtre Puce / Catégorie
+      if (category === 'sooner') {
+        const isSooner = movie.isPaid === true ||
+          (movie.channelName && movie.channelName.toLowerCase().includes('sooner')) ||
+          (movie.paidProvider && movie.paidProvider.toLowerCase().includes('sooner'));
+        if (!isSooner) return false;
+      } else if (category === 'kr') {
+        if (movie.country !== 'kr') return false;
+      } else if (category === 'jp') {
+        if (movie.country !== 'jp') return false;
+      } else if (category === 'cn') {
+        if (movie.country !== 'cn') return false;
+      } else if (category === 'kofa') {
+        const isKofa = (movie.category === 'kofa') ||
+          (movie.channelName && (
+            movie.channelName.toLowerCase().includes('koreanfilm') ||
+            movie.channelName.toLowerCase().includes('korean film archive')
+          ));
+        if (!isKofa) return false;
+      } else if (category === 'native') {
+        if (movie.subtitleType !== 'native_fr') return false;
+      } else if (['thriller', 'drama', 'horror', 'comedy'].includes(category)) {
+        const matchesCategory = movie.category === category;
+        const textContent = `${movie.title} ${movie.description || ''}`.toLowerCase();
+        const matchesKeyword = matchesCategory || textContent.includes(category);
+        if (!matchesKeyword) return false;
+      }
+
+      // 3. Filtre Texte Recherche
+      if (query) {
+        const titleMatch = (movie.title || '').toLowerCase().includes(query);
+        const koreanTitleMatch = (movie.koreanTitle || '').toLowerCase().includes(query);
+        const channelMatch = (movie.channelName || '').toLowerCase().includes(query);
+        const descMatch = (movie.description || '').toLowerCase().includes(query);
+        const countryMatch = (movie.countryLabel || '').toLowerCase().includes(query);
+
+        if (!titleMatch && !koreanTitleMatch && !channelMatch && !descMatch && !countryMatch) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+
+    // Garantir le tri par date décroissante
+    state.filteredMovies = sortMoviesByDateDesc(filtered);
+
+    updateStatusBar();
+    renderMoviesGrid();
+  }
+
+  // ==========================================================================
+  // RENDU DU BANDEAU D'ÉTAT
+  // ==========================================================================
+  function updateStatusBar() {
+    const totalCount = state.filteredMovies.length;
+    const allCount = state.allMovies.length;
+
+    if (state.searchQuery || state.currentCategory !== 'all' || state.subFilter !== 'all') {
+      DOM.movieCount.textContent = `${totalCount} film${totalCount > 1 ? 's' : ''} trouvé${totalCount > 1 ? 's' : ''} (sur ${allCount})`;
+    } else {
+      DOM.movieCount.textContent = `${totalCount} film${totalCount > 1 ? 's' : ''} disponible${totalCount > 1 ? 's' : ''}`;
     }
-    return 'Film';
-  }
 
-  /**
-   * Formate le nombre de vues YouTube
-   */
-  function formatViews(movie) {
-    if (movie.viewCountFormatted) return movie.viewCountFormatted;
-    const views = Number(movie.viewCount);
-    if (isNaN(views)) return 'Vues indisponibles';
-    if (views >= 1000000) {
-      return `${(views / 1000000).toFixed(1).replace('.', ',')} M de vues`;
+    // Badge de filtre actif
+    let activeFilterLabel = '';
+    if (state.currentCategory === 'sooner') {
+      activeFilterLabel = '🟢 Sooner (@soonerfrance)';
+    } else if (state.currentCategory === 'kr') {
+      activeFilterLabel = '🇰🇷 Films Coréens';
+    } else if (state.currentCategory === 'kofa') {
+      activeFilterLabel = '🏛️ @KoreanFilm (KOFA)';
+    } else if (state.currentCategory === 'jp') {
+      activeFilterLabel = '🇯🇵 Films Japonais';
+    } else if (state.currentCategory === 'cn') {
+      activeFilterLabel = '🇨🇳 Films Chinois';
+    } else if (state.currentCategory === 'native') {
+      activeFilterLabel = '⭐ ST-FR Natif';
+    } else if (state.currentCategory !== 'all') {
+      activeFilterLabel = `Genre : ${state.currentCategory.toUpperCase()}`;
     }
-    if (views >= 1000) {
-      return `${Math.round(views / 1000)} k vues`;
-    }
-    return `${views} vue${views > 1 ? 's' : ''}`;
-  }
 
-  /**
-   * Formate la date de publication exacte
-   */
-  function formatPublishedDate(movie) {
-    if (movie.publishedFormatted) return movie.publishedFormatted;
-    const ts = getTimestamp(movie);
-    if (!ts) return 'Date inconnue';
-    try {
-      const d = new Date(ts);
-      return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
-    } catch {
-      return 'Date inconnue';
+    if (state.subFilter === 'native' && state.currentCategory !== 'native') {
+      activeFilterLabel += activeFilterLabel ? ' • ST-FR Natif' : 'ST-FR Natif uniquement';
+    }
+
+    if (state.searchQuery) {
+      activeFilterLabel += activeFilterLabel ? ` • Recherche : "${state.searchQuery}"` : `Recherche : "${state.searchQuery}"`;
+    }
+
+    if (activeFilterLabel) {
+      DOM.activeFilterBadge.textContent = activeFilterLabel;
+      DOM.activeFilterBadge.style.display = 'inline-block';
+    } else {
+      DOM.activeFilterBadge.textContent = '';
+      DOM.activeFilterBadge.style.display = 'none';
     }
   }
 
-  /**
-   * Formate la date relative (il y a X jours / mois / ans)
-   */
-  function formatRelativeDate(movie) {
-    if (movie.publishedRelative) return movie.publishedRelative;
-    const ts = getTimestamp(movie);
-    if (!ts) return '';
-    const now = Date.now();
-    const diffSec = Math.floor((now - ts) / 1000);
-    if (diffSec < 60) return "à l'instant";
-    if (diffSec < 3600) return `il y a ${Math.floor(diffSec / 60)} min`;
-    const diffHours = Math.floor(diffSec / 3600);
-    if (diffHours < 24) return `il y a ${diffHours} heure${diffHours > 1 ? 's' : ''}`;
-    const diffDays = Math.floor(diffHours / 24);
-    if (diffDays < 7) return `il y a ${diffDays} jour${diffDays > 1 ? 's' : ''}`;
-    const diffWeeks = Math.floor(diffDays / 7);
-    if (diffDays < 30) return `il y a ${diffWeeks} semaine${diffWeeks > 1 ? 's' : ''}`;
-    const diffMonths = Math.floor(diffDays / 30);
-    if (diffDays < 365) return `il y a ${diffMonths} mois`;
-    const diffYears = Math.floor(diffDays / 365);
-    return `il y a ${diffYears} an${diffYears > 1 ? 's' : ''}`;
-  }
-
-  /**
-   * Construit l'URL d'intégration (iframe embed) avec sous-titres FR automatiques
-   * Autoplay désactivé (autoplay=0) pour laisser l'utilisateur décider de lancer
-   * la lecture ou de basculer directement sur YouTube.
-   */
-  function buildEmbedUrl(movie) {
-    const videoId = movie.videoId || movie.id;
-    if (movie.embedUrl && movie.embedUrl.includes('embed')) {
-      const url = new URL(movie.embedUrl, window.location.origin);
-      url.searchParams.set('autoplay', '0'); // Ne lance pas directement la vidéo
-      url.searchParams.set('cc_load_policy', '1');
-      url.searchParams.set('cc_lang_pref', 'fr');
-      url.searchParams.set('hl', 'fr');
-      url.searchParams.set('fs', '1');
-      url.searchParams.set('rel', '0');
-      return url.toString();
-    }
-    return `https://www.youtube.com/embed/${videoId}?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0`;
-  }
-
-  /**
-   * Construit l'URL directe sur YouTube
-   */
-  function buildYoutubeUrl(movie) {
-    if (movie.youtubeUrl) return movie.youtubeUrl;
-    const videoId = movie.videoId || movie.id;
-    return `https://www.youtube.com/watch?v=${videoId}`;
-  }
-
-  /**
-   * Formate la liste des langues disponibles
-   */
-  function formatLanguagesList(languages) {
-    if (Array.isArray(languages)) {
-      return languages.join(', ');
-    }
-    if (typeof languages === 'string') return languages;
-    return 'Français (FR)';
-  }
-
-  /**
-   * Affichage d'un toast notification discret
-   */
-  let toastTimer = null;
-  function showToast(message) {
-    if (!DOM.toast || !DOM.toastMessage) return;
-    DOM.toastMessage.textContent = message;
-    DOM.toast.classList.remove('hidden');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      DOM.toast.classList.add('hidden');
-    }, 3500);
-  }
-
-  // =========================================================================
-  // RENDU DES SQUELETTES (SHIMMER SKELETONS)
-  // =========================================================================
-  function renderSkeletons(count = 8) {
-    let skeletonsHtml = '';
-    for (let i = 0; i < count; i++) {
-      skeletonsHtml += `
-        <div class="skeleton-card" aria-hidden="true">
-          <div class="skeleton-thumbnail shimmer"></div>
-          <div class="skeleton-details">
-            <div class="skeleton-avatar shimmer"></div>
-            <div class="skeleton-text-group">
-              <div class="skeleton-line title-1 shimmer"></div>
-              <div class="skeleton-line title-2 shimmer"></div>
-              <div class="skeleton-line channel shimmer"></div>
-              <div class="skeleton-line meta shimmer"></div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-    DOM.moviesGrid.innerHTML = skeletonsHtml;
-    DOM.emptyState.classList.add('hidden');
-    DOM.errorState.classList.add('hidden');
-  }
-
-  // =========================================================================
+  // ==========================================================================
   // RENDU DE LA GRILLE DES FILMS
-  // =========================================================================
-  function renderMovies(movies) {
-    if (!Array.isArray(movies) || movies.length === 0) {
-      DOM.moviesGrid.innerHTML = '';
+  // ==========================================================================
+  function renderMoviesGrid() {
+    DOM.moviesGrid.innerHTML = '';
+
+    if (state.filteredMovies.length === 0) {
       DOM.emptyState.classList.remove('hidden');
-      DOM.errorState.classList.add('hidden');
-      DOM.movieCount.textContent = '0 film coréen trouvé';
+      if (state.searchQuery) {
+        DOM.emptyDesc.textContent = `Aucun film ne correspond à votre recherche "${state.searchQuery}".`;
+      } else {
+        DOM.emptyDesc.textContent = 'Aucun film ne correspond aux filtres sélectionnés.';
+      }
       return;
     }
 
     DOM.emptyState.classList.add('hidden');
-    DOM.errorState.classList.add('hidden');
 
-    // Mise à jour du bandeau d'état avec détail par pays (Corée, Japon, Chine) et Sooner
-    const krCount = movies.filter(m => m.country === 'kr').length;
-    const jpCount = movies.filter(m => m.country === 'jp').length;
-    const cnCount = movies.filter(m => m.country === 'cn').length;
-    const paidCount = movies.filter(m => m.isPaid).length;
-    const countrySummary = (krCount || jpCount || cnCount)
-      ? ` — 🇰🇷 Corée : ${krCount} • 🇯🇵 Japon : ${jpCount} • 🇨🇳 Chine : ${cnCount}`
-      : '';
-    const paidSummary = paidCount > 0 ? ` • 🟢 ${paidCount} sur Sooner (@soonerfrance)` : '';
-    DOM.movieCount.textContent = `${movies.length} film${movies.length > 1 ? 's' : ''} disponible${movies.length > 1 ? 's' : ''}${countrySummary}${paidSummary}`;
-    
-    // Badge informatif du filtre actuel
-    updateFilterBadge();
+    const fragment = document.createDocumentFragment();
 
-    // Rendu des cartes de film
-    DOM.moviesGrid.innerHTML = movies.map((movie, index) => {
-      const isNative = movie.subtitleType === 'native_fr';
-      const isPaid = Boolean(movie.isPaid);
-      const countryPrefix = movie.countryLabel ? `${movie.countryLabel} • ` : '🇫🇷 ';
-      const subBadgeText = movie.subtitleLabel || (isNative ? `${countryPrefix}ST-FR Natif` : `${countryPrefix}ST-FR Auto (CC)`);
-      const subBadgeClass = isNative ? 'native' : 'auto';
-      const duration = formatDuration(movie);
-      const views = formatViews(movie);
-      const pubDate = formatPublishedDate(movie);
-      const pubRelative = formatRelativeDate(movie);
-      const metaText = pubRelative ? `${views} • Publié le ${pubDate} (${pubRelative})` : `${views} • Publié le ${pubDate}`;
-
-      // Miniature et fallback
-      const videoId = movie.videoId || movie.id || '';
-      const fallbackThumb = videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : '';
-      const thumbUrl = movie.thumbnail || fallbackThumb;
-
-      // Avatar de chaîne ou fallback initiale
-      const initial = (movie.channelName || 'K').charAt(0).toUpperCase();
-
-      return `
-        <article 
-          class="movie-card" 
-          role="button" 
-          tabindex="0" 
-          data-index="${index}"
-          aria-label="Regarder ${escapeHTML(movie.title)}"
-        >
-          <!-- Conteneur Miniature 16:9 -->
-          <div class="thumbnail-wrapper">
-            <img 
-              class="thumbnail-img" 
-              src="${escapeHTML(thumbUrl)}" 
-              alt="${escapeHTML(movie.title)}" 
-              loading="lazy"
-              onerror="this.onerror=null; if('${videoId}') this.src='https://i.ytimg.com/vi/${videoId}/hqdefault.jpg';"
-            />
-            
-            <!-- Badge Sous-titres Haut Gauche -->
-            <span class="badge-subtitle-top ${subBadgeClass}" title="${isNative ? 'Sous-titres français créés nativement' : 'Sous-titres français via traduction automatique YouTube'}">
-              ${subBadgeText}
-            </span>
-
-            ${isPaid ? `
-              <!-- Badge Payant Haut Droite avec Point Vert YouTube -->
-              <span class="badge-paid-top" title="Film payant sur la chaîne YouTube @soonerfrance">
-                <span class="yt-paid-dot" aria-hidden="true"></span>
-                <span>Payant</span>
-              </span>
-            ` : ''}
-
-            <!-- Badge Durée Bas Droite -->
-            <span class="badge-duration-bottom">${escapeHTML(duration)}</span>
-
-            <!-- Bouton direct pour regarder sur YouTube (si l'utilisateur préfère YouTube) -->
-            <a 
-              href="${escapeHTML(buildYoutubeUrl(movie))}" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="card-yt-direct-btn" 
-              title="Regarder directement sur YouTube ↗ (nouvel onglet)"
-              onclick="event.stopPropagation();"
-            >
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-              <span>Sur YouTube ↗</span>
-            </a>
-
-            <!-- Bouton Play en surimpression au survol (ouvre la fiche sans lancer directement) -->
-            <div class="play-overlay-btn" aria-hidden="true" title="Afficher la fiche du film">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Métadonnées sous la miniature -->
-          <div class="movie-details">
-            <div class="channel-avatar-wrapper">
-              ${movie.channelAvatar ? `
-                <img 
-                  class="channel-avatar-img" 
-                  src="${escapeHTML(movie.channelAvatar)}" 
-                  alt="${escapeHTML(movie.channelName || '')}" 
-                  loading="lazy"
-                  onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'channel-avatar-fallback\\'>${escapeHTML(initial)}</div>';"
-                />
-              ` : `
-                <div class="channel-avatar-fallback">${escapeHTML(initial)}</div>
-              `}
-            </div>
-
-            <div class="movie-text-content">
-              <h2 class="movie-card-title" title="${escapeHTML(movie.title)}">
-                ${escapeHTML(movie.title)}
-              </h2>
-              
-              <div class="movie-channel-line">
-                <span>${escapeHTML(movie.channelName || 'Chaîne YouTube')}</span>
-                ${movie.channelVerified ? `
-                  <svg class="verified-icon" viewBox="0 0 24 24" fill="currentColor" title="Chaîne vérifiée">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                  </svg>
-                ` : ''}
-              </div>
-
-              <div class="movie-meta-line" title="${escapeHTML(metaText)}">
-                ${escapeHTML(metaText)}
-              </div>
-
-              ${isPaid ? `
-                <div class="movie-paid-line" title="Visionnage payant (location ou abonnement) sur la chaîne YouTube @soonerfrance">
-                  <span class="yt-paid-dot" aria-hidden="true"></span>
-                  <span>${escapeHTML(movie.paidLabel || 'Visionnage payant • @soonerfrance')}</span>
-                </div>
-              ` : ''}
-            </div>
-          </div>
-        </article>
-      `;
-    }).join('');
-
-    // Attachement des écouteurs sur chaque carte
-    DOM.moviesGrid.querySelectorAll('.movie-card').forEach((cardEl) => {
-      cardEl.addEventListener('click', () => {
-        const index = parseInt(cardEl.dataset.index, 10);
-        if (!isNaN(index) && state.movies[index]) {
-          openMovieModal(state.movies[index]);
-        }
-      });
-      cardEl.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const index = parseInt(cardEl.dataset.index, 10);
-          if (!isNaN(index) && state.movies[index]) {
-            openMovieModal(state.movies[index]);
-          }
-        }
-      });
+    state.filteredMovies.forEach(movie => {
+      const card = createMovieCard(movie);
+      fragment.appendChild(card);
     });
+
+    DOM.moviesGrid.appendChild(fragment);
   }
 
   /**
-   * Met à jour le badge d'état des filtres
+   * Crée l'élément HTML complet d'une carte film style YouTube
    */
-  function updateFilterBadge() {
-    if (!DOM.activeFilterBadge) return;
-    const parts = [];
-    if (state.currentQuery) {
-      parts.push(`Recherche : "${escapeHTML(state.currentQuery)}"`);
-    }
-    if (state.currentSubFilter === 'native') {
-      parts.push('ST-FR Natif');
-    }
-    if (state.currentCategory && state.currentCategory !== 'all') {
-      const activeChip = document.querySelector(`.chip[data-category="${state.currentCategory}"]`);
-      if (activeChip) {
-        parts.push(activeChip.textContent.trim());
-      }
-    }
-    DOM.activeFilterBadge.textContent = parts.length > 0 ? parts.join(' | ') : 'Tous les films';
-  }
+  function createMovieCard(movie) {
+    const card = document.createElement('article');
+    card.className = 'movie-card';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `Voir le film : ${movie.title}`);
 
-  // =========================================================================
-  // CHARGEMENT DE L'API /api/movies
-  // =========================================================================
-  async function loadMovies(refresh = false) {
-    if (state.isLoading) return;
-    state.isLoading = true;
+    // Détermination des badges
+    const isNative = movie.subtitleType === 'native_fr';
+    const subBadgeClass = isNative ? 'native' : 'auto';
+    const subBadgeText = isNative ? '🇫🇷 ST-FR Natif' : '🇫🇷 ST-FR Auto (CC)';
 
-    // Affichage des squelettes
-    renderSkeletons(8);
+    const isPaid = Boolean(movie.isPaid);
+    const paidBadgeHtml = isPaid
+      ? `<span class="badge-paid-top" title="${escapeHtml(movie.paidLabel || 'Visionnage payant sur YouTube')}">
+           <span class="yt-paid-dot" aria-hidden="true"></span> Sooner
+         </span>`
+      : '';
 
-    if (refresh && DOM.refreshBtn) {
-      DOM.refreshBtn.classList.add('refreshing');
+    const paidInfoLine = isPaid
+      ? `<div class="movie-paid-line">
+           <span class="yt-paid-dot" aria-hidden="true"></span>
+           <span>${escapeHtml(movie.paidProvider || 'Sooner (@soonerfrance)')}</span>
+         </div>`
+      : '';
+
+    // Miniature avec fallback
+    const thumbUrl = movie.thumbnail || `https://i.ytimg.com/vi/${movie.videoId}/hqdefault.jpg`;
+
+    // Avatar chaîne
+    const avatarUrl = movie.channelAvatar || '';
+    const channelInitial = (movie.channelName || 'Y').charAt(0).toUpperCase();
+
+    const avatarHtml = avatarUrl
+      ? `<img class="channel-avatar-img" src="${escapeHtml(avatarUrl)}" alt="${escapeHtml(movie.channelName)}" loading="lazy" onerror="this.outerHTML='<div class=\\'channel-avatar-fallback\\'>${channelInitial}</div>'">`
+      : `<div class="channel-avatar-fallback">${channelInitial}</div>`;
+
+    // Coche vérifiée
+    const verifiedHtml = movie.channelVerified
+      ? `<svg class="verified-icon" viewBox="0 0 24 24" aria-label="Chaîne vérifiée"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`
+      : '';
+
+    const countryFlag = movie.country === 'kr' ? '🇰🇷 ' : movie.country === 'jp' ? '🇯🇵 ' : movie.country === 'cn' ? '🇨🇳 ' : '';
+
+    card.innerHTML = `
+      <div class="thumbnail-wrapper">
+        <img class="thumbnail-img" src="${escapeHtml(thumbUrl)}" alt="${escapeHtml(movie.title)}" loading="lazy">
+        
+        <span class="badge-subtitle-top ${subBadgeClass}">${countryFlag}${subBadgeText}</span>
+        ${paidBadgeHtml}
+        
+        <span class="badge-duration-bottom">${escapeHtml(movie.durationFormatted || '')}</span>
+
+        <!-- Bouton direct pour visionner sur YouTube sans ouvrir la modale -->
+        <a 
+          href="${escapeHtml(movie.youtubeUrl)}" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="card-yt-direct-btn" 
+          title="Regarder directement sur YouTube dans un nouvel onglet"
+          tabindex="0"
+        >
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+            <path d="M10 15l5-3-5-3v6z"/>
+          </svg>
+          <span>Sur YouTube ↗</span>
+        </a>
+
+        <div class="play-overlay-btn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="movie-details">
+        <div class="channel-avatar-wrapper">
+          ${avatarHtml}
+        </div>
+        <div class="movie-text-content">
+          <h3 class="movie-card-title" title="${escapeHtml(movie.title)}">${escapeHtml(movie.title)}</h3>
+          <div class="movie-channel-line">
+            <span>${escapeHtml(movie.channelName || '')}</span>
+            ${verifiedHtml}
+          </div>
+          <div class="movie-meta-line">
+            <span>${escapeHtml(movie.viewCountFormatted || 'Vues non indiquées')}</span>
+            <span>•</span>
+            <span title="Date de publication : ${escapeHtml(movie.publishedFormatted || movie.publishDate || '')}">
+              ${escapeHtml(movie.publishedRelative || movie.publishedFormatted || '')}
+            </span>
+          </div>
+          ${paidInfoLine}
+        </div>
+      </div>
+    `;
+
+    // Clic sur le bouton direct "Sur YouTube" : ne pas ouvrir la modale
+    const ytDirectBtn = card.querySelector('.card-yt-direct-btn');
+    if (ytDirectBtn) {
+      ytDirectBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+      ytDirectBtn.addEventListener('keydown', (e) => {
+        e.stopPropagation();
+      });
     }
 
-    const queryParams = new URLSearchParams({
-      q: state.currentQuery,
-      category: state.currentCategory,
-      sub_filter: state.currentSubFilter,
-      refresh: refresh ? '1' : '0'
+    // Clic sur la carte : ouvre la modale Lecteur Cinéma
+    card.addEventListener('click', () => {
+      openMovieModal(movie);
     });
 
-    const apiUrl = `/api/movies?${queryParams.toString()}`;
-
-    try {
-      const response = await fetch(apiUrl, {
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (!response.ok) {
-        throw new Error(`Erreur serveur (${response.status})`);
+    // Accessibilité Clavier
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openMovieModal(movie);
       }
+    });
 
-      const data = await response.json();
-      let rawMovies = [];
-
-      if (data && Array.isArray(data.movies)) {
-        rawMovies = data.movies;
-      } else if (Array.isArray(data)) {
-        rawMovies = data;
-      }
-
-      // TRI DÉFENSIF PAR DATE DE PUBLICATION DÉCROISSANTE (PLUS RÉCENT EN PREMIER)
-      state.movies = defensiveSortByDateDesc(rawMovies);
-      renderMovies(state.movies);
-
-      if (refresh) {
-        showToast('Catalogue actualisé avec succès depuis YouTube !');
-      }
-    } catch (err) {
-      console.warn('Impossible de joindre /api/movies, basculement sur données locales de secours :', err);
-      
-      // Fallback gracieux : si l'API backend n'est pas encore démarrée, on filtre et trie les films de secours
-      let filtered = [...FALLBACK_MOVIES];
-
-      // Filtre catégorie
-      if (state.currentCategory && state.currentCategory !== 'all') {
-        if (state.currentCategory === 'recent') {
-          // Déjà trié par date
-        } else if (state.currentCategory === 'native') {
-          filtered = filtered.filter(m => m.subtitleType === 'native_fr');
-        } else if (state.currentCategory === 'kofa') {
-          filtered = filtered.filter(m => (m.channelName || '').toLowerCase().includes('korean film archive') || (m.channelName || '').toLowerCase().includes('kofa'));
-        } else {
-          filtered = filtered.filter(m => m.category === state.currentCategory);
-        }
-      }
-
-      // Filtre sous-titres
-      if (state.currentSubFilter === 'native') {
-        filtered = filtered.filter(m => m.subtitleType === 'native_fr');
-      }
-
-      // Filtre recherche
-      if (state.currentQuery.trim()) {
-        const q = state.currentQuery.trim().toLowerCase();
-        filtered = filtered.filter(m => 
-          (m.title || '').toLowerCase().includes(q) ||
-          (m.channelName || '').toLowerCase().includes(q) ||
-          (m.description || '').toLowerCase().includes(q)
-        );
-      }
-
-      // TRI DÉFENSIF GARANTI
-      state.movies = defensiveSortByDateDesc(filtered);
-      renderMovies(state.movies);
-
-      if (refresh) {
-        showToast('Données actualisées en mode local');
-      }
-    } finally {
-      state.isLoading = false;
-      if (DOM.refreshBtn) {
-        DOM.refreshBtn.classList.remove('refreshing');
-      }
-    }
+    return card;
   }
 
-  // =========================================================================
-  // GESTION DE LA MODALE DU LECTEUR CINÉMA
-  // =========================================================================
+  // ==========================================================================
+  // MODALE LECTEUR CINÉMA & LECTEUR INTÉGRÉ
+  // ==========================================================================
+
+  /**
+   * Construit l'URL d'intégration YouTube sécurisée et non tronquée.
+   * ATTENTION : autoplay=0 est volontairement appliqué suite aux retours utilisateurs
+   * afin de ne pas déclencher le son et la lecture automatiquement.
+   */
+  function buildEmbedUrl(movie) {
+    const videoId = movie.videoId || movie.id;
+    // autoplay=0 : l'utilisateur choisit quand lancer la vidéo
+    return `https://www.youtube.com/embed/${videoId}?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0`;
+  }
+
   function openMovieModal(movie) {
-    if (!movie) return;
     state.selectedMovie = movie;
 
-    // 1. Titre & lien direct YouTube
-    DOM.modalMovieTitle.textContent = movie.title || 'Film Coréen';
-    DOM.modalYtLink.href = buildYoutubeUrl(movie);
+    // Configuration de l'iframe YouTube (sans autoplay automatique)
+    DOM.modalIframe.src = buildEmbedUrl(movie);
 
-    // 2. Chaîne et vérification
+    // Titre
+    DOM.modalMovieTitle.textContent = movie.title || '';
+
+    // Lien YouTube Externe
+    DOM.modalYtLink.href = movie.youtubeUrl || `https://www.youtube.com/watch?v=${movie.videoId}`;
+
+    // Avatar et Chaîne
+    const avatarUrl = movie.channelAvatar || '';
+    const channelInitial = (movie.channelName || 'Y').charAt(0).toUpperCase();
+    if (avatarUrl) {
+      DOM.modalChannelAvatar.innerHTML = `<img class="channel-avatar-img" src="${escapeHtml(avatarUrl)}" alt="${escapeHtml(movie.channelName)}" onerror="this.outerHTML='<div class=\\'channel-avatar-fallback\\'>${channelInitial}</div>'">`;
+    } else {
+      DOM.modalChannelAvatar.innerHTML = `<div class="channel-avatar-fallback">${channelInitial}</div>`;
+    }
+
     DOM.modalChannelName.textContent = movie.channelName || 'Chaîne YouTube';
+
     if (movie.channelVerified) {
       DOM.modalChannelVerified.classList.remove('hidden');
     } else {
       DOM.modalChannelVerified.classList.add('hidden');
     }
 
-    // Avatar chaîne
-    const initial = (movie.channelName || 'K').charAt(0).toUpperCase();
-    if (movie.channelAvatar) {
-      DOM.modalChannelAvatar.innerHTML = `
-        <img src="${escapeHTML(movie.channelAvatar)}" alt="${escapeHTML(movie.channelName || '')}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'channel-avatar-fallback\\'>${escapeHTML(initial)}</div>';" />
+    // Statistiques et Date
+    const statsText = `${movie.viewCountFormatted || ''} • Publié le ${movie.publishedFormatted || movie.publishDate || 'date inconnue'}`;
+    DOM.modalStatsText.textContent = statsText;
+
+    // Badges Sous-titres & Durée
+    const isNative = movie.subtitleType === 'native_fr';
+    DOM.modalSubtitleBadge.className = `badge-subtitle ${isNative ? 'native' : 'auto'}`;
+    DOM.modalSubtitleBadge.textContent = isNative ? '🇫🇷 ST-FR Natif' : '🇫🇷 ST-FR Auto (CC)';
+
+    DOM.modalDurationBadge.textContent = movie.durationFormatted || '';
+
+    // Message d'aide Sous-titres FR (explication claire de la limitation du lecteur intégré YouTube)
+    const ytDirectUrl = movie.youtubeUrl || `https://www.youtube.com/watch?v=${movie.videoId}`;
+    if (DOM.modalSubHelp) {
+      DOM.modalSubHelp.className = `sub-help-banner ${isNative ? 'native' : 'auto'}`;
+    }
+
+    if (isNative) {
+      DOM.modalSubHelpText.innerHTML = `
+        <div><strong>🇫🇷 Sous-titres français natifs ou VF disponibles.</strong> Cliquez sur Lecture (▶) pour lancer le film.</div>
+        <div style="font-size: 12px; opacity: 0.9;">💡 <em>Astuce : Si ce film n'a que des sous-titres étrangers dans ce lecteur intégré (YouTube bloque l'option « Traduire automatiquement » hors de son site), ouvrez-le directement sur YouTube :</em></div>
+        <a href="${escapeHtml(ytDirectUrl)}" target="_blank" rel="noopener noreferrer" class="sub-help-yt-btn">
+          ▶ Ouvrir sur YouTube (Menu Traduction Auto FR complet) ↗
+        </a>
       `;
     } else {
-      DOM.modalChannelAvatar.innerHTML = `<div class="channel-avatar-fallback">${escapeHTML(initial)}</div>`;
+      DOM.modalSubHelpText.innerHTML = `
+        <div><strong>⚠️ Limitation du lecteur intégré YouTube :</strong> YouTube a désactivé le sous-menu <em>« Traduire automatiquement »</em> dans les lecteurs intégrés (cliquer sur <em>Sous-titres</em> ici ne fait que les décocher/recocher dans la langue d'origine).</div>
+        <div><strong>👉 Pour activer la traduction automatique en Français :</strong> ouvrez le film sur le site YouTube ci-dessous, puis cliquez sur <strong>⚙️ Paramètres > Sous-titres > Traduire automatiquement > Français</strong>.</div>
+        <a href="${escapeHtml(ytDirectUrl)}" target="_blank" rel="noopener noreferrer" class="sub-help-yt-btn">
+          ▶ Regarder sur YouTube avec Traduction Auto FR ↗
+        </a>
+      `;
     }
 
-    // Stats
-    const views = formatViews(movie);
-    const pubDate = formatPublishedDate(movie);
-    DOM.modalStatsText.textContent = `${views} • Publié le ${pubDate}`;
+    // Description & Langues
+    DOM.modalDescription.textContent = movie.description || 'Aucune description fournie.';
 
-    // 3. Badges sous-titre & durée
-    const isNative = movie.subtitleType === 'native_fr';
-    const isPaid = Boolean(movie.isPaid);
-    const countryPrefix = movie.countryLabel ? `${movie.countryLabel} • ` : '🇫🇷 ';
-    if (isPaid) {
-      DOM.modalSubtitleBadge.className = 'badge-paid-modal';
-      DOM.modalSubtitleBadge.innerHTML = `<span class="yt-paid-dot" aria-hidden="true"></span><span>${escapeHTML(countryPrefix)}Visionnage payant • @soonerfrance</span>`;
-
-      DOM.modalSubHelp.className = 'sub-help-banner native';
-      DOM.modalSubHelpText.textContent = '🟢 Film proposé en visionnage payant sur la chaîne officielle YouTube @soonerfrance (VOSTFR / VF). Cliquez sur « Regarder directement sur YouTube ↗ » pour louer ou débloquer le film complet.';
-    } else if (isNative) {
-      DOM.modalSubtitleBadge.className = 'badge-subtitle native';
-      DOM.modalSubtitleBadge.textContent = `${countryPrefix}ST-FR Natif`;
-
-      DOM.modalSubHelp.className = 'sub-help-banner native';
-      DOM.modalSubHelpText.textContent = 'Sous-titres français (ou VF) activés automatiquement.';
+    if (Array.isArray(movie.availableLanguages) && movie.availableLanguages.length > 0) {
+      DOM.modalSubLanguagesList.textContent = movie.availableLanguages.join(', ').toUpperCase();
+      DOM.modalSubtitlesLanguages.classList.remove('hidden');
     } else {
-      DOM.modalSubtitleBadge.className = 'badge-subtitle auto';
-      DOM.modalSubtitleBadge.textContent = `${countryPrefix}ST-FR Auto (CC)`;
-
-      DOM.modalSubHelp.className = 'sub-help-banner auto';
-      DOM.modalSubHelpText.textContent = "Sous-titres activés : si le texte s'affiche en anglais/coréen/japonais/chinois, cliquez sur ⚙️ Paramètres > Sous-titres > Traduire automatiquement > Français dans le lecteur YouTube.";
+      DOM.modalSubLanguagesList.textContent = isNative ? 'Français (FR)' : 'Français (traduction auto YouTube)';
+      DOM.modalSubtitlesLanguages.classList.remove('hidden');
     }
 
-    DOM.modalDurationBadge.textContent = formatDuration(movie);
-
-    // 4. Description et langues
-    DOM.modalDescription.textContent = movie.description || 'Aucune description détaillée disponible pour cette vidéo.';
-    DOM.modalSubLanguagesList.textContent = formatLanguagesList(movie.availableLanguages || movie.subtitleLanguages);
-
-    // 5. Iframe YouTube (avec autoplay et sous-titres FR forcés)
-    const embedSrc = buildEmbedUrl(movie);
-    DOM.modalIframe.src = embedSrc;
-
-    // Affichage et blocage du défilement d'arrière-plan
+    // Affichage de la modale
     DOM.movieModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+
+    // Focus sur le bouton de fermeture pour navigation clavier
     DOM.closeModalBtn.focus();
   }
 
   function closeMovieModal() {
     // Si en plein écran, quitter le plein écran d'abord
-    if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement) {
-      if (document.exitFullscreen) document.exitFullscreen();
-      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    if (isFullscreenActive()) {
+      exitFullscreen();
     }
-    // Vider la source de l'iframe pour stopper le son de la vidéo
+
+    // Couper la vidéo en vidant la source de l'iframe
     DOM.modalIframe.src = '';
     DOM.movieModal.classList.add('hidden');
     document.body.style.overflow = '';
     state.selectedMovie = null;
   }
 
-  /**
-   * Bascule l'affichage du lecteur en Plein Écran (Fullscreen API)
-   */
-  function toggleFullscreen() {
-    const container = DOM.modalPlayerContainer || document.getElementById('modalPlayerContainer');
-    if (!container) return;
-
-    const isFullscreen = Boolean(
+  // ==========================================================================
+  // GESTION DU PLEIN ÉCRAN (FULLSCREEN API)
+  // ==========================================================================
+  function isFullscreenActive() {
+    return Boolean(
       document.fullscreenElement ||
       document.webkitFullscreenElement ||
       document.mozFullScreenElement ||
       document.msFullscreenElement
     );
+  }
 
-    if (!isFullscreen) {
-      if (container.requestFullscreen) {
-        container.requestFullscreen().catch(err => console.warn('Plein écran non autorisé:', err));
-      } else if (container.webkitRequestFullscreen) {
-        container.webkitRequestFullscreen();
-      } else if (container.mozRequestFullScreen) {
-        container.mozRequestFullScreen();
-      } else if (container.msRequestFullscreen) {
-        container.msRequestFullscreen();
+  function toggleFullscreen() {
+    const targetElement = DOM.modalPlayerContainer || document.getElementById('modalPlayerContainer');
+    if (!targetElement) return;
+
+    if (!isFullscreenActive()) {
+      if (targetElement.requestFullscreen) {
+        targetElement.requestFullscreen().catch(err => console.warn('Plein écran refusé:', err));
+      } else if (targetElement.webkitRequestFullscreen) {
+        targetElement.webkitRequestFullscreen();
+      } else if (targetElement.mozRequestFullScreen) {
+        targetElement.mozRequestFullScreen();
+      } else if (targetElement.msRequestFullscreen) {
+        targetElement.msRequestFullscreen();
       }
     } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().catch(err => console.warn('Erreur sortie plein écran:', err));
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      }
+      exitFullscreen();
     }
   }
 
-  function handleFullscreenChange() {
-    const isFullscreen = Boolean(
-      document.fullscreenElement ||
-      document.webkitFullscreenElement ||
-      document.mozFullScreenElement ||
-      document.msFullscreenElement
-    );
+  function exitFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen().catch(err => console.warn('Erreur sortie plein écran:', err));
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  }
 
+  function updateFullscreenUI() {
+    const inFs = isFullscreenActive();
     if (DOM.fullscreenBtn) {
-      if (isFullscreen) {
+      if (inFs) {
         DOM.fullscreenBtn.classList.add('active');
         if (DOM.fullscreenBtnText) DOM.fullscreenBtnText.textContent = 'Quitter plein écran';
       } else {
@@ -837,163 +643,224 @@
     }
   }
 
-  // Écouteurs de changement d'état plein écran
-  document.addEventListener('fullscreenchange', handleFullscreenChange);
-  document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-  document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+  // ==========================================================================
+  // NOTIFICATIONS TOAST
+  // ==========================================================================
+  function showToast(message, duration = 3500) {
+    if (!DOM.toast || !DOM.toastMessage) return;
 
-  // =========================================================================
-  // ÉCOUTEURS D'ÉVÉNEMENTS
-  // =========================================================================
+    DOM.toastMessage.textContent = message;
+    DOM.toast.classList.remove('hidden');
+    DOM.toast.classList.add('visible');
 
-  // Recherche textuelle
-  if (DOM.searchForm) {
-    DOM.searchForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const val = DOM.searchInput.value.trim();
-      state.currentQuery = val;
-      loadMovies();
-    });
+    if (toastTimer) clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+      DOM.toast.classList.remove('visible');
+      setTimeout(() => {
+        DOM.toast.classList.add('hidden');
+      }, 300);
+    }, duration);
   }
 
-  if (DOM.searchInput) {
-    DOM.searchInput.addEventListener('input', () => {
-      if (DOM.searchInput.value.length > 0) {
+  // ==========================================================================
+  // SQUELETTES DE CHARGEMENT & ÉTATS D'ERREUR
+  // ==========================================================================
+  function showLoadingState(isRefresh = false) {
+    if (isRefresh && DOM.refreshBtn) {
+      DOM.refreshBtn.classList.add('refreshing');
+      DOM.refreshBtn.setAttribute('disabled', 'true');
+    }
+
+    if (!isRefresh && state.allMovies.length === 0) {
+      renderSkeletons(12);
+      DOM.movieCount.textContent = 'Chargement des films asiatiques...';
+    }
+  }
+
+  function hideLoadingState() {
+    if (DOM.refreshBtn) {
+      DOM.refreshBtn.classList.remove('refreshing');
+      DOM.refreshBtn.removeAttribute('disabled');
+    }
+  }
+
+  function renderSkeletons(count = 12) {
+    DOM.moviesGrid.innerHTML = '';
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < count; i++) {
+      const skeleton = document.createElement('div');
+      skeleton.className = 'skeleton-card';
+      skeleton.innerHTML = `
+        <div class="skeleton-thumbnail"></div>
+        <div class="skeleton-details">
+          <div class="skeleton-avatar"></div>
+          <div class="skeleton-text-group">
+            <div class="skeleton-line title-1"></div>
+            <div class="skeleton-line title-2"></div>
+            <div class="skeleton-line channel"></div>
+            <div class="skeleton-line meta"></div>
+          </div>
+        </div>
+      `;
+      fragment.appendChild(skeleton);
+    }
+
+    DOM.moviesGrid.appendChild(fragment);
+  }
+
+  function showErrorState(msg) {
+    DOM.moviesGrid.innerHTML = '';
+    DOM.emptyState.classList.add('hidden');
+    DOM.errorState.classList.remove('hidden');
+    if (DOM.errorMsg) DOM.errorMsg.textContent = msg;
+  }
+
+  function hideErrorState() {
+    DOM.errorState.classList.add('hidden');
+  }
+
+  // ==========================================================================
+  // ÉCOUTEURS D'ÉVÉNEMENTS
+  // ==========================================================================
+  function setupEventListeners() {
+    // 1. Barre de recherche
+    DOM.searchInput.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (val.trim()) {
         DOM.clearSearchBtn.classList.remove('hidden');
       } else {
         DOM.clearSearchBtn.classList.add('hidden');
       }
+
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        state.searchQuery = val;
+        applyFiltersAndRender();
+      }, 250);
     });
 
-    DOM.searchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        DOM.searchInput.value = '';
-        DOM.clearSearchBtn.classList.add('hidden');
-        if (state.currentQuery !== '') {
-          state.currentQuery = '';
-          loadMovies();
-        }
-      }
-    });
-  }
-
-  if (DOM.clearSearchBtn) {
     DOM.clearSearchBtn.addEventListener('click', () => {
       DOM.searchInput.value = '';
       DOM.clearSearchBtn.classList.add('hidden');
+      state.searchQuery = '';
       DOM.searchInput.focus();
-      if (state.currentQuery !== '') {
-        state.currentQuery = '';
-        loadMovies();
-      }
+      applyFiltersAndRender();
     });
-  }
 
-  // Filtre sous-titrage select
-  if (DOM.subFilter) {
+    DOM.searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearTimeout(searchDebounceTimer);
+      state.searchQuery = DOM.searchInput.value;
+      applyFiltersAndRender();
+    });
+
+    // 2. Filtre sous-titres
     DOM.subFilter.addEventListener('change', (e) => {
-      state.currentSubFilter = e.target.value;
-      loadMovies();
+      state.subFilter = e.target.value;
+      applyFiltersAndRender();
     });
-  }
 
-  // Bouton Actualiser
-  if (DOM.refreshBtn) {
+    // 3. Bouton Actualiser
     DOM.refreshBtn.addEventListener('click', () => {
       loadMovies(true);
     });
-  }
 
-  // Barre de puces (Chips)
-  if (DOM.chipsTrack) {
-    DOM.chipsTrack.addEventListener('click', (e) => {
-      const chip = e.target.closest('.chip');
-      if (!chip) return;
+    // 4. Barre de puces (Chips)
+    if (DOM.chipsTrack) {
+      DOM.chipsTrack.addEventListener('click', (e) => {
+        const chip = e.target.closest('.chip');
+        if (!chip) return;
 
-      DOM.chips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
+        DOM.chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
 
-      state.currentCategory = chip.dataset.category || 'all';
-      loadMovies();
-    });
-  }
-
-  // Réinitialiser les filtres
-  if (DOM.resetFiltersBtn) {
-    DOM.resetFiltersBtn.addEventListener('click', () => {
-      state.currentQuery = '';
-      state.currentCategory = 'all';
-      state.currentSubFilter = 'all';
-
-      if (DOM.searchInput) DOM.searchInput.value = '';
-      if (DOM.clearSearchBtn) DOM.clearSearchBtn.classList.add('hidden');
-      if (DOM.subFilter) DOM.subFilter.value = 'all';
-
-      DOM.chips.forEach(c => {
-        if (c.dataset.category === 'all') c.classList.add('active');
-        else c.classList.remove('active');
+        state.currentCategory = chip.dataset.category || 'all';
+        applyFiltersAndRender();
       });
+    }
 
-      loadMovies();
-    });
-  }
+    // 5. Boutons de réinitialisation
+    if (DOM.resetFiltersBtn) {
+      DOM.resetFiltersBtn.addEventListener('click', () => {
+        state.searchQuery = '';
+        state.currentCategory = 'all';
+        state.subFilter = 'all';
 
-  // Réessayer en cas d'erreur
-  if (DOM.retryFetchBtn) {
-    DOM.retryFetchBtn.addEventListener('click', () => {
-      loadMovies();
-    });
-  }
+        DOM.searchInput.value = '';
+        DOM.clearSearchBtn.classList.add('hidden');
+        DOM.subFilter.value = 'all';
 
-  // Fermeture de la modale
-  if (DOM.closeModalBtn) {
+        DOM.chips.forEach(c => {
+          c.classList.toggle('active', c.dataset.category === 'all');
+        });
+
+        applyFiltersAndRender();
+      });
+    }
+
+    if (DOM.retryFetchBtn) {
+      DOM.retryFetchBtn.addEventListener('click', () => {
+        loadMovies(false);
+      });
+    }
+
+    // 6. Fermeture de la modale
     DOM.closeModalBtn.addEventListener('click', closeMovieModal);
-  }
 
-  if (DOM.movieModal) {
-    // Clic sur l'arrière-plan sombre hors de la fenêtre modale
     DOM.movieModal.addEventListener('click', (e) => {
       if (e.target === DOM.movieModal) {
         closeMovieModal();
       }
     });
-  }
 
-  // Plein écran
-  if (DOM.fullscreenBtn) {
-    DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
-  }
-
-  if (DOM.overlayFullscreenBtn) {
-    DOM.overlayFullscreenBtn.addEventListener('click', toggleFullscreen);
-  }
-
-  // Touches clavier dans la modale :
-  // - Échap : ferme la modale (si non plein écran, car le navigateur gère déjà la sortie du plein écran)
-  // - F / f : bascule en plein écran
-  window.addEventListener('keydown', (e) => {
-    const isModalOpen = DOM.movieModal && !DOM.movieModal.classList.contains('hidden');
-    if (!isModalOpen) return;
-
-    const isFullscreen = Boolean(
-      document.fullscreenElement ||
-      document.webkitFullscreenElement ||
-      document.mozFullScreenElement
-    );
-
-    if (e.key === 'Escape' && !isFullscreen) {
-      closeMovieModal();
-    } else if ((e.key === 'f' || e.key === 'F') && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-      e.preventDefault();
-      toggleFullscreen();
+    // 7. Plein Écran
+    if (DOM.fullscreenBtn) {
+      DOM.fullscreenBtn.addEventListener('click', toggleFullscreen);
     }
-  });
 
-  // =========================================================================
-  // INITIALISATION
-  // =========================================================================
-  document.addEventListener('DOMContentLoaded', () => {
-    loadMovies();
-  });
+    if (DOM.overlayFullscreenBtn) {
+      DOM.overlayFullscreenBtn.addEventListener('click', toggleFullscreen);
+    }
+
+    // Événements d'état Plein Écran du navigateur
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(evt => {
+      document.addEventListener(evt, updateFullscreenUI);
+    });
+
+    // 8. Raccourcis Clavier
+    document.addEventListener('keydown', (e) => {
+      // Si la modale est active
+      if (!DOM.movieModal.classList.contains('hidden')) {
+        if (e.key === 'Escape') {
+          closeMovieModal();
+        } else if ((e.key === 'f' || e.key === 'F') && document.activeElement !== DOM.searchInput) {
+          e.preventDefault();
+          toggleFullscreen();
+        }
+      }
+    });
+  }
+
+  // ==========================================================================
+  // UTILITAIRES
+  // ==========================================================================
+  function escapeHtml(text) {
+    if (!text) return '';
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // Démarrage automatique au chargement du DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
 })();
