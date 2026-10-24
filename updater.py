@@ -174,6 +174,35 @@ def search_youtube_innertube(
 
         owner_runs = vr.get("ownerText", {}).get("runs", [])
         channel_name = owner_runs[0].get("text", "") if owner_runs else ""
+        nav_url = (
+            owner_runs[0]
+            .get("navigationEndpoint", {})
+            .get("commandMetadata", {})
+            .get("webCommandMetadata", {})
+            .get("url", "")
+            if owner_runs
+            else ""
+        )
+        channel_url = (
+            f"https://www.youtube.com{nav_url}"
+            if nav_url.startswith("/")
+            else f"https://www.youtube.com/watch?v={vid}"
+        )
+
+        ch_thumbs = (
+            vr.get("channelThumbnailSupportedRenderers", {})
+            .get("channelThumbnailWithLinkRenderer", {})
+            .get("thumbnail", {})
+            .get("thumbnails", [])
+        )
+        channel_avatar = ch_thumbs[0].get("url", "") if ch_thumbs else ""
+
+        owner_badges = vr.get("ownerBadges", [])
+        channel_verified = any(
+            "VERIFIED" in b.get("metadataBadgeRenderer", {}).get("style", "")
+            for b in owner_badges
+            if isinstance(b, dict)
+        )
 
         desc_runs = vr.get("detailedMetadataSnippets", [{}])[0].get("snippetText", {}).get("runs", [])
         description = " ".join([r.get("text", "") for r in desc_runs]).strip()
@@ -194,26 +223,34 @@ def search_youtube_innertube(
         pub_rel = vr.get("publishedTimeText", {}).get("simpleText", "")
         pub_date = server.parse_relative_time_to_iso(pub_rel)
 
+        fallback_genre = "drama" if default_genre == "sooner" else default_genre
         detected_c = server.detect_country(title, channel_name, description, default_country)
-        detected_g = server.detect_genre(title, description, default_genre)
+        detected_g = server.detect_genre(title, description, fallback_genre)
 
-        is_sooner = "sooner" in channel_name.lower() or "sooner" in query.lower()
+        # Un film n'appartient à Sooner que si la chaîne YouTube est réellement Sooner
+        is_sooner = "sooner" in channel_name.lower() or "@soonerfrance" in channel_url.lower()
 
         candidates.append({
             "videoId": vid,
             "title": title,
-            "channelName": channel_name,
-            "channelUrl": f"https://www.youtube.com/watch?v={vid}",
+            "channelName": "SOONER (@soonerfrance)" if is_sooner else channel_name,
+            "channelUrl": "https://www.youtube.com/@soonerfrance" if is_sooner else channel_url,
+            "channelAvatar": (
+                "https://ui-avatars.com/api/?name=SO&background=16a34a&color=fff&bold=true"
+                if is_sooner and not channel_avatar
+                else channel_avatar
+            ),
+            "channelVerified": True if is_sooner else channel_verified,
             "description": description,
             "durationSeconds": dur_sec,
             "viewCount": views,
             "publishDate": pub_date,
             "country": detected_c,
-            "category": "sooner" if is_sooner else detected_g,
+            "category": detected_g,
             "isPaid": is_sooner,
             "paidProvider": "Sooner (@soonerfrance)" if is_sooner else "",
             "paidLabel": "Visionnage payant • @soonerfrance" if is_sooner else "",
-            "subtitleType": "auto_fr",
+            "subtitleType": "native_fr" if is_sooner else "auto_fr",
         })
 
     return candidates

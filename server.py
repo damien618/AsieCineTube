@@ -649,6 +649,35 @@ def parse_relative_time_to_iso(rel_text: str) -> str:
     return (today - delta).isoformat()
 
 
+def build_channel_avatar(
+    channel_name: str,
+    existing_avatar: str = "",
+    is_sooner: bool = False,
+    is_kofa: bool = False,
+) -> str:
+    """Retourne l'avatar de la chaîne en évitant le placeholder générique 'AC'."""
+    if is_sooner:
+        if existing_avatar and "yt3.ggpht.com" in existing_avatar:
+            return existing_avatar
+        return "https://ui-avatars.com/api/?name=SO&background=16a34a&color=fff&bold=true"
+    if is_kofa:
+        if existing_avatar and "yt3.ggpht.com" in existing_avatar:
+            return existing_avatar
+        return "https://ui-avatars.com/api/?name=KF&background=dc2626&color=fff&bold=true"
+    if existing_avatar and "name=AC" not in existing_avatar:
+        return existing_avatar
+
+    words = [w for w in re.split(r"[\s\-_|@()]+", channel_name.strip()) if w]
+    if len(words) >= 2:
+        initials = (words[0][0] + words[1][0]).upper()
+    elif words:
+        initials = words[0][:2].upper()
+    else:
+        initials = "YT"
+    encoded = urllib.parse.quote(initials)
+    return f"https://ui-avatars.com/api/?name={encoded}&background=1f6feb&color=fff&bold=true"
+
+
 def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
     """Normalise et enrichit un objet film avec pays, sous-titres et dates."""
     vid = raw.get("videoId", "")
@@ -658,6 +687,7 @@ def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
     sub_type = raw.get("subtitleType", "auto_fr")
     title = raw.get("title", "Film Asiatique Complet")
     channel_name = raw.get("channelName", "Asian Cinema")
+    channel_url = raw.get("channelUrl", f"https://www.youtube.com/watch?v={vid}")
     description = raw.get(
         "description",
         "Film complet disponible sur YouTube avec sous-titres accessibles en français.",
@@ -667,11 +697,36 @@ def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
     )
     country_label = COUNTRY_LABELS.get(country, "🇰🇷 Corée")
     category = raw.get("category") or detect_genre(title, description, "drama")
-    if category in ("all", "kr", "jp", "cn", "recent", "native"):
+    if category in ("all", "kr", "jp", "cn", "recent", "native", "sooner"):
         category = detect_genre(title, description, "drama")
 
+    # Vérification stricte de l'appartenance à la chaîne SOONER (@soonerfrance)
+    is_sooner = (
+        "sooner" in channel_name.lower()
+        or "@soonerfrance" in channel_url.lower()
+    )
+    was_falsely_paid = bool(raw.get("isPaid")) and not is_sooner
+
+    if is_sooner:
+        channel_name = "SOONER (@soonerfrance)"
+        channel_url = "https://www.youtube.com/@soonerfrance"
+        is_paid = True
+        paid_provider = "Sooner (@soonerfrance)"
+        paid_label = "Visionnage payant • @soonerfrance"
+        channel_verified = True
+    else:
+        is_paid = False
+        paid_provider = ""
+        paid_label = ""
+        channel_verified = bool(raw.get("channelVerified", False))
+        if was_falsely_paid and any(
+            k in f"{title} {description}".lower()
+            for k in ["engsub", "eng sub", "english subtitle"]
+        ):
+            sub_type = "auto_fr"
+
     is_kofa = (
-        "@koreanfilm" in raw.get("channelUrl", "").lower()
+        "@koreanfilm" in channel_url.lower()
         or "@koreanfilm" in channel_name.lower()
         or "korean classic film" in channel_name.lower()
         or category == "kofa"
@@ -680,7 +735,8 @@ def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
         category = "kofa"
         sub_type = "auto_fr"
         sub_label = "🇰🇷 Corée • KOFA (Trad. Auto YT)"
-    elif raw.get("isPaid"):
+        channel_verified = True
+    elif is_paid:
         sub_type = "native_fr"
         sub_label = f"{country_label} • Payant (Sooner)"
     elif sub_type == "native_fr":
@@ -688,24 +744,30 @@ def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
     else:
         sub_label = f"{country_label} • ST-FR Auto"
 
+    channel_avatar = build_channel_avatar(
+        channel_name,
+        raw.get("channelAvatar", ""),
+        is_sooner=is_sooner,
+        is_kofa=is_kofa,
+    )
+
+    avail_langs = raw.get("availableLanguages")
+    if not avail_langs or (was_falsely_paid and sub_type == "auto_fr"):
+        avail_langs = ["fr"] if sub_type == "native_fr" else ["en", "fr (auto)"]
+
     return {
         "videoId": vid,
         "title": title,
         "koreanTitle": raw.get("koreanTitle", ""),
         "country": country,
         "countryLabel": country_label,
-        "isPaid": bool(raw.get("isPaid", False)),
-        "paidProvider": raw.get("paidProvider", ""),
-        "paidLabel": raw.get(
-            "paidLabel", "Visionnage payant" if raw.get("isPaid") else ""
-        ),
+        "isPaid": is_paid,
+        "paidProvider": paid_provider,
+        "paidLabel": paid_label,
         "channelName": channel_name,
-        "channelUrl": raw.get(
-            "channelUrl", f"https://www.youtube.com/watch?v={vid}"
-        ),
-        "channelAvatar": raw.get("channelAvatar")
-        or "https://ui-avatars.com/api/?name=AC&background=e50914&color=fff&bold=true",
-        "channelVerified": bool(raw.get("channelVerified", False)),
+        "channelUrl": channel_url,
+        "channelAvatar": channel_avatar,
+        "channelVerified": channel_verified,
         "thumbnail": raw.get("thumbnail")
         or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
         "thumbnailMax": f"https://i.ytimg.com/vi/{vid}/maxresdefault.jpg",
@@ -719,10 +781,7 @@ def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
         "publishedRelative": format_relative_date(pub_date),
         "subtitleType": sub_type,
         "subtitleLabel": sub_label,
-        "availableLanguages": raw.get(
-            "availableLanguages",
-            ["fr"] if sub_type == "native_fr" else ["en", "fr (auto)"],
-        ),
+        "availableLanguages": avail_langs,
         "category": category,
         "description": description,
         "youtubeUrl": f"https://www.youtube.com/watch?v={vid}",
@@ -750,6 +809,26 @@ def load_cached_movies() -> Dict[str, Dict[str, Any]]:
 def save_cached_movies(cache_map: Dict[str, Dict[str, Any]]) -> None:
     """Sauvegarde à la fois le cache local et 'movies.json' pour GitHub Pages."""
     with _CACHE_LOCK:
+        # Propager les vrais avatars YouTube (yt3.ggpht.com) connus par nom de chaîne
+        known_avatars: Dict[str, str] = {}
+        known_urls: Dict[str, str] = {}
+        for m in cache_map.values():
+            ch = m.get("channelName", "")
+            av = m.get("channelAvatar", "")
+            cu = m.get("channelUrl", "")
+            if ch and av and "yt3.ggpht.com" in av:
+                known_avatars[ch] = av
+            if ch and cu and "/@" in cu:
+                known_urls[ch] = cu
+
+        for vid, m in list(cache_map.items()):
+            ch = m.get("channelName", "")
+            if ch in known_avatars and "yt3.ggpht.com" not in m.get("channelAvatar", ""):
+                m["channelAvatar"] = known_avatars[ch]
+            if ch in known_urls and "/@" not in m.get("channelUrl", ""):
+                m["channelUrl"] = known_urls[ch]
+            cache_map[vid] = enrich_movie_fields(m)
+
         try:
             with open(CACHE_FILE, "w", encoding="utf-8") as f:
                 json.dump(cache_map, f, ensure_ascii=False, indent=2)
@@ -841,7 +920,8 @@ def get_movies(
             filtered = [
                 m
                 for m in filtered
-                if m.get("isPaid") or "sooner" in m.get("channelName", "").lower()
+                if "sooner" in m.get("channelName", "").lower()
+                or "@soonerfrance" in m.get("channelUrl", "").lower()
             ]
         elif category == "kofa":
             filtered = [

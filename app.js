@@ -224,9 +224,8 @@
 
       // 2. Filtre Puce / Catégorie
       if (category === 'sooner') {
-        const isSooner = movie.isPaid === true ||
-          (movie.channelName && movie.channelName.toLowerCase().includes('sooner')) ||
-          (movie.paidProvider && movie.paidProvider.toLowerCase().includes('sooner'));
+        const isSooner = (movie.channelName && movie.channelName.toLowerCase().includes('sooner')) ||
+          (movie.channelUrl && movie.channelUrl.toLowerCase().includes('sooner'));
         if (!isSooner) return false;
       } else if (category === 'kr') {
         if (movie.country !== 'kr') return false;
@@ -364,7 +363,11 @@
     const subBadgeClass = isNative ? 'native' : 'auto';
     const subBadgeText = isNative ? '🇫🇷 ST-FR Natif' : '🇫🇷 ST-FR Auto (CC)';
 
-    const isPaid = Boolean(movie.isPaid);
+    const isSoonerChannel = Boolean(
+      (movie.channelName && movie.channelName.toLowerCase().includes('sooner')) ||
+      (movie.channelUrl && movie.channelUrl.toLowerCase().includes('sooner'))
+    );
+    const isPaid = Boolean(movie.isPaid) && isSoonerChannel;
     const paidBadgeHtml = isPaid
       ? `<span class="badge-paid-top" title="${escapeHtml(movie.paidLabel || 'Visionnage payant sur YouTube')}">
            <span class="yt-paid-dot" aria-hidden="true"></span> Sooner
@@ -381,8 +384,13 @@
     // Miniature avec fallback
     const thumbUrl = movie.thumbnail || `https://i.ytimg.com/vi/${movie.videoId}/hqdefault.jpg`;
 
-    // Avatar chaîne
-    const avatarUrl = movie.channelAvatar || '';
+    // Avatar chaîne (éviter le placeholder générique AC)
+    let avatarUrl = movie.channelAvatar || '';
+    if (isSoonerChannel && (!avatarUrl || avatarUrl.includes('name=AC'))) {
+      avatarUrl = 'https://ui-avatars.com/api/?name=SO&background=16a34a&color=fff&bold=true';
+    } else if (avatarUrl.includes('name=AC')) {
+      avatarUrl = '';
+    }
     const channelInitial = (movie.channelName || 'Y').charAt(0).toUpperCase();
 
     const avatarHtml = avatarUrl
@@ -504,7 +512,16 @@
     DOM.modalYtLink.href = movie.youtubeUrl || `https://www.youtube.com/watch?v=${movie.videoId}`;
 
     // Avatar et Chaîne
-    const avatarUrl = movie.channelAvatar || '';
+    const isSoonerModal = Boolean(
+      (movie.channelName && movie.channelName.toLowerCase().includes('sooner')) ||
+      (movie.channelUrl && movie.channelUrl.toLowerCase().includes('sooner'))
+    );
+    let avatarUrl = movie.channelAvatar || '';
+    if (isSoonerModal && (!avatarUrl || avatarUrl.includes('name=AC'))) {
+      avatarUrl = 'https://ui-avatars.com/api/?name=SO&background=16a34a&color=fff&bold=true';
+    } else if (avatarUrl.includes('name=AC')) {
+      avatarUrl = '';
+    }
     const channelInitial = (movie.channelName || 'Y').charAt(0).toUpperCase();
     if (avatarUrl) {
       DOM.modalChannelAvatar.innerHTML = `<img class="channel-avatar-img" src="${escapeHtml(avatarUrl)}" alt="${escapeHtml(movie.channelName)}" onerror="this.outerHTML='<div class=\\'channel-avatar-fallback\\'>${channelInitial}</div>'">`;
