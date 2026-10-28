@@ -60,6 +60,7 @@ COUNTRY_LABELS = {
 # ==============================================================================
 
 SPAM_EXCLUSION_KEYWORDS = [
+    # Mots-clés initiaux
     "billionaire",
     "milliardaire",
     "ceo's",
@@ -86,6 +87,83 @@ SPAM_EXCLUSION_KEYWORDS = [
     "요약",
     "movie recap",
     "film recap",
+    # Mots-clés de short-dramas, résumés et clic-bait additionnels
+    "숏드라마",
+    "短剧",
+    "스릴러 액션 영화",
+    "제이슨 스타뎀",
+    "대부호",
+    "大富豪",
+    "女社長",
+    "재벌",
+    "정략결혼",
+    "神医",
+    "逆襲",
+    "160분요약",
+    "통합본",
+    "병맛자막",
+]
+
+EXCLUDED_CHANNELS = [
+    "samurai vs ninja",
+    "martial arts theater",
+    "武道劇場",
+    "chinese online movie channel",
+    "iqiyi english",
+    "iqiyi action",
+    "iqiyi movie theater",
+    "iqiyi 한글자막",
+    "moxi movie",
+    "epic movies",
+    "hit english",
+    "drama shifter",
+    "ciné nanar",
+    "cine nanar",
+    "the best of action",
+    "french action hub",
+    "allociné films complets",
+    "allocine films complets",
+    "boxoffice",
+    "shortflix",
+    "happyshorttv",
+    "stardusttv",
+    "글로리 시어터",
+    "양파극장",
+    "浮生剧场",
+    "日本語スキット工房",
+    "青い月ドラマ",
+    "棠糖短剧",
+    "멀더의 무비파일",
+    "시네마버튼",
+    "영화리뷰하는사람",
+    "sbs 옛날 드라마",
+    "sbs catch",
+    "kbs drama",
+    "ytkiss",
+    "shaw brothers cinema",
+    "功夫侦探所",
+    "浪子走天下",
+]
+
+BMOVIE_MARTIAL_ARTS_EXCLUSIONS = [
+    "ninja",
+    "kung fu",
+    "kung-fu",
+    "kungfu",
+    "kongfu",
+    "wuxia",
+    "shaolin",
+    "arts martiaux",
+    "martial arts",
+    "drunken fist",
+    "poing ivre",
+    "sword king",
+    "hermit's sword",
+    "unbeatable",
+    "costume drama/wuxia",
+    "police vs gansters",
+    "action supercut",
+    "무협",
 ]
 
 WESTERN_EXCLUSIONS_LIST = [
@@ -152,7 +230,6 @@ VERIFIED_ASIAN_CHANNELS = [
     "tencent",
     "sooner",
     "ciné club",
-    "ciné nanar",
     "movie district",
     "dramas coréens",
 ]
@@ -205,10 +282,6 @@ AUTHENTIC_ASIAN_MARKERS = [
     "samurai",
     "samouraï",
     "yakuza",
-    "wuxia",
-    "shaolin",
-    "kung fu",
-    "kung-fu",
     "pansori",
     "film coréen",
     "film sud-coréen",
@@ -220,28 +293,252 @@ AUTHENTIC_ASIAN_MARKERS = [
     "cinéma chinois",
 ]
 
+# ==============================================================================
+# CATALOGUE DES RÉALISATEURS D'AUTEUR & MARQUEURS DE FESTIVAL / PATRIMOINE
+# ==============================================================================
 
-def is_strictly_asian_movie(title: str, channel: str, description: str) -> bool:
-    """Vérifie qu'un film est bien asiatique et élimine tout film américain ou occidental."""
-    combined = f"{title} {channel} {description}".lower()
+AUTEUR_DIRECTORS_TABLE: List[Tuple[str, List[str]]] = [
+    # 🇰🇷 Corée du Sud
+    ("Hong Sang-soo", [r"\bhong\s+sang-?soo\b"]),
+    ("Lee Chang-dong", [r"\blee\s+chang-?dong\b"]),
+    ("Park Chan-wook", [r"\bpark\s+chan-?wook\b"]),
+    ("Bong Joon-ho", [r"\bbong\s+joon-?ho\b"]),
+    ("Kim Ki-young", [r"\bkim\s+ki-?young\b"]),
+    ("Im Kwon-taek", [r"\bim\s+kwon-?taek\b"]),
+    ("Kim Ki-duk", [r"\bkim\s+ki-?duk\b"]),
+    ("Shin Sang-ok", [r"\bshin\s+sang-?ok\b"]),
+    ("Lee Man-hee", [r"\blee\s+man-?hee\b"]),
+    ("Ha Gil-jong", [r"\bha\s+gil-?jong\b"]),
+    ("Bae Chang-ho", [r"\bbae\s+chang-?ho\b"]),
+    ("Park Kwang-su", [r"\bpark\s+kwang-?su\b"]),
+    ("Jang Sun-woo", [r"\bjang\s+sun-?woo\b"]),
+    ("Hur Jin-ho", [r"\bhur\s+jin-?ho\b"]),
+    ("Na Hong-jin", [r"\bna\s+hong-?jin\b"]),
+    ("Ryoo Seung-wan", [r"\bryoo\s+seung-?wan\b"]),
+    ("Kim Jee-woon", [r"\bkim\s+jee-?woon\b"]),
+    ("July Jung", [r"\bjuly\s+jung\b"]),
+    ("Yoon Ga-eun", [r"\byoon\s+ga-?eun\b"]),
+    ("Kim Bora", [r"\bkim\s+bora\b"]),
 
+    # 🇯🇵 Japon (Noms complets priorisés sur les patronymes isolés)
+    ("Kiyoshi Kurosawa", [r"\bkiyoshi\s+kurosawa\b"]),
+    ("Akira Kurosawa", [r"\bakira\s+kurosawa\b", r"\bkurosawa\b"]),
+    ("Yasujirō Ozu", [r"\byasujir[oō]\s+ozu\b", r"\bozu\b"]),
+    ("Kenji Mizoguchi", [r"\bkenji\s+mizoguchi\b", r"\bmizoguchi\b"]),
+    ("Mikio Naruse", [r"\bmikio\s+naruse\b", r"\bnaruse\b"]),
+    ("Masaki Kobayashi", [r"\bmasaki\s+kobayashi\b"]),
+    ("Nagisa Ōshima", [r"\bnagisa\s+[oō]shima\b", r"\b[oō]shima\b"]),
+    ("Shohei Imamura", [r"\bsh[oō]hei\s+imamura\b", r"\bimamura\b"]),
+    ("Hiroshi Teshigahara", [r"\bhiroshi\s+teshigahara\b", r"\bteshigahara\b"]),
+    ("Seijun Suzuki", [r"\bseijun\s+suzuki\b"]),
+    ("Hirokazu Kore-eda", [r"\bhirokazu\s+kore-?eda\b", r"\bkore-?eda\b", r"\bkoreeda\b"]),
+    ("Takeshi Kitano", [r"\btakeshi\s+kitano\b", r"\bkitano\b"]),
+    ("Naomi Kawase", [r"\bnaomi\s+kawase\b"]),
+    ("Ryūsuke Hamaguchi", [r"\bry[uū]suke\s+hamaguchi\b", r"\bhamaguchi\b"]),
+    ("Takashi Miike", [r"\btakashi\s+miike\b", r"\bmiike\b"]),
+    ("Shunji Iwai", [r"\bshunji\s+iwai\b"]),
+    ("Shin'ya Tsukamoto", [r"\bshin'?ya\s+tsukamoto\b", r"\btsukamoto\b"]),
+    ("Satoshi Kon", [r"\bsatoshi\s+kon\b"]),
+    ("Hayao Miyazaki", [r"\bhayao\s+miyazaki\b", r"\bmiyazaki\b"]),
+    ("Isao Takahata", [r"\bisao\s+takahata\b", r"\btakahata\b"]),
+    ("Katsuhiro Ōtomo", [r"\bkatsuhiro\s+[oō]tomo\b", r"\b[oō]tomo\b"]),
+    ("Mamoru Hosoda", [r"\bmamoru\s+hosoda\b"]),
+    ("Juzo Itami", [r"\bj[uū]zo\s+itami\b"]),
+    ("Kaneto Shindō", [r"\bkaneto\s+shind[oō]\b"]),
+
+    # 🇨🇳 Chine / Hong-Kong / Taïwan
+    ("Wong Kar-wai", [r"\bwong\s+kar-?wai\b"]),
+    ("Edward Yang", [r"\bedward\s+yang\b"]),
+    ("Hou Hsiao-hsien", [r"\bhou\s+hsiao-?hsien\b"]),
+    ("Tsai Ming-liang", [r"\btsai\s+ming-?liang\b"]),
+    ("Jia Zhangke", [r"\bjia\s+zhang-?ke\b"]),
+    ("Zhang Yimou", [r"\bzhang\s+yimou\b"]),
+    ("Chen Kaige", [r"\bchen\s+kaige\b"]),
+    ("Ang Lee", [r"\bang\s+lee\b"]),
+    ("King Hu", [r"\bking\s+hu\b"]),
+    ("Tsui Hark", [r"\btsui\s+hark\b"]),
+    ("Ann Hui", [r"\bann\s+hui\b"]),
+    ("Stanley Kwan", [r"\bstanley\s+kwan\b"]),
+    ("Johnnie To", [r"\bjohnn(ie|y)\s+to\b"]),
+    ("Fruit Chan", [r"\bfruit\s+chan\b"]),
+    ("Lou Ye", [r"\blou\s+ye\b"]),
+    ("Diao Yinan", [r"\bdiao\s+yinan\b"]),
+    ("Bi Gan", [r"\bbi\s+gan\b"]),
+    ("Hu Bo", [r"\bhu\s+bo\b"]),
+    ("Wang Xiaoshuai", [r"\bwang\s+xiaoshuai\b"]),
+    ("Jiang Wen", [r"\bjiang\s+wen\b"]),
+]
+
+FESTIVAL_HERITAGE_MARKERS = [
+    "festival de cannes",
+    "palme d'or",
+    "caméra d'or",
+    "camera d'or",
+    "lion d'or",
+    "mostra de venise",
+    "venice film",
+    "ours d'or",
+    "berlinale",
+    "locarno",
+    "busan international",
+    "criterion",
+    "cinémathèque",
+    "cinematheque",
+    "film d'auteur",
+    "art et essai",
+    "chef-d'œuvre",
+    "chef d'oeuvre",
+    "restauré 4k",
+    "restauration 4k",
+    "restaurée 4k",
+    "4k restauré",
+    "fifth generation",
+    "new taiwanese cinema",
+]
+
+# Patterns précompilés avec re.IGNORECASE pour performances et précision
+AUTEUR_DIRECTORS_COMPILED: List[Tuple[str, List[re.Pattern]]] = [
+    (director, [re.compile(p, re.IGNORECASE) for p in patterns])
+    for director, patterns in AUTEUR_DIRECTORS_TABLE
+]
+
+URL_STRIP_REGEX = re.compile(
+    r"(?:https?://|www\.|(?:\w+\.)?youtu\.be/|(?:\w+\.)?youtube\.com/)\S+",
+    re.IGNORECASE,
+)
+RE_CHANNEL_NORM = re.compile(r"[\s\-_@]+")
+
+
+def detect_auteur(text: str) -> Optional[str]:
+    """Détecte si le texte mentionne un réalisateur d'auteur majeur."""
+    clean = URL_STRIP_REGEX.sub("", text or "")
+    for director, patterns in AUTEUR_DIRECTORS_COMPILED:
+        for pat in patterns:
+            if pat.search(clean):
+                return director
+    return None
+
+
+def has_festival_marker(text: str) -> bool:
+    """Vérifie la présence d'un marqueur de festival ou de patrimoine."""
+    clean = URL_STRIP_REGEX.sub("", text or "").lower()
+    return any(marker in clean for marker in FESTIVAL_HERITAGE_MARKERS)
+
+
+def detect_auteur_label(
+    title: str, channel_name: str, description: str, channel_url: str = ""
+) -> Tuple[bool, Optional[str]]:
+    """
+    Détermine si un film relève du cinéma d'auteur / patrimoine et retourne (is_auteur, auteur_label).
+    Priorité des labels :
+    1. Grand maître identifié : '🎬 <Nom du réalisateur>'
+    2. Chaîne KOFA : '🏛️ KOFA (Patrimoine)'
+    3. Chaîne SOONER : '🎬 Sélection Sooner'
+    4. Marqueur Festival / Patrimoine : '🎬 Cinéma d'Auteur'
+    """
+    clean_desc = URL_STRIP_REGEX.sub("", description or "")
+    clean_title = URL_STRIP_REGEX.sub("", title or "")
+    unquoted_ch = urllib.parse.unquote(channel_name or "")
+    unquoted_url = urllib.parse.unquote(channel_url or "")
+    text = f"{clean_title} {unquoted_ch} {clean_desc}"
+    ch_text = f"{channel_name} {unquoted_ch} {channel_url} {unquoted_url}".lower()
+
+    # 1. Grand réalisateur identifié
+    director = detect_auteur(text)
+    if director:
+        return True, f"🎬 {director}"
+
+    # 2. Chaîne KOFA
+    if (
+        "@koreanfilm" in ch_text
+        or "korean classic film" in ch_text
+        or "한국고전영화" in ch_text
+        or "kofa" in ch_text
+    ):
+        return True, "🏛️ KOFA (Patrimoine)"
+
+    # 3. Chaîne SOONER
+    if "sooner" in ch_text or "@soonerfrance" in ch_text:
+        return True, "🎬 Sélection Sooner"
+
+    # 4. Marqueur Festival / Patrimoine
+    if has_festival_marker(text):
+        return True, "🎬 Cinéma d'Auteur"
+
+    return False, None
+
+
+def is_strictly_asian_movie(
+    title: str, channel: str, description: str, channel_url: str = ""
+) -> bool:
+    """
+    Vérifie qu'un film est bien asiatique selon les critères stricts de prestige :
+    1. Rejet immédiat : films occidentaux, chaînes exclues, spam/short-drama/recap.
+    2. Filtrage B-movie : ninja, kung-fu, wuxia rejetés sauf exception Auteur, SOONER ou KOFA.
+    3. Validation asiatique stricte : CJK, chaînes vérifiées, table d'auteurs ou marqueurs authentiques.
+    """
+    # Nettoyage préalable des URLs pour éviter les faux positifs (ex: hashes YouTube contenant des noms courts)
+    clean_desc = URL_STRIP_REGEX.sub("", description or "")
+    clean_title = URL_STRIP_REGEX.sub("", title or "")
+    unquoted_ch = urllib.parse.unquote(channel or "")
+    unquoted_url = urllib.parse.unquote(channel_url or "")
+
+    combined = f"{title} {channel} {unquoted_ch} {channel_url} {unquoted_url} {clean_desc}".lower()
+    ch_combined = f"{channel} {unquoted_ch} {channel_url} {unquoted_url}".lower()
+    ch_norm = RE_CHANNEL_NORM.sub("", ch_combined)
+    clean_text = f"{clean_title} {unquoted_ch} {clean_desc}"
+
+    # --------------------------------------------------------------------------
+    # Étape 1 : Rejets immédiats (Occidental, Chaînes exclues, Spam / Short-drama)
+    # --------------------------------------------------------------------------
     if any(excl in combined for excl in WESTERN_EXCLUSIONS_LIST):
+        return False
+
+    if any(
+        ec in ch_combined or RE_CHANNEL_NORM.sub("", ec) in ch_norm
+        for ec in EXCLUDED_CHANNELS
+    ):
         return False
 
     if any(spam in combined for spam in SPAM_EXCLUSION_KEYWORDS):
         return False
 
-    has_hangul = bool(re.search(r"[\uac00-\ud7a3]", f"{title} {channel}"))
-    has_kana = bool(re.search(r"[\u3040-\u309f\u30a0-\u30ff]", f"{title} {channel}"))
-    has_hanzi = bool(re.search(r"[\u4e00-\u9fff]", f"{title} {channel}"))
+    # --------------------------------------------------------------------------
+    # Étape 2 : Filtrage B-Movies Arts Martiaux / Sabre avec Exception Auteur / SOONER / KOFA
+    # --------------------------------------------------------------------------
+    matches_bmovie = any(b_excl in combined for b_excl in BMOVIE_MARTIAL_ARTS_EXCLUSIONS)
+    if matches_bmovie:
+        is_sooner_whitelisted = "sooner" in ch_combined or "@soonerfrance" in ch_combined
+        is_kofa_whitelisted = (
+            "@koreanfilm" in ch_combined
+            or "korean classic film" in ch_combined
+            or "한국고전영화" in ch_combined
+            or "kofa" in ch_combined
+        )
+        is_auteur_whitelisted = bool(detect_auteur(clean_text)) or has_festival_marker(clean_text)
 
+        if not (is_sooner_whitelisted or is_kofa_whitelisted or is_auteur_whitelisted):
+            return False
+
+    # --------------------------------------------------------------------------
+    # Étape 3 : Validation stricte de l'authenticité asiatique
+    # --------------------------------------------------------------------------
+    # 3.1 Détection directe par écriture asiatique dans le titre ou la chaîne
+    has_hangul = bool(re.search(r"[\uac00-\ud7a3]", f"{title} {unquoted_ch}"))
+    has_kana = bool(re.search(r"[\u3040-\u309f\u30a0-\u30ff]", f"{title} {unquoted_ch}"))
+    has_hanzi = bool(re.search(r"[\u4e00-\u9fff]", f"{title} {unquoted_ch}"))
     if has_hangul or has_kana or has_hanzi:
         return True
 
-    ch_low = channel.lower()
-    if any(vc in ch_low for vc in VERIFIED_ASIAN_CHANNELS):
+    # 3.2 Chaînes asiatiques vérifiées
+    if any(vc in ch_combined for vc in VERIFIED_ASIAN_CHANNELS):
         return True
 
+    # 3.3 Présence d'un grand auteur ou marqueur festival / patrimoine
+    if detect_auteur(clean_text) or has_festival_marker(clean_text):
+        return True
+
+    # 3.4 Marqueurs authentiques asiatiques
     if any(marker in combined for marker in AUTHENTIC_ASIAN_MARKERS):
         return True
 
@@ -471,21 +768,21 @@ SEED_MOVIES: List[Dict[str, Any]] = [
         "description": "En 1986, dans la province de Gyeonggi, le corps d'une jeune femme est retrouvé violée et assassinée. Chef-d'œuvre absolu de Bong Joon-ho disponible sur SOONER.",
     },
     {
-        "videoId": "IgY-P7pO0x4",
-        "title": "PANDÉMIE (The Flu / 감기) | Film Coréen Complet en Français | Jang Hyuk, Soo Ae",
-        "koreanTitle": "감기 (The Flu)",
-        "country": "kr",
-        "channelName": "Ciné Nanar - Films Complets en Français",
-        "channelUrl": "https://www.youtube.com/watch?v=IgY-P7pO0x4",
-        "channelAvatar": "https://ui-avatars.com/api/?name=CN&background=1f6feb&color=fff&bold=true",
+        "videoId": "6a9cQy-8d-Q",
+        "title": "Rashōmon (羅生門, 1950) — Akira Kurosawa | Lion d'Or Mostra de Venise",
+        "koreanTitle": "라쇼몽 (1950)",
+        "country": "jp",
+        "channelName": "Cinéma Japonais Classique",
+        "channelUrl": "https://www.youtube.com/@CinemaJaponaisClassique",
+        "channelAvatar": "https://ui-avatars.com/api/?name=AK&background=b45309&color=fff&bold=true",
         "channelVerified": True,
-        "durationSeconds": 7290,
-        "viewCount": 890000,
-        "publishDate": "2026-04-19",
+        "durationSeconds": 5280,
+        "viewCount": 320000,
+        "publishDate": "2026-03-23",
         "subtitleType": "native_fr",
-        "availableLanguages": ["fr", "ko"],
-        "category": "thriller",
-        "description": "À Bundang, dans la banlieue de Séoul, un virus respiratoire mortel se propage à une vitesse foudroyante.",
+        "availableLanguages": ["fr (VOSTFR)", "ja"],
+        "category": "auteur",
+        "description": "Chef-d'œuvre absolu d'Akira Kurosawa avec Toshiro Mifune et Machiko Kyō. Lion d'or à la Mostra de Venise 1951, ce classique révolutionne la narration cinématographique sous la porte de Rashōmon.",
     },
     {
         "videoId": "Sn53ssy0N7Q",
@@ -679,18 +976,32 @@ def build_channel_avatar(
 
 
 def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
-    """Normalise et enrichit un objet film avec pays, sous-titres et dates."""
-    vid = raw.get("videoId", "")
-    dur_sec = int(raw.get("durationSeconds", 5400))
-    views = int(raw.get("viewCount", 25000))
-    pub_date = raw.get("publishDate", "2025-01-01")[:10]
-    sub_type = raw.get("subtitleType", "auto_fr")
-    title = raw.get("title", "Film Asiatique Complet")
-    channel_name = raw.get("channelName", "Asian Cinema")
-    channel_url = raw.get("channelUrl", f"https://www.youtube.com/watch?v={vid}")
-    description = raw.get(
-        "description",
-        "Film complet disponible sur YouTube avec sous-titres accessibles en français.",
+    """Normalise et enrichit un objet film avec pays, sous-titres, dates et détection d'auteur."""
+    if not isinstance(raw, dict):
+        raw = {}
+
+    vid = str(raw.get("videoId") or "")
+
+    raw_dur = raw.get("durationSeconds")
+    try:
+        dur_sec = int(raw_dur) if raw_dur is not None else 5400
+    except (ValueError, TypeError):
+        dur_sec = 5400
+
+    raw_views = raw.get("viewCount")
+    try:
+        views = int(raw_views) if raw_views is not None else 25000
+    except (ValueError, TypeError):
+        views = 25000
+
+    pub_date = str(raw.get("publishDate") or "2025-01-01")[:10]
+    sub_type = str(raw.get("subtitleType") or "auto_fr")
+    title = str(raw.get("title") or "Film Asiatique Complet")
+    channel_name = str(raw.get("channelName") or "Asian Cinema")
+    channel_url = str(raw.get("channelUrl") or f"https://www.youtube.com/watch?v={vid}")
+    description = str(
+        raw.get("description")
+        or "Film complet disponible sur YouTube avec sous-titres accessibles en français."
     )
     country = raw.get("country") or detect_country(
         title, channel_name, description, "kr"
@@ -744,21 +1055,33 @@ def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
     else:
         sub_label = f"{country_label} • ST-FR Auto"
 
+    # Détection et enrichissement cinéma d'auteur / grands maîtres
+    is_auteur, auteur_label = detect_auteur_label(
+        title, channel_name, description, channel_url
+    )
+    if not is_auteur and (raw.get("isAuteur") or raw.get("category") == "auteur"):
+        is_auteur = True
+        auteur_label = raw.get("auteurLabel") or "🎬 Cinéma d'Auteur"
+
+    # Si le film est auteur et n'a pas de catégorie spécifique détectée (ou était drama par défaut)
+    if category == "drama" and is_auteur and not raw.get("category"):
+        category = "auteur"
+
     channel_avatar = build_channel_avatar(
         channel_name,
-        raw.get("channelAvatar", ""),
+        str(raw.get("channelAvatar") or ""),
         is_sooner=is_sooner,
         is_kofa=is_kofa,
     )
 
     avail_langs = raw.get("availableLanguages")
-    if not avail_langs or (was_falsely_paid and sub_type == "auto_fr"):
+    if not isinstance(avail_langs, list) or (was_falsely_paid and sub_type == "auto_fr"):
         avail_langs = ["fr"] if sub_type == "native_fr" else ["en", "fr (auto)"]
 
     return {
         "videoId": vid,
         "title": title,
-        "koreanTitle": raw.get("koreanTitle", ""),
+        "koreanTitle": str(raw.get("koreanTitle") or ""),
         "country": country,
         "countryLabel": country_label,
         "isPaid": is_paid,
@@ -768,8 +1091,9 @@ def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
         "channelUrl": channel_url,
         "channelAvatar": channel_avatar,
         "channelVerified": channel_verified,
-        "thumbnail": raw.get("thumbnail")
-        or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+        "thumbnail": str(
+            raw.get("thumbnail") or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"
+        ),
         "thumbnailMax": f"https://i.ytimg.com/vi/{vid}/maxresdefault.jpg",
         "durationSeconds": dur_sec,
         "durationFormatted": format_duration(dur_sec),
@@ -783,6 +1107,8 @@ def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
         "subtitleLabel": sub_label,
         "availableLanguages": avail_langs,
         "category": category,
+        "isAuteur": is_auteur,
+        "auteurLabel": auteur_label,
         "description": description,
         "youtubeUrl": f"https://www.youtube.com/watch?v={vid}",
         # autoplay=0 pour ne pas lancer directement la vidéo sans le consentement de l'utilisateur
@@ -807,12 +1133,29 @@ def load_cached_movies() -> Dict[str, Dict[str, Any]]:
 
 
 def save_cached_movies(cache_map: Dict[str, Dict[str, Any]]) -> None:
-    """Sauvegarde à la fois le cache local et 'movies.json' pour GitHub Pages."""
+    """Sauvegarde à la fois le cache local et 'movies.json' pour GitHub Pages en purgeant les indésirables."""
     with _CACHE_LOCK:
-        # Propager les vrais avatars YouTube (yt3.ggpht.com) connus par nom de chaîne
+        # 1. Élimination stricte des films exclus ou non conformes de cache_map
+        to_delete = [
+            vid
+            for vid, m in cache_map.items()
+            if not isinstance(m, dict)
+            or not is_strictly_asian_movie(
+                m.get("title", ""),
+                m.get("channelName", ""),
+                m.get("description", ""),
+                m.get("channelUrl", ""),
+            )
+        ]
+        for vid in to_delete:
+            del cache_map[vid]
+
+        # 2. Propager les vrais avatars YouTube (yt3.ggpht.com) connus par nom de chaîne
         known_avatars: Dict[str, str] = {}
         known_urls: Dict[str, str] = {}
         for m in cache_map.values():
+            if not isinstance(m, dict):
+                continue
             ch = m.get("channelName", "")
             av = m.get("channelAvatar", "")
             cu = m.get("channelUrl", "")
@@ -822,6 +1165,9 @@ def save_cached_movies(cache_map: Dict[str, Dict[str, Any]]) -> None:
                 known_urls[ch] = cu
 
         for vid, m in list(cache_map.items()):
+            if not isinstance(m, dict):
+                del cache_map[vid]
+                continue
             ch = m.get("channelName", "")
             if ch in known_avatars and "yt3.ggpht.com" not in m.get("channelAvatar", ""):
                 m["channelAvatar"] = known_avatars[ch]
@@ -829,25 +1175,24 @@ def save_cached_movies(cache_map: Dict[str, Dict[str, Any]]) -> None:
                 m["channelUrl"] = known_urls[ch]
             cache_map[vid] = enrich_movie_fields(m)
 
+        # 3. Sauvegarde propre et atomique dans cache_movies.json
+        tmp_cache = CACHE_FILE + ".tmp"
         try:
-            with open(CACHE_FILE, "w", encoding="utf-8") as f:
+            with open(tmp_cache, "w", encoding="utf-8") as f:
                 json.dump(cache_map, f, ensure_ascii=False, indent=2)
-        except Exception:
-            pass
+            os.replace(tmp_cache, CACHE_FILE)
+        except Exception as e:
+            print("Erreur sauvegarde cache_movies.json:", e)
+            if os.path.exists(tmp_cache):
+                try:
+                    os.remove(tmp_cache)
+                except OSError:
+                    pass
 
-        # Export statique pour GitHub Pages
+        # 4. Export statique atomique pour GitHub Pages
+        tmp_static = STATIC_EXPORT_FILE + ".tmp"
         try:
             movies_list = list(cache_map.values())
-            # Élimination stricte des films américains ou non asiatiques
-            movies_list = [
-                m
-                for m in movies_list
-                if is_strictly_asian_movie(
-                    m.get("title", ""),
-                    m.get("channelName", ""),
-                    m.get("description", ""),
-                )
-            ]
             # Tri strict par date décroissante
             movies_list.sort(
                 key=lambda m: (
@@ -874,13 +1219,19 @@ def save_cached_movies(cache_map: Dict[str, Dict[str, Any]]) -> None:
                 "movies": movies_list,
             }
 
-            with open(STATIC_EXPORT_FILE, "w", encoding="utf-8") as f:
+            with open(tmp_static, "w", encoding="utf-8") as f:
                 json.dump(export_data, f, ensure_ascii=False, indent=2)
+            os.replace(tmp_static, STATIC_EXPORT_FILE)
             print(
                 f"✅ Export statique GitHub Pages généré : {STATIC_EXPORT_FILE} ({len(movies_list)} films)"
             )
         except Exception as e:
             print("Erreur export statique GitHub Pages:", e)
+            if os.path.exists(tmp_static):
+                try:
+                    os.remove(tmp_static)
+                except OSError:
+                    pass
 
 
 def get_movies(
@@ -892,10 +1243,9 @@ def get_movies(
 ) -> Tuple[List[Dict[str, Any]], str]:
     cache_map = load_cached_movies()
 
-    for seed in SEED_MOVIES:
-        vid = seed["videoId"]
-        if vid not in cache_map:
-            cache_map[vid] = enrich_movie_fields(seed)
+    if not cache_map:
+        for seed in SEED_MOVIES:
+            cache_map[seed["videoId"]] = enrich_movie_fields(seed)
 
     for vid, movie_obj in list(cache_map.items()):
         cache_map[vid] = enrich_movie_fields(movie_obj)
@@ -908,7 +1258,10 @@ def get_movies(
         m
         for m in all_movies
         if is_strictly_asian_movie(
-            m.get("title", ""), m.get("channelName", ""), m.get("description", "")
+            m.get("title", ""),
+            m.get("channelName", ""),
+            m.get("description", ""),
+            m.get("channelUrl", ""),
         )
     ]
 
@@ -916,7 +1269,17 @@ def get_movies(
     filtered = [m for m in all_movies if m.get("durationSeconds", 0) >= min_sec]
 
     if category and category not in ("all", "recent"):
-        if category == "sooner":
+        if category == "auteur":
+            filtered = [
+                m
+                for m in filtered
+                if m.get("isAuteur")
+                or m.get("category") == "auteur"
+                or m.get("category") == "kofa"
+                or "sooner" in m.get("channelName", "").lower()
+                or "@soonerfrance" in m.get("channelUrl", "").lower()
+            ]
+        elif category == "sooner":
             filtered = [
                 m
                 for m in filtered
@@ -960,7 +1323,8 @@ def get_movies(
             haystack = (
                 f"{m.get('title', '')} {m.get('koreanTitle', '')} "
                 f"{m.get('channelName', '')} {m.get('description', '')} "
-                f"{m.get('countryLabel', '')} {m.get('category', '')}"
+                f"{m.get('countryLabel', '')} {m.get('category', '')} "
+                f"{m.get('auteurLabel', '') or ''}"
             ).lower()
             if all(w in haystack for w in q_words) or any(
                 w in haystack for w in q_words

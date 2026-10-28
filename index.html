@@ -37,10 +37,10 @@
           <input 
             type="text" 
             id="searchInput" 
-            placeholder="Rechercher un film coréen, japonais ou chinois, un acteur, un genre..." 
+            placeholder="Rechercher un film, un réalisateur (Ozu, Bong Joon-ho, Wong Kar-wai...)" 
             autocomplete="off"
             spellcheck="false"
-            aria-label="Rechercher des films asiatiques"
+            aria-label="Rechercher un film asiatique ou un réalisateur"
           >
           <button type="button" id="clearSearchBtn" class="clear-btn hidden" aria-label="Effacer la recherche">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -95,6 +95,9 @@
       <button class="chip active" data-category="all">
         <span>🌏 Tous les films (Corée • Japon • Chine)</span>
       </button>
+      <button class="chip chip-auteur" data-category="auteur" title="Sélection de chefs-d'œuvre patrimoniaux, cinéma d'auteur et festivals (Cannes, Berlin, Venise, KOFA, Sooner...)">
+        <span>🎬 Cinéma d'Auteur & Grands Maîtres</span>
+      </button>
       <button class="chip chip-sooner" data-category="sooner" title="Films asiatiques en location ou abonnement sur la chaîne officielle YouTube @soonerfrance">
         <span class="yt-paid-dot" aria-hidden="true"></span>
         <span>Sooner (@soonerfrance)</span>
@@ -115,7 +118,7 @@
         <span>⭐ ST-FR / VF Natif</span>
       </button>
       <button class="chip" data-category="thriller">
-        <span>🔪 Thriller, Action & Arts Martiaux</span>
+        <span>🔪 Polar & Thriller</span>
       </button>
       <button class="chip" data-category="drama">
         <span>🎭 Drame, Romance & Historique</span>
@@ -258,6 +261,7 @@
             </div>
 
             <div class="modal-badges-group">
+              <span class="badge-auteur hidden" id="modalAuteurBadge">🎬 Cinéma d'Auteur</span>
               <span class="badge-subtitle" id="modalSubtitleBadge">🇫🇷 ST-FR Natif</span>
               <span class="badge-duration" id="modalDurationBadge">1:45:00</span>
             </div>

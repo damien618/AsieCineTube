@@ -32,28 +32,38 @@ USER_AGENT = (
     "Chrome/128.0.0.0 Safari/537.36"
 )
 
-# Requêtes ciblées pour trouver des films asiatiques complets avec sous-titres FR
-SEARCH_QUERIES = [
-    # 🇰🇷 Corée du Sud
-    ("film coréen complet en français", "kr", "thriller"),
-    ("film coréen vostfr complet", "kr", "drama"),
-    ("korean movie full french subtitles", "kr", "drama"),
-    ("film sud coréen complet vostfr", "kr", "thriller"),
+# Requêtes ciblées d'auteurs et patrimoine asiatique avec sous-titres FR
+SEARCH_QUERIES: List[Tuple[str, str, str]] = [
+    # 🇰🇷 Corée du Sud — Cinéma d'auteur & Patrimoine
+    ("film coréen complet vostfr drame", "kr", "drama"),
+    ("hong sang soo vostfr", "kr", "auteur"),
+    ("lee chang dong vostfr", "kr", "auteur"),
+    ("park chan wook vostfr", "kr", "auteur"),
+    ("bong joon ho vostfr", "kr", "auteur"),
     ("korean classic film kofa vostfr", "kr", "kofa"),
-    ("korean movie english subtitles full", "kr", "drama"),
-    # 🇯🇵 Japon
-    ("film japonais complet vostfr", "jp", "thriller"),
-    ("film japonais vostfr complet", "jp", "drama"),
-    ("film samourai complet vostfr", "jp", "thriller"),
-    ("japanese movie full french subtitles", "jp", "drama"),
-    ("film yakuza complet vostfr", "jp", "thriller"),
-    # 🇨🇳 Chine / Hong-Kong / Taïwan
-    ("film chinois complet vostfr", "cn", "thriller"),
-    ("film arts martiaux vostfr complet", "cn", "thriller"),
-    ("film kung fu complet en français", "cn", "thriller"),
-    ("chinese movie full french sub", "cn", "drama"),
-    ("film wuxia complet vostfr", "cn", "thriller"),
-    # 🟢 Chaîne payante Sooner France
+    ("film d'auteur coréen vostfr", "kr", "auteur"),
+
+    # 🇯🇵 Japon — Grands Maîtres & Patrimoine
+    ("film japonais complet vostfr drame", "jp", "drama"),
+    ("kurosawa vostfr", "jp", "auteur"),
+    ("ozu vostfr", "jp", "auteur"),
+    ("kenji mizoguchi vostfr", "jp", "auteur"),
+    ("masaki kobayashi film complet", "jp", "auteur"),
+    ("kore-eda vostfr", "jp", "auteur"),
+    ("takeshi kitano vostfr", "jp", "auteur"),
+    ("cinéma japonais classique vostfr", "jp", "auteur"),
+
+    # 🇨🇳 Chine / Hong-Kong / Taïwan — Cinéma d'auteur & Nouvelle Vague
+    ("film chinois complet vostfr drame", "cn", "drama"),
+    ("wong kar wai vostfr", "cn", "auteur"),
+    ("edward yang vostfr", "cn", "auteur"),
+    ("hou hsiao hsien vostfr", "cn", "auteur"),
+    ("tsai ming liang vostfr", "cn", "auteur"),
+    ("zhang yimou vostfr", "cn", "auteur"),
+    ("jia zhangke vostfr", "cn", "auteur"),
+    ("film d'auteur chinois taïwanais vostfr", "cn", "auteur"),
+
+    # 🟢 Chaîne officielle payante Sooner France
     ("@soonerfrance film coréen", "kr", "sooner"),
     ("@soonerfrance film japonais", "jp", "sooner"),
     ("@soonerfrance film chinois", "cn", "sooner"),
@@ -208,7 +218,7 @@ def search_youtube_innertube(
         description = " ".join([r.get("text", "") for r in desc_runs]).strip()
 
         # Filtrage strict : éliminer les films occidentaux et le spam
-        if not server.is_strictly_asian_movie(title, channel_name, description):
+        if not server.is_strictly_asian_movie(title, channel_name, description, channel_url):
             continue
 
         # Vérification durée
@@ -328,6 +338,23 @@ def run_harvest() -> Tuple[int, int]:
     initial_count = len(cache_map)
     print(f"📦 Films actuellement en cache : {initial_count}")
 
+    # Purge in-memory cache of non-compliant movies using server.is_strictly_asian_movie
+    cache_map = {
+        vid: m
+        for vid, m in cache_map.items()
+        if isinstance(m, dict)
+        and server.is_strictly_asian_movie(
+            m.get("title", ""),
+            m.get("channelName", ""),
+            m.get("description", ""),
+            m.get("channelUrl", ""),
+        )
+        and "iqiyi" not in (m.get("channelName", "") or "").lower()
+    }
+    purged_count = initial_count - len(cache_map)
+    if purged_count > 0:
+        print(f"🧹 Purge en mémoire effectuée : {purged_count} films indésirables éliminés ({len(cache_map)} restants)")
+
     # 1. Collecte parallèle de toutes les requêtes
     all_discovered: List[Dict[str, Any]] = []
 
@@ -371,7 +398,7 @@ def run_harvest() -> Tuple[int, int]:
         return server.enrich_movie_fields(cand)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
-        enriched_list = list(executor.map(enrich_candidate, new_candidates[:30]))
+        enriched_list = list(executor.map(enrich_candidate, new_candidates[:60]))
 
     added_count = 0
     for movie in enriched_list:

@@ -18,6 +18,11 @@
   --badge-native-text: #34d399;
   --badge-auto-bg: rgba(245, 158, 11, 0.2);
   --badge-auto-text: #fbbf24;
+  --accent-gold: #fbbf24;
+  --accent-gold-bg: rgba(245, 158, 11, 0.15);
+  --badge-auteur-bg: rgba(245, 158, 11, 0.15);
+  --badge-auteur-text: #fbbf24;
+  --badge-auteur-border: rgba(245, 158, 11, 0.45);
 }
 
 * {
@@ -343,6 +348,28 @@ body {
   box-shadow: 0 0 8px #4ade80;
 }
 
+/* Puce spéciale Cinéma d'Auteur & Grands Maîtres */
+.chip.chip-auteur,
+.chip-auteur {
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  background-color: rgba(245, 158, 11, 0.12);
+  color: #fef3c7;
+}
+
+.chip.chip-auteur:hover,
+.chip-auteur:hover {
+  background-color: rgba(245, 158, 11, 0.22);
+  border-color: rgba(245, 158, 11, 0.7);
+}
+
+.chip.chip-auteur.active,
+.chip-auteur.active {
+  background: linear-gradient(135deg, #b45309, #d97706);
+  color: #ffffff;
+  border-color: #f59e0b;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+}
+
 /* ==========================================================================
    BANDEAU D'ÉTAT
    ========================================================================== */
@@ -620,11 +647,36 @@ body {
   color: var(--yt-text-secondary);
 }
 
+/* Conteneur flex des badges sous les métadonnées de la carte */
+.movie-badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+/* Badge Cinéma d'Auteur sur les cartes */
+.movie-auteur-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  background-color: var(--badge-auteur-bg, rgba(245, 158, 11, 0.15));
+  border: 1px solid var(--badge-auteur-border, rgba(245, 158, 11, 0.45));
+  border-radius: 4px;
+  color: var(--badge-auteur-text, #fbbf24);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  width: fit-content;
+  white-space: nowrap;
+}
+
 .movie-paid-line {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 5px;
   padding: 2px 8px;
   background-color: rgba(43, 166, 64, 0.15);
   border: 1px solid rgba(43, 166, 64, 0.4);
@@ -920,6 +972,19 @@ body {
 .modal-stats {
   font-size: 12px;
   color: var(--yt-text-secondary);
+}
+
+.badge-auteur {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background-color: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.55);
+  color: #fbbf24;
 }
 
 .badge-subtitle {

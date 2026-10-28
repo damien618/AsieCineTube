@@ -69,6 +69,7 @@
     modalChannelName: document.getElementById('modalChannelName'),
     modalChannelVerified: document.getElementById('modalChannelVerified'),
     modalStatsText: document.getElementById('modalStatsText'),
+    modalAuteurBadge: document.getElementById('modalAuteurBadge'),
     modalSubtitleBadge: document.getElementById('modalSubtitleBadge'),
     modalDurationBadge: document.getElementById('modalDurationBadge'),
     modalDescription: document.getElementById('modalDescription'),
@@ -212,7 +213,7 @@
   // FILTRAGE CÔTÉ CLIENT
   // ==========================================================================
   function applyFiltersAndRender() {
-    const query = state.searchQuery.trim().toLowerCase();
+    const query = (state.searchQuery || '').trim();
     const category = state.currentCategory;
     const subFilter = state.subFilter;
 
@@ -223,7 +224,17 @@
       }
 
       // 2. Filtre Puce / Catégorie
-      if (category === 'sooner') {
+      if (category === 'auteur') {
+        const isAuteur = Boolean(movie.isAuteur) ||
+          movie.category === 'auteur' ||
+          Boolean(movie.auteurLabel) ||
+          movie.category === 'kofa' ||
+          (movie.channelName && (
+            movie.channelName.toLowerCase().includes('koreanfilm') ||
+            movie.channelName.toLowerCase().includes('sooner')
+          ));
+        if (!isAuteur) return false;
+      } else if (category === 'sooner') {
         const isSooner = (movie.channelName && movie.channelName.toLowerCase().includes('sooner')) ||
           (movie.channelUrl && movie.channelUrl.toLowerCase().includes('sooner'));
         if (!isSooner) return false;
@@ -251,13 +262,16 @@
 
       // 3. Filtre Texte Recherche
       if (query) {
-        const titleMatch = (movie.title || '').toLowerCase().includes(query);
-        const koreanTitleMatch = (movie.koreanTitle || '').toLowerCase().includes(query);
-        const channelMatch = (movie.channelName || '').toLowerCase().includes(query);
-        const descMatch = (movie.description || '').toLowerCase().includes(query);
-        const countryMatch = (movie.countryLabel || '').toLowerCase().includes(query);
+        const q = query.toLowerCase();
+        const titleMatch = (movie.title || '').toLowerCase().includes(q);
+        const koreanTitleMatch = (movie.koreanTitle || '').toLowerCase().includes(q);
+        const channelMatch = (movie.channelName || '').toLowerCase().includes(q);
+        const descMatch = (movie.description || '').toLowerCase().includes(q);
+        const countryMatch = (movie.countryLabel || '').toLowerCase().includes(q);
+        const auteurMatch = (movie.auteurLabel || '').toLowerCase().includes(q) ||
+          (movie.director || '').toLowerCase().includes(q);
 
-        if (!titleMatch && !koreanTitleMatch && !channelMatch && !descMatch && !countryMatch) {
+        if (!titleMatch && !koreanTitleMatch && !channelMatch && !descMatch && !countryMatch && !auteurMatch) {
           return false;
         }
       }
@@ -287,7 +301,9 @@
 
     // Badge de filtre actif
     let activeFilterLabel = '';
-    if (state.currentCategory === 'sooner') {
+    if (state.currentCategory === 'auteur') {
+      activeFilterLabel = "🎬 Cinéma d'Auteur & Grands Maîtres";
+    } else if (state.currentCategory === 'sooner') {
       activeFilterLabel = '🟢 Sooner (@soonerfrance)';
     } else if (state.currentCategory === 'kr') {
       activeFilterLabel = '🇰🇷 Films Coréens';
@@ -299,6 +315,8 @@
       activeFilterLabel = '🇨🇳 Films Chinois';
     } else if (state.currentCategory === 'native') {
       activeFilterLabel = '⭐ ST-FR Natif';
+    } else if (state.currentCategory === 'thriller') {
+      activeFilterLabel = '🔪 Polar & Thriller';
     } else if (state.currentCategory !== 'all') {
       activeFilterLabel = `Genre : ${state.currentCategory.toUpperCase()}`;
     }
@@ -372,6 +390,14 @@
       ? `<span class="badge-paid-top" title="${escapeHtml(movie.paidLabel || 'Visionnage payant sur YouTube')}">
            <span class="yt-paid-dot" aria-hidden="true"></span> Sooner
          </span>`
+      : '';
+
+    const isAuteur = Boolean(movie.isAuteur);
+    const auteurLabel = movie.auteurLabel || "🎬 Cinéma d'Auteur";
+    const auteurBadgeHtml = isAuteur
+      ? `<div class="movie-auteur-badge" title="${escapeHtml(auteurLabel)}">
+           <span>${escapeHtml(auteurLabel)}</span>
+         </div>`
       : '';
 
     const paidInfoLine = isPaid
@@ -452,7 +478,10 @@
               ${escapeHtml(movie.publishedRelative || movie.publishedFormatted || '')}
             </span>
           </div>
-          ${paidInfoLine}
+          <div class="movie-badges-container">
+            ${auteurBadgeHtml}
+            ${paidInfoLine}
+          </div>
         </div>
       </div>
     `;
@@ -547,6 +576,16 @@
     DOM.modalSubtitleBadge.textContent = isNative ? '🇫🇷 ST-FR Natif' : '🇫🇷 ST-FR Auto (CC)';
 
     DOM.modalDurationBadge.textContent = movie.durationFormatted || '';
+
+    // Badge Auteur dans la modale
+    if (DOM.modalAuteurBadge) {
+      if (movie.isAuteur) {
+        DOM.modalAuteurBadge.textContent = movie.auteurLabel || "🎬 Cinéma d'Auteur";
+        DOM.modalAuteurBadge.classList.remove('hidden');
+      } else {
+        DOM.modalAuteurBadge.classList.add('hidden');
+      }
+    }
 
     // Message d'aide Sous-titres FR (explication claire de la limitation du lecteur intégré YouTube)
     const ytDirectUrl = movie.youtubeUrl || `https://www.youtube.com/watch?v=${movie.videoId}`;
