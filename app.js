@@ -475,7 +475,7 @@
             <span>${escapeHtml(movie.viewCountFormatted || 'Vues non indiquées')}</span>
             <span>•</span>
             <span title="Date de publication : ${escapeHtml(movie.publishedFormatted || movie.publishDate || '')}">
-              ${escapeHtml(movie.publishedRelative || movie.publishedFormatted || '')}
+              ${escapeHtml(formatRelativeDateLive(movie.publishDate, movie.publishedRelative || movie.publishedFormatted || ''))}
             </span>
           </div>
           <div class="movie-badges-container">
@@ -902,6 +902,24 @@
   // ==========================================================================
   // UTILITAIRES
   // ==========================================================================
+  function formatRelativeDateLive(isoDate, fallbackText) {
+    if (!isoDate || typeof isoDate !== 'string') return fallbackText || '';
+    const m = isoDate.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (!m) return fallbackText || '';
+    const pubUtc = Date.UTC(parseInt(m[1], 10), parseInt(m[2], 10) - 1, parseInt(m[3], 10));
+    const now = new Date();
+    const todayUtc = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    const deltaDays = Math.max(0, Math.floor((todayUtc - pubUtc) / 86400000));
+
+    if (deltaDays === 0) return "aujourd'hui";
+    if (deltaDays === 1) return 'hier';
+    if (deltaDays < 7) return `il y a ${deltaDays} jours`;
+    if (deltaDays < 30) return `il y a ${Math.max(1, Math.floor(deltaDays / 7))} sem.`;
+    if (deltaDays < 365) return `il y a ${Math.max(1, Math.floor(deltaDays / 30))} mois`;
+    const years = Math.max(1, Math.floor(deltaDays / 365));
+    return `il y a ${years} an${years > 1 ? 's' : ''}`;
+  }
+
   function escapeHtml(text) {
     if (!text) return '';
     return String(text)

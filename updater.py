@@ -69,6 +69,31 @@ SEARCH_QUERIES: List[Tuple[str, str, str]] = [
     ("@soonerfrance film chinois", "cn", "sooner"),
 ]
 
+# Paramètres Protobuf (Base64) pour l'API YouTube InnerTube (/youtubei/v1/search)
+# - PARAMS_RELEVANCE_LONG : Tri par Pertinence + Durée > 20 min (\x12\x02\x18\x02)
+# - PARAMS_RECENT_MONTH_RELEVANT : Tri par Pertinence + Mis en ligne ce mois-ci + Vidéo > 20 min (\x12\x06\x08\x04\x10\x01\x18\x02)
+# - PARAMS_UPLOAD_DATE_LONG : Tri par Date de mise en ligne + Vidéo > 20 min (\x08\x02\x12\x04\x10\x01\x18\x02)
+PARAMS_RELEVANCE_LONG = "EgIYAg=="
+PARAMS_RECENT_MONTH_RELEVANT = "EgYIBBABGAI="
+PARAMS_UPLOAD_DATE_LONG = "CAISBBABGAI="
+
+# Requêtes ciblées pour la passe combinée « Date de mise en ligne récente + Contenus pertinents »
+RECENT_DISCOVERY_QUERIES: List[Tuple[str, str, str]] = [
+    ("film coréen complet vostfr", "kr", "drama"),
+    ("film coréen complet français", "kr", "drama"),
+    ("film d'auteur coréen vostfr", "kr", "auteur"),
+    ("korean classic film kofa", "kr", "kofa"),
+    ("film japonais complet vostfr", "jp", "drama"),
+    ("film japonais complet français", "jp", "drama"),
+    ("cinéma japonais classique vostfr", "jp", "auteur"),
+    ("film chinois complet vostfr", "cn", "drama"),
+    ("film chinois complet français", "cn", "drama"),
+    ("film d'auteur chinois taïwanais vostfr", "cn", "auteur"),
+    ("@soonerfrance film coréen", "kr", "sooner"),
+    ("@soonerfrance film japonais", "jp", "sooner"),
+    ("@soonerfrance film chinois", "cn", "sooner"),
+]
+
 
 def fetch_video_exact_metadata(video_id: str) -> Tuple[Optional[str], Optional[str], List[str]]:
     """Récupère la date exacte YYYY-MM-DD et les pistes de sous-titres d'une vidéo YouTube."""
@@ -116,10 +141,11 @@ def search_youtube_innertube(
     default_country: str = "kr",
     default_genre: str = "drama",
     min_duration_minutes: int = 40,
+    search_params: str = PARAMS_RELEVANCE_LONG,
 ) -> List[Dict[str, Any]]:
     """
     Interroge l'API interne YouTube (InnerTube /youtubei/v1/search)
-    avec filtre de vidéos longues (> 20 min).
+    en combinant filtre de durée (> 20 min) et mode de tri (Pertinence et/ou Date de mise en ligne).
     """
     url = "https://www.youtube.com/youtubei/v1/search?prettyPrint=false"
     payload = {
@@ -132,7 +158,7 @@ def search_youtube_innertube(
             }
         },
         "query": query,
-        "params": "EgIYAg%3D%3D",  # Filtre vidéos longues
+        "params": search_params,
     }
 
     data = json.dumps(payload).encode("utf-8")
@@ -355,14 +381,33 @@ def run_harvest() -> Tuple[int, int]:
     if purged_count > 0:
         print(f"🧹 Purge en mémoire effectuée : {purged_count} films indésirables éliminés ({len(cache_map)} restants)")
 
-    # 1. Collecte parallèle de toutes les requêtes
+    # 1. Collecte parallèle combinant Pertinence + Date de mise en ligne récente
     all_discovered: List[Dict[str, Any]] = []
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
-        future_to_query = {
-            executor.submit(search_youtube_innertube, q, c, g): q
-            for q, c, g in SEARCH_QUERIES
-        }
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+        future_to_query = {}
+
+        # Passe A : Contenus pertinents & Grands Maîtres (Pertinence + > 20 min)
+        for q, c, g in SEARCH_QUERIES:
+            fut = executor.submit(
+                search_youtube_innertube, q, c, g, 40, PARAMS_RELEVANCE_LONG
+            )
+            future_to_query[fut] = f"[Pertinence] {q}"
+
+        # Passe B : Nouveautés pertinentes du mois (Pertinence + Ce mois-ci + > 20 min)
+        for q, c, g in RECENT_DISCOVERY_QUERIES:
+            fut_month = executor.submit(
+                search_youtube_innertube, q, c, g, 40, PARAMS_RECENT_MONTH_RELEVANT
+            )
+            future_to_query[fut_month] = f"[Récent+Pertinent] {q}"
+
+        # Passe C : Dernières mises en ligne (Tri par date d'upload + > 20 min + filtre strict asiatique)
+        for q, c, g in RECENT_DISCOVERY_QUERIES:
+            fut_date = executor.submit(
+                search_youtube_innertube, q, c, g, 40, PARAMS_UPLOAD_DATE_LONG
+            )
+            future_to_query[fut_date] = f"[Date d'ajout] {q}"
+
         future_kofa = executor.submit(harvest_korean_film_archive)
 
         for future in concurrent.futures.as_completed(future_to_query):
@@ -381,9 +426,38 @@ def run_harvest() -> Tuple[int, int]:
         except Exception as e:
             print(f"  ✗ Erreur sur KOFA: {e}")
 
-    # 2. Filtrer les vidéos déjà connues pour économiser les requêtes de métadonnées
-    new_candidates = [m for m in all_discovered if m["videoId"] not in cache_map]
-    print(f"✨ Nouveaux films potentiels découverts : {len(new_candidates)}")
+    # 2. Dédupliquer et filtrer les vidéos déjà connues, puis trier par fraîcheur + pertinence
+    dedup_candidates: Dict[str, Dict[str, Any]] = {}
+    for m in all_discovered:
+        vid = m.get("videoId")
+        if not vid or vid in cache_map:
+            continue
+        existing = dedup_candidates.get(vid)
+        if not existing or m.get("publishDate", "") > existing.get("publishDate", ""):
+            dedup_candidates[vid] = m
+
+    def candidate_priority_key(cand: Dict[str, Any]) -> Tuple[str, int, int]:
+        pub_date = str(cand.get("publishDate") or "")
+        is_aut, _ = server.detect_auteur_label(
+            cand.get("title", ""),
+            cand.get("channelName", ""),
+            cand.get("description", ""),
+            cand.get("channelUrl", ""),
+        )
+        relevance_score = (
+            (2 if is_aut else 0)
+            + (1 if cand.get("channelVerified") else 0)
+            + (1 if cand.get("subtitleType") == "native_fr" else 0)
+        )
+        views = int(cand.get("viewCount") or 0)
+        return (pub_date, relevance_score, views)
+
+    new_candidates = sorted(
+        dedup_candidates.values(),
+        key=candidate_priority_key,
+        reverse=True,
+    )
+    print(f"✨ Nouveaux films uniques découverts (triés par fraîcheur + pertinence) : {len(new_candidates)}")
 
     # 3. Enrichir les métadonnées exactes des nouveaux films
     def enrich_candidate(cand: Dict[str, Any]) -> Optional[Dict[str, Any]]:
@@ -398,7 +472,7 @@ def run_harvest() -> Tuple[int, int]:
         return server.enrich_movie_fields(cand)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
-        enriched_list = list(executor.map(enrich_candidate, new_candidates[:60]))
+        enriched_list = list(executor.map(enrich_candidate, new_candidates[:80]))
 
     added_count = 0
     for movie in enriched_list:

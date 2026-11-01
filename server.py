@@ -102,6 +102,24 @@ SPAM_EXCLUSION_KEYWORDS = [
     "160분요약",
     "통합본",
     "병맛자막",
+    # Exclusions hors-films (cuisine, podcasts, interviews, épisodes isolés de séries)
+    "street food",
+    "cuisine de rue",
+    "leçon de cinéma",
+    "dialogue de réalisateur",
+    "lecture & film",
+    "seeing china through film",
+    "monografie di",
+    "documental con",
+    "qui est kiyoshi",
+    "成为贾樟柯",
+    "ep. 315",
+    "ep01",
+    "ep02",
+    "ep03",
+    "ep04",
+    "ep05",
+    "ep21",
 ]
 
 EXCLUDED_CHANNELS = [
@@ -143,6 +161,20 @@ EXCLUDED_CHANNELS = [
     "shaw brothers cinema",
     "功夫侦探所",
     "浪子走天下",
+    "小辛美食",
+    "xiaoxin-chinafood",
+    "iqiyi france",
+    "newtv french",
+    "sbs world",
+    "film at lincoln center",
+    "china institute",
+    "prisme cinéma",
+    "dimensión vhs",
+    "federico frusciante",
+    "american werewolf",
+    "泡芙剧场",
+    "puffdrama",
+    "罗永浩",
 ]
 
 BMOVIE_MARTIAL_ARTS_EXCLUSIONS = [
@@ -205,6 +237,10 @@ WESTERN_EXCLUSIONS_LIST = [
     "sagas",
     "world at war",
     "filmstation",
+    "agnès jaoui",
+    "mission secrète à tokyo",
+    "james cagney",
+    "ciné classics",
 ]
 
 VERIFIED_ASIAN_CHANNELS = [
@@ -1059,7 +1095,10 @@ def enrich_movie_fields(raw: Dict[str, Any]) -> Dict[str, Any]:
     is_auteur, auteur_label = detect_auteur_label(
         title, channel_name, description, channel_url
     )
-    if not is_auteur and (raw.get("isAuteur") or raw.get("category") == "auteur"):
+    if not is_auteur and is_kofa:
+        is_auteur = True
+        auteur_label = raw.get("auteurLabel") or "🏛️ KOFA (Patrimoine)"
+    elif not is_auteur and (raw.get("isAuteur") or raw.get("category") == "auteur"):
         is_auteur = True
         auteur_label = raw.get("auteurLabel") or "🎬 Cinéma d'Auteur"
 
