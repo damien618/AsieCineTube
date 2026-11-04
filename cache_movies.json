@@ -513,7 +513,7 @@
     "publishDate": "2025-11-09",
     "publishedTimestamp": 1762646400,
     "publishedFormatted": "9 nov. 2025",
-    "publishedRelative": "il y a 11 mois",
+    "publishedRelative": "il y a 12 mois",
     "subtitleType": "native_fr",
     "subtitleLabel": "🇯🇵 Japon • ST-FR Natif",
     "availableLanguages": [
@@ -4651,7 +4651,7 @@
     "publishDate": "2026-10-14",
     "publishedTimestamp": 1791936000,
     "publishedFormatted": "14 oct. 2026",
-    "publishedRelative": "il y a 2 sem.",
+    "publishedRelative": "il y a 3 sem.",
     "subtitleType": "native_fr",
     "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
     "availableLanguages": [
@@ -15925,7 +15925,7 @@
     "publishDate": "2026-10-21",
     "publishedTimestamp": 1792540800,
     "publishedFormatted": "21 oct. 2026",
-    "publishedRelative": "il y a 1 sem.",
+    "publishedRelative": "il y a 2 sem.",
     "subtitleType": "auto_fr",
     "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
     "availableLanguages": [
@@ -18413,7 +18413,7 @@
     "publishDate": "2026-11-01",
     "publishedTimestamp": 1793491200,
     "publishedFormatted": "1 nov. 2026",
-    "publishedRelative": "il y a 2 jours",
+    "publishedRelative": "il y a 3 jours",
     "subtitleType": "auto_fr",
     "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
     "availableLanguages": [
@@ -18449,7 +18449,7 @@
     "publishDate": "2026-10-30",
     "publishedTimestamp": 1793318400,
     "publishedFormatted": "30 oct. 2026",
-    "publishedRelative": "il y a 4 jours",
+    "publishedRelative": "il y a 5 jours",
     "subtitleType": "auto_fr",
     "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
     "availableLanguages": [
@@ -19254,5 +19254,41 @@
     "description": "Yasujirō  Ozu  (小津 安二郎,  Ozu  Yasujirō, 12 December 1903 – 12 December 1963) was a Japanese film director and screenwriter ...",
     "youtubeUrl": "https://www.youtube.com/watch?v=JyaHiSmFoUU",
     "embedUrl": "https://www.youtube.com/embed/JyaHiSmFoUU?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+  },
+  "zNqr030-65w": {
+    "videoId": "zNqr030-65w",
+    "title": "站台 / Platform (2000)",
+    "koreanTitle": "",
+    "country": "cn",
+    "countryLabel": "🇨🇳 Chine",
+    "isPaid": false,
+    "paidProvider": "",
+    "paidLabel": "",
+    "channelName": "tina's public usb",
+    "channelUrl": "https://www.youtube.com/@tinausb",
+    "channelAvatar": "https://yt3.ggpht.com/N89P54Afn9bItfGTevej5ZK8Cymq9RBHVQnnYj04xwypvhR4FtY8NcPD8RAGzho0x8-L7KFCdQ=s68-c-k-c0x00ffffff-no-rj",
+    "channelVerified": false,
+    "thumbnail": "https://i.ytimg.com/vi/zNqr030-65w/hqdefault.jpg",
+    "thumbnailMax": "https://i.ytimg.com/vi/zNqr030-65w/maxresdefault.jpg",
+    "durationSeconds": 8922,
+    "durationFormatted": "2:28:42",
+    "viewCount": 117756,
+    "viewCountFormatted": "117 k vues",
+    "publishDate": "2021-11-05",
+    "publishedTimestamp": 1636070400,
+    "publishedFormatted": "5 nov. 2021",
+    "publishedRelative": "il y a 5 ans",
+    "subtitleType": "auto_fr",
+    "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
+    "availableLanguages": [
+      "en",
+      "fr (auto)"
+    ],
+    "category": "auteur",
+    "isAuteur": true,
+    "auteurLabel": "🎬 Jia Zhangke",
+    "description": "dir.  Jia Zhangke .",
+    "youtubeUrl": "https://www.youtube.com/watch?v=zNqr030-65w",
+    "embedUrl": "https://www.youtube.com/embed/zNqr030-65w?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
   }
 }

@@ -2,13 +2,13 @@
   "status": "ok",
   "source": "github_pages_static",
   "sort": "publishDate_desc",
-  "total": 536,
+  "total": 537,
   "countryCounts": {
     "kr": 227,
     "jp": 215,
-    "cn": 94
+    "cn": 95
   },
-  "updatedAt": "2026-11-03T03:04:03.752518+00:00",
+  "updatedAt": "2026-11-04T03:04:10.503456+00:00",
   "movies": [
     {
       "videoId": "3JbV6GSmZw8",
@@ -32,7 +32,7 @@
       "publishDate": "2026-11-01",
       "publishedTimestamp": 1793491200,
       "publishedFormatted": "1 nov. 2026",
-      "publishedRelative": "il y a 2 jours",
+      "publishedRelative": "il y a 3 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -68,7 +68,7 @@
       "publishDate": "2026-10-30",
       "publishedTimestamp": 1793318400,
       "publishedFormatted": "30 oct. 2026",
-      "publishedRelative": "il y a 4 jours",
+      "publishedRelative": "il y a 5 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -104,7 +104,7 @@
       "publishDate": "2026-10-21",
       "publishedTimestamp": 1792540800,
       "publishedFormatted": "21 oct. 2026",
-      "publishedRelative": "il y a 1 sem.",
+      "publishedRelative": "il y a 2 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -211,7 +211,7 @@
       "publishDate": "2026-10-14",
       "publishedTimestamp": 1791936000,
       "publishedFormatted": "14 oct. 2026",
-      "publishedRelative": "il y a 2 sem.",
+      "publishedRelative": "il y a 3 sem.",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -5093,7 +5093,7 @@
       "publishDate": "2025-11-09",
       "publishedTimestamp": 1762646400,
       "publishedFormatted": "9 nov. 2025",
-      "publishedRelative": "il y a 11 mois",
+      "publishedRelative": "il y a 12 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Natif",
       "availableLanguages": [
@@ -11747,6 +11747,42 @@
       "description": "영화의 자세한 정보를 보려면 아래의 웹주소를 방문하세요.\nFor detailed information on this film, visit :\n(한국어) https://www.kmdb.or.kr/db/kor/detail/movie/K/04647\n(English) https://www.kmdb.or.kr/eng/db/kor/detail/movie/K/04647\n\n감독(Director) : 장선우(Jang Sun-woo)\n출연 : 오태경, 원미경, 이호재, 이혜영, 김혜선 \n\n줄거리 : 갓난아기때 길가에 버려진 선재는 전과가 화려한 문수에게 발견되어 그의 손에서 자란다. 그러다가 문수가 죽자 선재는 어머니를 찾아 집을 떠난다. 피리를 준 법운, 바람둥이 지호, 어촌의사 해운, 장님가수 이나, 요녀 마니, 옥살이를 하고 있는 장기수 해경 등을 만나 사랑, 슬픔, 평등, 부귀, 애욕이라는 감정을 체험한다. 오랜 시간이 지나서 다시 만난 이련은 선재를 처음 만났을 때부터 간직해온 사랑을 고백한",
       "youtubeUrl": "https://www.youtube.com/watch?v=gnunFB_hzVQ",
       "embedUrl": "https://www.youtube.com/embed/gnunFB_hzVQ?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "zNqr030-65w",
+      "title": "站台 / Platform (2000)",
+      "koreanTitle": "",
+      "country": "cn",
+      "countryLabel": "🇨🇳 Chine",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "tina's public usb",
+      "channelUrl": "https://www.youtube.com/@tinausb",
+      "channelAvatar": "https://yt3.ggpht.com/N89P54Afn9bItfGTevej5ZK8Cymq9RBHVQnnYj04xwypvhR4FtY8NcPD8RAGzho0x8-L7KFCdQ=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/zNqr030-65w/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/zNqr030-65w/maxresdefault.jpg",
+      "durationSeconds": 8922,
+      "durationFormatted": "2:28:42",
+      "viewCount": 117756,
+      "viewCountFormatted": "117 k vues",
+      "publishDate": "2021-11-05",
+      "publishedTimestamp": 1636070400,
+      "publishedFormatted": "5 nov. 2021",
+      "publishedRelative": "il y a 5 ans",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Jia Zhangke",
+      "description": "dir.  Jia Zhangke .",
+      "youtubeUrl": "https://www.youtube.com/watch?v=zNqr030-65w",
+      "embedUrl": "https://www.youtube.com/embed/zNqr030-65w?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "k1wRxjhLK_g",
