@@ -2,13 +2,13 @@
   "status": "ok",
   "source": "github_pages_static",
   "sort": "publishDate_desc",
-  "total": 597,
+  "total": 599,
   "countryCounts": {
-    "kr": 243,
-    "jp": 248,
+    "kr": 244,
+    "jp": 249,
     "cn": 106
   },
-  "updatedAt": "2026-11-11T03:04:01.700209+00:00",
+  "updatedAt": "2026-11-12T03:04:12.365128+00:00",
   "movies": [
     {
       "videoId": "73pNu7Y8KeI",
@@ -32,7 +32,7 @@
       "publishDate": "2026-11-11",
       "publishedTimestamp": 1794355200,
       "publishedFormatted": "11 nov. 2026",
-      "publishedRelative": "aujourd'hui",
+      "publishedRelative": "hier",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -68,7 +68,7 @@
       "publishDate": "2026-11-09",
       "publishedTimestamp": 1794182400,
       "publishedFormatted": "9 nov. 2026",
-      "publishedRelative": "il y a 2 jours",
+      "publishedRelative": "il y a 3 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Auto",
       "availableLanguages": [
@@ -104,7 +104,7 @@
       "publishDate": "2026-11-08",
       "publishedTimestamp": 1794096000,
       "publishedFormatted": "8 nov. 2026",
-      "publishedRelative": "il y a 3 jours",
+      "publishedRelative": "il y a 4 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -140,7 +140,7 @@
       "publishDate": "2026-11-06",
       "publishedTimestamp": 1793923200,
       "publishedFormatted": "6 nov. 2026",
-      "publishedRelative": "il y a 5 jours",
+      "publishedRelative": "il y a 6 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -176,7 +176,7 @@
       "publishDate": "2026-11-06",
       "publishedTimestamp": 1793923200,
       "publishedFormatted": "6 nov. 2026",
-      "publishedRelative": "il y a 5 jours",
+      "publishedRelative": "il y a 6 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -212,7 +212,7 @@
       "publishDate": "2026-11-05",
       "publishedTimestamp": 1793836800,
       "publishedFormatted": "5 nov. 2026",
-      "publishedRelative": "il y a 6 jours",
+      "publishedRelative": "il y a 1 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -464,7 +464,7 @@
       "publishDate": "2026-10-22",
       "publishedTimestamp": 1792627200,
       "publishedFormatted": "22 oct. 2026",
-      "publishedRelative": "il y a 2 sem.",
+      "publishedRelative": "il y a 3 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -642,7 +642,7 @@
       "publishDate": "2026-10-13",
       "publishedTimestamp": 1791849600,
       "publishedFormatted": "13 oct. 2026",
-      "publishedRelative": "il y a 4 sem.",
+      "publishedRelative": "il y a 1 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -678,7 +678,7 @@
       "publishDate": "2026-10-13",
       "publishedTimestamp": 1791849600,
       "publishedFormatted": "13 oct. 2026",
-      "publishedRelative": "il y a 4 sem.",
+      "publishedRelative": "il y a 1 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -1370,6 +1370,42 @@
       "description": "Dans la famille Asada, chacun a un rêve secret. Masashi décide de photographier sa famille en scène.",
       "youtubeUrl": "https://www.youtube.com/watch?v=gu6ebecQ4aQ",
       "embedUrl": "https://www.youtube.com/embed/gu6ebecQ4aQ?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "aiivVx5UplI",
+      "title": "Meus 10 filmes preferidos de Kenji Mizoguchi",
+      "koreanTitle": "",
+      "country": "jp",
+      "countryLabel": "🇯🇵 Japon",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Sérgio Alpendre",
+      "channelUrl": "https://www.youtube.com/@sergioalpendre68",
+      "channelAvatar": "https://yt3.ggpht.com/-RVEUwdgN0p6ThbJBd4lzdyyBcziKu7DK6S0ZwgA6DU9OXUE3D_anrvz5OgyktsiBPykKbTYdg=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/aiivVx5UplI/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/aiivVx5UplI/maxresdefault.jpg",
+      "durationSeconds": 2960,
+      "durationFormatted": "49:20",
+      "viewCount": 1286,
+      "viewCountFormatted": "1 k vues",
+      "publishDate": "2026-09-13",
+      "publishedTimestamp": 1789257600,
+      "publishedFormatted": "13 sept. 2026",
+      "publishedRelative": "il y a 2 mois",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Kenji Mizoguchi",
+      "description": "Elaborado e/ou improvisado por Sérgio Alpendre. Campanha para meu novo livro: ...",
+      "youtubeUrl": "https://www.youtube.com/watch?v=aiivVx5UplI",
+      "embedUrl": "https://www.youtube.com/embed/aiivVx5UplI?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "NTC0xmszcDE",
@@ -2396,7 +2432,7 @@
       "publishDate": "2026-06-15",
       "publishedTimestamp": 1781481600,
       "publishedFormatted": "15 juin 2026",
-      "publishedRelative": "il y a 4 mois",
+      "publishedRelative": "il y a 5 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -5958,7 +5994,7 @@
       "publishDate": "2025-11-12",
       "publishedTimestamp": 1762905600,
       "publishedFormatted": "12 nov. 2025",
-      "publishedRelative": "il y a 12 mois",
+      "publishedRelative": "il y a 1 an",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇨🇳 Chine • Payant (Sooner)",
       "availableLanguages": [
@@ -17252,6 +17288,42 @@
       "description": "영화의 자세한 정보를 보려면 아래의 웹주소를 방문하세요.\nFor detailed information on this film, visit :\n(한국어) https://www.kmdb.or.kr/db/kor/detail/movie/K/04819\n(English) https://www.kmdb.or.kr/eng/db/kor/detail/movie/K/04819\n\n영화글 : https://www.kmdb.or.kr/story/10/2022\n\n감독(Director) : 박철수(Park Cheol-Su)\n출연 : 방은진(금단),최성(아버지),문정숙(어머니),권성덕(호상),송옥숙(고마담),주진모(찬길),박재황(찬세),김일우(팔봉),정하현(혜리),추귀정(찬숙),박동현(태식),남포동(장달효),유명순(큰고모),홍윤정(작은고모),박지민(선영),김봉규(바우),최유경(미스리),김보라나(미스안),이무정(윤기사),주일몽(일가붙이),채훈(일가붙이),박철(일가붙이),임해림(일가붙이),홍충길(찬길친구),문철재(찬",
       "youtubeUrl": "https://www.youtube.com/watch?v=QmfXjL0xFqI",
       "embedUrl": "https://www.youtube.com/embed/QmfXjL0xFqI?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "xDMrBNx7pHA",
+      "title": "[고전영화] 마부 (1961)",
+      "koreanTitle": "",
+      "country": "kr",
+      "countryLabel": "🇰🇷 Corée",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Classical Movie / Animation",
+      "channelUrl": "https://www.youtube.com/@classicalmovieanimation3151",
+      "channelAvatar": "https://yt3.ggpht.com/ytc/AIdro_nqcAonlg6u9PuXs71_53sLPR1R64HaQinOMHw8EB9-9Q=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": true,
+      "thumbnail": "https://i.ytimg.com/vi/xDMrBNx7pHA/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/xDMrBNx7pHA/maxresdefault.jpg",
+      "durationSeconds": 5897,
+      "durationFormatted": "1:38:17",
+      "viewCount": 33005,
+      "viewCountFormatted": "33 k vues",
+      "publishDate": "2018-11-14",
+      "publishedTimestamp": 1542153600,
+      "publishedFormatted": "14 nov. 2018",
+      "publishedRelative": "il y a 8 ans",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "kofa",
+      "isAuteur": true,
+      "auteurLabel": "🏛️ KOFA (Patrimoine)",
+      "description": "Film complet disponible sur YouTube avec sous-titres accessibles en français.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=xDMrBNx7pHA",
+      "embedUrl": "https://www.youtube.com/embed/xDMrBNx7pHA?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "GIcbfwElu10",
