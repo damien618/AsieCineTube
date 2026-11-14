@@ -2,13 +2,13 @@
   "status": "ok",
   "source": "github_pages_static",
   "sort": "publishDate_desc",
-  "total": 610,
+  "total": 611,
   "countryCounts": {
     "kr": 245,
-    "jp": 257,
+    "jp": 258,
     "cn": 108
   },
-  "updatedAt": "2026-11-13T03:04:02.772861+00:00",
+  "updatedAt": "2026-11-14T03:03:54.696906+00:00",
   "movies": [
     {
       "videoId": "kYLQTg5_lW8",
@@ -32,7 +32,7 @@
       "publishDate": "2026-11-13",
       "publishedTimestamp": 1794528000,
       "publishedFormatted": "13 nov. 2026",
-      "publishedRelative": "aujourd'hui",
+      "publishedRelative": "hier",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -45,6 +45,42 @@
       "description": "épisodes complets d'anime, anime en français, anime doublé gratuitement, anime d'action doublé, streaming d'anime doublé, ...",
       "youtubeUrl": "https://www.youtube.com/watch?v=kYLQTg5_lW8",
       "embedUrl": "https://www.youtube.com/embed/kYLQTg5_lW8?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "o-AFsY_rkTk",
+      "title": "Plan par Plan #1 — Une affaire de famille de Hirokazu Kore-eda",
+      "koreanTitle": "",
+      "country": "jp",
+      "countryLabel": "🇯🇵 Japon",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Ramune Talk | Japon",
+      "channelUrl": "https://www.youtube.com/@ramunetalk",
+      "channelAvatar": "https://yt3.ggpht.com/GUfCWVJAtchtn-wm60BIPOBzDAXgcvIW0C9loQBc2TyeAqTY5S0LLwe3OO9eUXg8D6NATKxY=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/o-AFsY_rkTk/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/o-AFsY_rkTk/maxresdefault.jpg",
+      "durationSeconds": 2456,
+      "durationFormatted": "40:56",
+      "viewCount": 125,
+      "viewCountFormatted": "125 vues",
+      "publishDate": "2026-11-12",
+      "publishedTimestamp": 1794441600,
+      "publishedFormatted": "12 nov. 2026",
+      "publishedRelative": "il y a 2 jours",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "drama",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Hirokazu Kore-eda",
+      "description": "Plan par Plan, c'est le nouveau hors-série de Ramune Talk consacré à la mise en scène dans le cinéma japonais. À chaque ...",
+      "youtubeUrl": "https://www.youtube.com/watch?v=o-AFsY_rkTk",
+      "embedUrl": "https://www.youtube.com/embed/o-AFsY_rkTk?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "73pNu7Y8KeI",
@@ -68,7 +104,7 @@
       "publishDate": "2026-11-11",
       "publishedTimestamp": 1794355200,
       "publishedFormatted": "11 nov. 2026",
-      "publishedRelative": "il y a 2 jours",
+      "publishedRelative": "il y a 3 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -104,7 +140,7 @@
       "publishDate": "2026-11-09",
       "publishedTimestamp": 1794182400,
       "publishedFormatted": "9 nov. 2026",
-      "publishedRelative": "il y a 4 jours",
+      "publishedRelative": "il y a 5 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -140,7 +176,7 @@
       "publishDate": "2026-11-09",
       "publishedTimestamp": 1794182400,
       "publishedFormatted": "9 nov. 2026",
-      "publishedRelative": "il y a 4 jours",
+      "publishedRelative": "il y a 5 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Auto",
       "availableLanguages": [
@@ -176,7 +212,7 @@
       "publishDate": "2026-11-08",
       "publishedTimestamp": 1794096000,
       "publishedFormatted": "8 nov. 2026",
-      "publishedRelative": "il y a 5 jours",
+      "publishedRelative": "il y a 6 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -1503,7 +1539,7 @@
       "publishDate": "2026-09-15",
       "publishedTimestamp": 1789430400,
       "publishedFormatted": "15 sept. 2026",
-      "publishedRelative": "il y a 1 mois",
+      "publishedRelative": "il y a 2 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -1538,7 +1574,7 @@
       "publishDate": "2026-09-15",
       "publishedTimestamp": 1789430400,
       "publishedFormatted": "15 sept. 2026",
-      "publishedRelative": "il y a 1 mois",
+      "publishedRelative": "il y a 2 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -4035,7 +4071,7 @@
       "publishDate": "2026-04-18",
       "publishedTimestamp": 1776470400,
       "publishedFormatted": "18 avr. 2026",
-      "publishedRelative": "il y a 6 mois",
+      "publishedRelative": "il y a 7 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Natif",
       "availableLanguages": [
@@ -9149,7 +9185,7 @@
       "publishDate": "2024-11-14",
       "publishedTimestamp": 1731542400,
       "publishedFormatted": "14 nov. 2024",
-      "publishedRelative": "il y a 1 an",
+      "publishedRelative": "il y a 2 ans",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
