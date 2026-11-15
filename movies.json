@@ -2,13 +2,13 @@
   "status": "ok",
   "source": "github_pages_static",
   "sort": "publishDate_desc",
-  "total": 611,
+  "total": 613,
   "countryCounts": {
     "kr": 245,
-    "jp": 258,
-    "cn": 108
+    "jp": 259,
+    "cn": 109
   },
-  "updatedAt": "2026-11-14T03:03:54.696906+00:00",
+  "updatedAt": "2026-11-15T03:04:02.732022+00:00",
   "movies": [
     {
       "videoId": "kYLQTg5_lW8",
@@ -32,7 +32,7 @@
       "publishDate": "2026-11-13",
       "publishedTimestamp": 1794528000,
       "publishedFormatted": "13 nov. 2026",
-      "publishedRelative": "hier",
+      "publishedRelative": "il y a 2 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -68,7 +68,7 @@
       "publishDate": "2026-11-12",
       "publishedTimestamp": 1794441600,
       "publishedFormatted": "12 nov. 2026",
-      "publishedRelative": "il y a 2 jours",
+      "publishedRelative": "il y a 3 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -104,7 +104,7 @@
       "publishDate": "2026-11-11",
       "publishedTimestamp": 1794355200,
       "publishedFormatted": "11 nov. 2026",
-      "publishedRelative": "il y a 3 jours",
+      "publishedRelative": "il y a 4 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -140,7 +140,7 @@
       "publishDate": "2026-11-09",
       "publishedTimestamp": 1794182400,
       "publishedFormatted": "9 nov. 2026",
-      "publishedRelative": "il y a 5 jours",
+      "publishedRelative": "il y a 6 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -176,7 +176,7 @@
       "publishDate": "2026-11-09",
       "publishedTimestamp": 1794182400,
       "publishedFormatted": "9 nov. 2026",
-      "publishedRelative": "il y a 5 jours",
+      "publishedRelative": "il y a 6 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Auto",
       "availableLanguages": [
@@ -212,7 +212,7 @@
       "publishDate": "2026-11-08",
       "publishedTimestamp": 1794096000,
       "publishedFormatted": "8 nov. 2026",
-      "publishedRelative": "il y a 6 jours",
+      "publishedRelative": "il y a 1 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -464,7 +464,7 @@
       "publishDate": "2026-11-01",
       "publishedTimestamp": 1793491200,
       "publishedFormatted": "1 nov. 2026",
-      "publishedRelative": "il y a 1 sem.",
+      "publishedRelative": "il y a 2 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -716,7 +716,7 @@
       "publishDate": "2026-10-16",
       "publishedTimestamp": 1792108800,
       "publishedFormatted": "16 oct. 2026",
-      "publishedRelative": "il y a 4 sem.",
+      "publishedRelative": "il y a 1 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Natif",
       "availableLanguages": [
@@ -751,7 +751,7 @@
       "publishDate": "2026-10-16",
       "publishedTimestamp": 1792108800,
       "publishedFormatted": "16 oct. 2026",
-      "publishedRelative": "il y a 4 sem.",
+      "publishedRelative": "il y a 1 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -787,7 +787,7 @@
       "publishDate": "2026-10-16",
       "publishedTimestamp": 1792108800,
       "publishedFormatted": "16 oct. 2026",
-      "publishedRelative": "il y a 4 sem.",
+      "publishedRelative": "il y a 1 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -2184,7 +2184,7 @@
       "publishDate": "2026-08-17",
       "publishedTimestamp": 1786924800,
       "publishedFormatted": "17 août 2026",
-      "publishedRelative": "il y a 2 mois",
+      "publishedRelative": "il y a 3 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -4036,7 +4036,7 @@
       "publishDate": "2026-04-19",
       "publishedTimestamp": 1776556800,
       "publishedFormatted": "19 avr. 2026",
-      "publishedRelative": "il y a 6 mois",
+      "publishedRelative": "il y a 7 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Natif",
       "availableLanguages": [
@@ -5213,7 +5213,7 @@
       "publishDate": "2026-01-19",
       "publishedTimestamp": 1768780800,
       "publishedFormatted": "19 janv. 2026",
-      "publishedRelative": "il y a 9 mois",
+      "publishedRelative": "il y a 10 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -6211,7 +6211,7 @@
       "publishDate": "2025-11-20",
       "publishedTimestamp": 1763596800,
       "publishedFormatted": "20 nov. 2025",
-      "publishedRelative": "il y a 11 mois",
+      "publishedRelative": "il y a 12 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇰🇷 Corée • Payant (Sooner)",
       "availableLanguages": [
@@ -6223,6 +6223,42 @@
       "description": "Sur un coup de tête, Freddie, 25 ans, retourne pour la première fois en Corée du Sud où elle est née.",
       "youtubeUrl": "https://www.youtube.com/watch?v=DpKU-B3fCvY",
       "embedUrl": "https://www.youtube.com/embed/DpKU-B3fCvY?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "i1QYBfpNaXo",
+      "title": "Les Japonais attaquent un village, mais une fillette de 8 ans riposte intelligemment et repousse leu",
+      "koreanTitle": "",
+      "country": "jp",
+      "countryLabel": "🇯🇵 Japon",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "枪王之王",
+      "channelUrl": "https://www.youtube.com/@%E6%9E%AA%E7%8E%8B%E4%B9%8B%E7%8E%8B",
+      "channelAvatar": "https://yt3.ggpht.com/8MpU36xRCBiCAiBZb9mIhXw4f3eYaJxURCgEQOGZHAj-0K2411nL2asW5vxCXzw36p6H_gzC=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/i1QYBfpNaXo/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/i1QYBfpNaXo/maxresdefault.jpg",
+      "durationSeconds": 9160,
+      "durationFormatted": "2:32:40",
+      "viewCount": 2549255,
+      "viewCountFormatted": "2,5 M de vues",
+      "publishDate": "2025-11-15",
+      "publishedTimestamp": 1763164800,
+      "publishedFormatted": "15 nov. 2025",
+      "publishedRelative": "il y a 1 an",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "drama",
+      "isAuteur": false,
+      "auteurLabel": null,
+      "description": "Film complet disponible sur YouTube avec sous-titres accessibles en français.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=i1QYBfpNaXo",
+      "embedUrl": "https://www.youtube.com/embed/i1QYBfpNaXo?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "CjepoUrN23w",
@@ -9162,6 +9198,42 @@
       "description": "영화의 자세한 정보를 보려면 아래의 웹주소를 방문하세요.\nFor detailed information on this film, visit :\n(한국어) https://www.kmdb.or.kr/db/kor/detail/movie/K/04678\n(English) https://www.kmdb.or.kr/eng/db/kor/detail/movie/K/04678\n\n감독(Director) : 박광수(Park Heonsu)\n출연 : \n안성기 , 문성근 , 심혜진 , 안소영 , 이용이 \n줄거리 :   문재구는 자신을 고향인 섬에 묻어달라는 아버지 문덕배의 유언에 따라 꽃상여를 싣고 섬으로 향한다. 섬에 가까와지자 섬사람들의 맹렬한 반대가 시작되고, 혼자 섬에 도착한 재구의 친구 김철은 네여인에 대한 추억과 그해 여름날의 한 사건을 떠올린다. 한국전쟁이 일어나던 해, 딸을 잃고 정신나간 넙도댁, 타고난 색기를 지닌 벌떡녀, 죽은 엄마의 영혼을 만나게 해준 업순네, 그리고 마을 아낙들이 억지로 시",
       "youtubeUrl": "https://www.youtube.com/watch?v=Y6D136RHiVc",
       "embedUrl": "https://www.youtube.com/embed/Y6D136RHiVc?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "kS2q_95UKFc",
+      "title": "The Rolex Mentoring Programme Live From TIFF",
+      "koreanTitle": "",
+      "country": "cn",
+      "countryLabel": "🇨🇳 Chine",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "ROLEX",
+      "channelUrl": "https://www.youtube.com/@ROLEX",
+      "channelAvatar": "https://yt3.ggpht.com/ytc/AIdro_lQPXdMHFBUaczJgS3ad_55AJjcL5uwMpP-zqSxthfnjsk=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": true,
+      "thumbnail": "https://i.ytimg.com/vi/kS2q_95UKFc/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/kS2q_95UKFc/maxresdefault.jpg",
+      "durationSeconds": 4310,
+      "durationFormatted": "1:11:50",
+      "viewCount": 1905056,
+      "viewCountFormatted": "1,9 M de vues",
+      "publishDate": "2024-11-15",
+      "publishedTimestamp": 1731628800,
+      "publishedFormatted": "15 nov. 2024",
+      "publishedRelative": "il y a 2 ans",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Jia Zhangke",
+      "description": "... special conversation between acclaimed Chinese director  Jia Zhang-Ke  and his protégé Filipino filmmaker Rafael Manuel after ...",
+      "youtubeUrl": "https://www.youtube.com/watch?v=kS2q_95UKFc",
+      "embedUrl": "https://www.youtube.com/embed/kS2q_95UKFc?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "2G2zlNfPesA",
