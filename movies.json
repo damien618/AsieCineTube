@@ -2,13 +2,13 @@
   "status": "ok",
   "source": "github_pages_static",
   "sort": "publishDate_desc",
-  "total": 631,
+  "total": 635,
   "countryCounts": {
     "kr": 247,
-    "jp": 270,
-    "cn": 114
+    "jp": 272,
+    "cn": 116
   },
-  "updatedAt": "2026-11-19T03:04:07.555923+00:00",
+  "updatedAt": "2026-11-20T03:04:02.971451+00:00",
   "movies": [
     {
       "videoId": "vnlp4FO__no",
@@ -32,7 +32,7 @@
       "publishDate": "2026-11-18",
       "publishedTimestamp": 1794960000,
       "publishedFormatted": "18 nov. 2026",
-      "publishedRelative": "hier",
+      "publishedRelative": "il y a 2 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -68,7 +68,7 @@
       "publishDate": "2026-11-16",
       "publishedTimestamp": 1794787200,
       "publishedFormatted": "16 nov. 2026",
-      "publishedRelative": "il y a 3 jours",
+      "publishedRelative": "il y a 4 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -81,6 +81,42 @@
       "description": "Elle n'était qu'une simple secrétaire. Lui, le patron le plus intouchable de la ville, a fait d'elle sa priorité absolue. Et gare à celui ...",
       "youtubeUrl": "https://www.youtube.com/watch?v=oD8aLeYIJpg",
       "embedUrl": "https://www.youtube.com/embed/oD8aLeYIJpg?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "OugKrW13joY",
+      "title": "The Justice (2021) - Épisode 12 (VOSTFR)",
+      "koreanTitle": "",
+      "country": "cn",
+      "countryLabel": "🇨🇳 Chine",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Le Cinéma chinois en VOSTFR",
+      "channelUrl": "https://www.youtube.com/@CNVOSTFR",
+      "channelAvatar": "https://yt3.ggpht.com/0s2gUv9j2qUa3akek0FvZ51C2-zUZI3orVVxq5T0GKeVG2w9l9cFGl2ibxbZu1nHiHXFyDpr6A=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/OugKrW13joY/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/OugKrW13joY/maxresdefault.jpg",
+      "durationSeconds": 2771,
+      "durationFormatted": "46:11",
+      "viewCount": 96,
+      "viewCountFormatted": "96 vues",
+      "publishDate": "2026-11-15",
+      "publishedTimestamp": 1794700800,
+      "publishedFormatted": "15 nov. 2026",
+      "publishedRelative": "il y a 5 jours",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Cinéma d'Auteur",
+      "description": "Découvrez un nouvel épisode chaque mercredi et samedi ! Épisode 12/41 Wu Lizi continue son enquête auprès du directeur Jiao ...",
+      "youtubeUrl": "https://www.youtube.com/watch?v=OugKrW13joY",
+      "embedUrl": "https://www.youtube.com/embed/OugKrW13joY?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "kYLQTg5_lW8",
@@ -104,7 +140,7 @@
       "publishDate": "2026-11-13",
       "publishedTimestamp": 1794528000,
       "publishedFormatted": "13 nov. 2026",
-      "publishedRelative": "il y a 6 jours",
+      "publishedRelative": "il y a 1 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -320,7 +356,7 @@
       "publishDate": "2026-11-06",
       "publishedTimestamp": 1793923200,
       "publishedFormatted": "6 nov. 2026",
-      "publishedRelative": "il y a 1 sem.",
+      "publishedRelative": "il y a 2 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -356,7 +392,7 @@
       "publishDate": "2026-11-06",
       "publishedTimestamp": 1793923200,
       "publishedFormatted": "6 nov. 2026",
-      "publishedRelative": "il y a 1 sem.",
+      "publishedRelative": "il y a 2 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -572,7 +608,7 @@
       "publishDate": "2026-10-30",
       "publishedTimestamp": 1793318400,
       "publishedFormatted": "30 oct. 2026",
-      "publishedRelative": "il y a 2 sem.",
+      "publishedRelative": "il y a 3 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -680,7 +716,7 @@
       "publishDate": "2026-10-23",
       "publishedTimestamp": 1792713600,
       "publishedFormatted": "23 oct. 2026",
-      "publishedRelative": "il y a 3 sem.",
+      "publishedRelative": "il y a 4 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -716,7 +752,7 @@
       "publishDate": "2026-10-23",
       "publishedTimestamp": 1792713600,
       "publishedFormatted": "23 oct. 2026",
-      "publishedRelative": "il y a 3 sem.",
+      "publishedRelative": "il y a 4 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -788,7 +824,7 @@
       "publishDate": "2026-10-21",
       "publishedTimestamp": 1792540800,
       "publishedFormatted": "21 oct. 2026",
-      "publishedRelative": "il y a 4 sem.",
+      "publishedRelative": "il y a 1 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -1611,7 +1647,7 @@
       "publishDate": "2026-09-21",
       "publishedTimestamp": 1789948800,
       "publishedFormatted": "21 sept. 2026",
-      "publishedRelative": "il y a 1 mois",
+      "publishedRelative": "il y a 2 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -2151,7 +2187,7 @@
       "publishDate": "2026-08-22",
       "publishedTimestamp": 1787356800,
       "publishedFormatted": "22 août 2026",
-      "publishedRelative": "il y a 2 mois",
+      "publishedRelative": "il y a 3 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Natif",
       "availableLanguages": [
@@ -2186,7 +2222,7 @@
       "publishDate": "2026-08-22",
       "publishedTimestamp": 1787356800,
       "publishedFormatted": "22 août 2026",
-      "publishedRelative": "il y a 2 mois",
+      "publishedRelative": "il y a 3 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Natif",
       "availableLanguages": [
@@ -2221,7 +2257,7 @@
       "publishDate": "2026-08-22",
       "publishedTimestamp": 1787356800,
       "publishedFormatted": "22 août 2026",
-      "publishedRelative": "il y a 2 mois",
+      "publishedRelative": "il y a 3 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Natif",
       "availableLanguages": [
@@ -2256,7 +2292,7 @@
       "publishDate": "2026-08-22",
       "publishedTimestamp": 1787356800,
       "publishedFormatted": "22 août 2026",
-      "publishedRelative": "il y a 2 mois",
+      "publishedRelative": "il y a 3 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -2506,7 +2542,7 @@
       "publishDate": "2026-07-23",
       "publishedTimestamp": 1784764800,
       "publishedFormatted": "23 juil. 2026",
-      "publishedRelative": "il y a 3 mois",
+      "publishedRelative": "il y a 4 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -2542,7 +2578,7 @@
       "publishDate": "2026-07-23",
       "publishedTimestamp": 1784764800,
       "publishedFormatted": "23 juil. 2026",
-      "publishedRelative": "il y a 3 mois",
+      "publishedRelative": "il y a 4 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -2758,7 +2794,7 @@
       "publishDate": "2026-06-23",
       "publishedTimestamp": 1782172800,
       "publishedFormatted": "23 juin 2026",
-      "publishedRelative": "il y a 4 mois",
+      "publishedRelative": "il y a 5 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Natif",
       "availableLanguages": [
@@ -2793,7 +2829,7 @@
       "publishDate": "2026-06-23",
       "publishedTimestamp": 1782172800,
       "publishedFormatted": "23 juin 2026",
-      "publishedRelative": "il y a 4 mois",
+      "publishedRelative": "il y a 5 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -3750,7 +3786,7 @@
       "publishDate": "2026-05-24",
       "publishedTimestamp": 1779580800,
       "publishedFormatted": "24 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -3785,7 +3821,7 @@
       "publishDate": "2026-05-24",
       "publishedTimestamp": 1779580800,
       "publishedFormatted": "24 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -5036,7 +5072,7 @@
       "publishDate": "2026-02-23",
       "publishedTimestamp": 1771804800,
       "publishedFormatted": "23 févr. 2026",
-      "publishedRelative": "il y a 8 mois",
+      "publishedRelative": "il y a 9 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -5250,7 +5286,7 @@
       "publishDate": "2026-01-24",
       "publishedTimestamp": 1769212800,
       "publishedFormatted": "24 janv. 2026",
-      "publishedRelative": "il y a 9 mois",
+      "publishedRelative": "il y a 10 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -5286,7 +5322,7 @@
       "publishDate": "2026-01-24",
       "publishedTimestamp": 1769212800,
       "publishedFormatted": "24 janv. 2026",
-      "publishedRelative": "il y a 9 mois",
+      "publishedRelative": "il y a 10 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Auto",
       "availableLanguages": [
@@ -5322,7 +5358,7 @@
       "publishDate": "2026-01-24",
       "publishedTimestamp": 1769212800,
       "publishedFormatted": "24 janv. 2026",
-      "publishedRelative": "il y a 9 mois",
+      "publishedRelative": "il y a 10 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -6355,7 +6391,7 @@
       "publishDate": "2025-11-25",
       "publishedTimestamp": 1764028800,
       "publishedFormatted": "25 nov. 2025",
-      "publishedRelative": "il y a 11 mois",
+      "publishedRelative": "il y a 12 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -6427,7 +6463,7 @@
       "publishDate": "2025-11-20",
       "publishedTimestamp": 1763596800,
       "publishedFormatted": "20 nov. 2025",
-      "publishedRelative": "il y a 12 mois",
+      "publishedRelative": "il y a 1 an",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇰🇷 Corée • Payant (Sooner)",
       "availableLanguages": [
@@ -6439,6 +6475,42 @@
       "description": "Sur un coup de tête, Freddie, 25 ans, retourne pour la première fois en Corée du Sud où elle est née.",
       "youtubeUrl": "https://www.youtube.com/watch?v=DpKU-B3fCvY",
       "embedUrl": "https://www.youtube.com/embed/DpKU-B3fCvY?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "EhgCAALP36k",
+      "title": "67. 'Harakiri' Live at the Plaza Theatre 7-24-25",
+      "koreanTitle": "",
+      "country": "jp",
+      "countryLabel": "🇯🇵 Japon",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Behind the Slate Podcast",
+      "channelUrl": "https://www.youtube.com/@behindtheslatepodcast",
+      "channelAvatar": "https://yt3.ggpht.com/eXIzSrYbEJ-4-tFa1aQGne8eb20qRKuANKVespWlIgjYOJlJb25KaqGVZN0Iwj5C0wKP49hiqw=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/EhgCAALP36k/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/EhgCAALP36k/maxresdefault.jpg",
+      "durationSeconds": 2441,
+      "durationFormatted": "40:41",
+      "viewCount": 80,
+      "viewCountFormatted": "80 vues",
+      "publishDate": "2025-11-20",
+      "publishedTimestamp": 1763596800,
+      "publishedFormatted": "20 nov. 2025",
+      "publishedRelative": "il y a 1 an",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Masaki Kobayashi",
+      "description": "Join host Aaron Strand live at the historic Plaza Theatre in Atlanta, GA as he presents  Masaki Kobayashi's  1962  film  'Harakiri'.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=EhgCAALP36k",
+      "embedUrl": "https://www.youtube.com/embed/EhgCAALP36k?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "ElBf2-fiOU0",
@@ -9450,6 +9522,42 @@
       "description": "영화의 자세한 정보를 보려면 아래의 웹주소를 방문하세요.\nFor detailed information on this film, visit :\n(한국어) https://www.kmdb.or.kr/db/kor/detail/movie/K/04678\n(English) https://www.kmdb.or.kr/eng/db/kor/detail/movie/K/04678\n\n감독(Director) : 박광수(Park Heonsu)\n출연 : \n안성기 , 문성근 , 심혜진 , 안소영 , 이용이 \n줄거리 :   문재구는 자신을 고향인 섬에 묻어달라는 아버지 문덕배의 유언에 따라 꽃상여를 싣고 섬으로 향한다. 섬에 가까와지자 섬사람들의 맹렬한 반대가 시작되고, 혼자 섬에 도착한 재구의 친구 김철은 네여인에 대한 추억과 그해 여름날의 한 사건을 떠올린다. 한국전쟁이 일어나던 해, 딸을 잃고 정신나간 넙도댁, 타고난 색기를 지닌 벌떡녀, 죽은 엄마의 영혼을 만나게 해준 업순네, 그리고 마을 아낙들이 억지로 시",
       "youtubeUrl": "https://www.youtube.com/watch?v=Y6D136RHiVc",
       "embedUrl": "https://www.youtube.com/embed/Y6D136RHiVc?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "zhhiD-BVxk0",
+      "title": "Under the Hawthorn Tree (Zhang Yimou)",
+      "koreanTitle": "",
+      "country": "cn",
+      "countryLabel": "🇨🇳 Chine",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Nicolas Martin",
+      "channelUrl": "https://www.youtube.com/@nicmart",
+      "channelAvatar": "https://yt3.ggpht.com/ytc/AIdro_l0tc23YhiyhDylWYMMmPJcfLdTFb4tHsO2Xn-KBTufitOH=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/zhhiD-BVxk0/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/zhhiD-BVxk0/maxresdefault.jpg",
+      "durationSeconds": 6912,
+      "durationFormatted": "1:55:12",
+      "viewCount": 29391,
+      "viewCountFormatted": "29 k vues",
+      "publishDate": "2024-11-20",
+      "publishedTimestamp": 1732060800,
+      "publishedFormatted": "20 nov. 2024",
+      "publishedRelative": "il y a 2 ans",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "drama",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Zhang Yimou",
+      "description": "A touching love story by the great Chinese director  Zhang Yimou .",
+      "youtubeUrl": "https://www.youtube.com/watch?v=zhhiD-BVxk0",
+      "embedUrl": "https://www.youtube.com/embed/zhhiD-BVxk0?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "0Yh0-R_zndw",
@@ -13403,6 +13511,42 @@
       "description": "영화의 자세한 정보를 보려면 아래의 웹주소를 방문하세요.\nFor detailed information on this film, visit :\n(한국어) https://www.kmdb.or.kr/db/kor/detail/movie/K/03808\n(English) https://www.kmdb.or.kr/eng/db/kor/detail/movie/K/03808\n\n감독(Director) : 김기영(Kim Ki-young)\n\n출연 : 엄심정 , 김병학 , 배규빈 , 김인문 , 김원섭\n\n줄거리 :  대학졸업정원제의 공포를 견디지 못해 자살을 기도하여 정신병원에 입원한 동료환자 홍익을 설득하여 병원을 탈출한다. 여러 사건을 겪다가 광부가 된 그들은 바보처녀 석호를 만나 토끼섬 건설을 위해 남해의 무인도로 향한다. 그러나 섬으로 출발하기 직전에 석호는 토끼섬은 정신착란자의 환상이라 판단하여 석호와 함께 도망친다. 버려진 홍익은 절망을 느끼나 정신병으로 아들을 죽게 한 주막의 할머니, 할아버지와 ",
       "youtubeUrl": "https://www.youtube.com/watch?v=jZR_-aE4Wgs",
       "embedUrl": "https://www.youtube.com/embed/jZR_-aE4Wgs?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "mkWfXNBTiWQ",
+      "title": "A Feiticeira das Águas (1933), de Kenji Mizoguchi - ative as legendas",
+      "koreanTitle": "",
+      "country": "jp",
+      "countryLabel": "🇯🇵 Japon",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Conrado Rosa",
+      "channelUrl": "https://www.youtube.com/@1conradorosa",
+      "channelAvatar": "https://yt3.ggpht.com/9Y62UsJhIg_BMlvAcEPcL6_VSwTSoRs7dN_qMZ-TnJTxcCorGv19d0hFcQC9eyJMPMwWpOIFcQ=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/mkWfXNBTiWQ/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/mkWfXNBTiWQ/maxresdefault.jpg",
+      "durationSeconds": 5987,
+      "durationFormatted": "1:39:47",
+      "viewCount": 1085,
+      "viewCountFormatted": "1 k vues",
+      "publishDate": "2022-11-21",
+      "publishedTimestamp": 1668988800,
+      "publishedFormatted": "21 nov. 2022",
+      "publishedRelative": "il y a 4 ans",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Kenji Mizoguchi",
+      "description": "Taki no Shiraito.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=mkWfXNBTiWQ",
+      "embedUrl": "https://www.youtube.com/embed/mkWfXNBTiWQ?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "rrr3zX8P9NA",
