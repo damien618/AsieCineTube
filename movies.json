@@ -2,13 +2,13 @@
   "status": "ok",
   "source": "github_pages_static",
   "sort": "publishDate_desc",
-  "total": 635,
+  "total": 639,
   "countryCounts": {
     "kr": 247,
-    "jp": 272,
-    "cn": 116
+    "jp": 275,
+    "cn": 117
   },
-  "updatedAt": "2026-11-20T03:04:02.971451+00:00",
+  "updatedAt": "2026-11-21T03:04:03.448651+00:00",
   "movies": [
     {
       "videoId": "vnlp4FO__no",
@@ -32,7 +32,7 @@
       "publishDate": "2026-11-18",
       "publishedTimestamp": 1794960000,
       "publishedFormatted": "18 nov. 2026",
-      "publishedRelative": "il y a 2 jours",
+      "publishedRelative": "il y a 3 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -45,6 +45,42 @@
       "description": "Film complet disponible sur YouTube avec sous-titres accessibles en français.",
       "youtubeUrl": "https://www.youtube.com/watch?v=vnlp4FO__no",
       "embedUrl": "https://www.youtube.com/embed/vnlp4FO__no?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "_mO7UkLL58o",
+      "title": "Enemy Troops Close In As The Red Army Faces A Desperate Escape!😱|The Great Long March 伟大的长征| iQIYI",
+      "koreanTitle": "",
+      "country": "cn",
+      "countryLabel": "🇨🇳 Chine",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "iQIYI 爱奇艺 - Get the iQIYI APP",
+      "channelUrl": "https://www.youtube.com/@iQIYIofficial",
+      "channelAvatar": "https://yt3.ggpht.com/LD_FcD0TbPuK3HtkiGHU6tNNQ7tw4gGyAadAIK5TmcBqEpiyO357yU_Lxy0cs-_9tmRSDKxyBBE=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": true,
+      "thumbnail": "https://i.ytimg.com/vi/_mO7UkLL58o/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/_mO7UkLL58o/maxresdefault.jpg",
+      "durationSeconds": 7462,
+      "durationFormatted": "2:04:22",
+      "viewCount": 18902,
+      "viewCountFormatted": "18 k vues",
+      "publishDate": "2026-11-17",
+      "publishedTimestamp": 1794873600,
+      "publishedFormatted": "17 nov. 2026",
+      "publishedRelative": "il y a 4 jours",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Cinéma d'Auteur",
+      "description": "Click here for more content:https://www.youtube.com/playlist?list=PLRdq5eiD1CFk ▶️Watch more episodes on iQIYI App: ...",
+      "youtubeUrl": "https://www.youtube.com/watch?v=_mO7UkLL58o",
+      "embedUrl": "https://www.youtube.com/embed/_mO7UkLL58o?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "oD8aLeYIJpg",
@@ -68,7 +104,7 @@
       "publishDate": "2026-11-16",
       "publishedTimestamp": 1794787200,
       "publishedFormatted": "16 nov. 2026",
-      "publishedRelative": "il y a 4 jours",
+      "publishedRelative": "il y a 5 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -104,7 +140,7 @@
       "publishDate": "2026-11-15",
       "publishedTimestamp": 1794700800,
       "publishedFormatted": "15 nov. 2026",
-      "publishedRelative": "il y a 5 jours",
+      "publishedRelative": "il y a 6 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -788,7 +824,7 @@
       "publishDate": "2026-10-22",
       "publishedTimestamp": 1792627200,
       "publishedFormatted": "22 oct. 2026",
-      "publishedRelative": "il y a 4 sem.",
+      "publishedRelative": "il y a 1 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -1611,7 +1647,7 @@
       "publishDate": "2026-09-22",
       "publishedTimestamp": 1790035200,
       "publishedFormatted": "22 sept. 2026",
-      "publishedRelative": "il y a 1 mois",
+      "publishedRelative": "il y a 2 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -2115,7 +2151,7 @@
       "publishDate": "2026-08-23",
       "publishedTimestamp": 1787443200,
       "publishedFormatted": "23 août 2026",
-      "publishedRelative": "il y a 2 mois",
+      "publishedRelative": "il y a 3 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -2151,7 +2187,7 @@
       "publishDate": "2026-08-23",
       "publishedTimestamp": 1787443200,
       "publishedFormatted": "23 août 2026",
-      "publishedRelative": "il y a 2 mois",
+      "publishedRelative": "il y a 3 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -2521,6 +2557,42 @@
       "embedUrl": "https://www.youtube.com/embed/_AZ8Td3vx_8?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
+      "videoId": "mIjf-UWl1qg",
+      "title": "Ishibumi (2015) | Full Documentary | Hirokazu Kore-eda | Hiroshima Memorial Film",
+      "koreanTitle": "",
+      "country": "jp",
+      "countryLabel": "🇯🇵 Japon",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Nakli",
+      "channelUrl": "https://www.youtube.com/@Nakul_degen",
+      "channelAvatar": "https://yt3.ggpht.com/THnA49McVMsELRNBgoFfl2PbOrXnjEo7MX1UqX7pUJ5Ec5erZB4xG4uw7RCuvoAo34XPgRP9cw=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/mIjf-UWl1qg/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/mIjf-UWl1qg/maxresdefault.jpg",
+      "durationSeconds": 5119,
+      "durationFormatted": "1:25:19",
+      "viewCount": 577,
+      "viewCountFormatted": "577 vues",
+      "publishDate": "2026-07-24",
+      "publishedTimestamp": 1784851200,
+      "publishedFormatted": "24 juil. 2026",
+      "publishedRelative": "il y a 4 mois",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Hirokazu Kore-eda",
+      "description": "Ishibumi (2015) is one of Hirokazu  Kore -eda's most moving and least-seen works—a solemn documentary that commemorates ...",
+      "youtubeUrl": "https://www.youtube.com/watch?v=mIjf-UWl1qg",
+      "embedUrl": "https://www.youtube.com/embed/mIjf-UWl1qg?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
       "videoId": "E23HU109KFQ",
       "title": "An American Fighter Entered Japan — and Walked Into a Deadly Samurai Conflict | Full Movie HD",
       "koreanTitle": "",
@@ -2722,7 +2794,7 @@
       "publishDate": "2026-06-24",
       "publishedTimestamp": 1782259200,
       "publishedFormatted": "24 juin 2026",
-      "publishedRelative": "il y a 4 mois",
+      "publishedRelative": "il y a 5 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -2758,7 +2830,7 @@
       "publishDate": "2026-06-24",
       "publishedTimestamp": 1782259200,
       "publishedFormatted": "24 juin 2026",
-      "publishedRelative": "il y a 4 mois",
+      "publishedRelative": "il y a 5 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -3398,7 +3470,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -3434,7 +3506,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -3470,7 +3542,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -3506,7 +3578,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -3541,7 +3613,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -3576,7 +3648,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -3611,7 +3683,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -3646,7 +3718,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -3681,7 +3753,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -3716,7 +3788,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -3751,7 +3823,7 @@
       "publishDate": "2026-05-25",
       "publishedTimestamp": 1779667200,
       "publishedFormatted": "25 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇨🇳 Chine • Payant (Sooner)",
       "availableLanguages": [
@@ -4180,7 +4252,7 @@
       "publishDate": "2026-04-25",
       "publishedTimestamp": 1777075200,
       "publishedFormatted": "25 avr. 2026",
-      "publishedRelative": "il y a 6 mois",
+      "publishedRelative": "il y a 7 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -4216,7 +4288,7 @@
       "publishDate": "2026-04-25",
       "publishedTimestamp": 1777075200,
       "publishedFormatted": "25 avr. 2026",
-      "publishedRelative": "il y a 6 mois",
+      "publishedRelative": "il y a 7 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -4731,6 +4803,42 @@
       "embedUrl": "https://www.youtube.com/embed/mxSlVjCoXZY?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
+      "videoId": "HejpLhnMhTs",
+      "title": "#36 北野武全作品解題 vol.2『あの夏、いちばん静かな海。』『ソナチネ』『みんな〜やってるか！』『キッズ・リターン』『HANA-BI』『菊次郎の夏』『BROTHER』",
+      "koreanTitle": "",
+      "country": "jp",
+      "countryLabel": "🇯🇵 Japon",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "映画から見た世界",
+      "channelUrl": "https://www.youtube.com/@%E6%98%A0%E7%94%BB%E3%81%8B%E3%82%89%E8%A6%8B%E3%81%9F%E4%B8%96%E7%95%8C",
+      "channelAvatar": "https://yt3.ggpht.com/s7H1WPP4h7n8Z7hG34vVFO0JiUvL_xXQ8F6sdENF9_eMUT_1Z7mkMPibD7TBkdonnC2x03rPAA=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/HejpLhnMhTs/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/HejpLhnMhTs/maxresdefault.jpg",
+      "durationSeconds": 4607,
+      "durationFormatted": "1:16:47",
+      "viewCount": 1839,
+      "viewCountFormatted": "1 k vues",
+      "publishDate": "2026-03-26",
+      "publishedTimestamp": 1774483200,
+      "publishedFormatted": "26 mars 2026",
+      "publishedRelative": "il y a 8 mois",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Cinéma d'Auteur",
+      "description": "今回は『あの夏、いちばん静かな海。』『ソナチネ』『みんな〜やってるか！』『キッズ・リターン』『HANA-BI』『菊次郎の ...",
+      "youtubeUrl": "https://www.youtube.com/watch?v=HejpLhnMhTs",
+      "embedUrl": "https://www.youtube.com/embed/HejpLhnMhTs?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
       "videoId": "J5GQUENGwAA",
       "title": "My Sunshine (ぼくのお日さま) — Hiroshi Okuyama | Sélection Cannes",
       "koreanTitle": "",
@@ -5178,7 +5286,7 @@
       "publishDate": "2026-01-25",
       "publishedTimestamp": 1769299200,
       "publishedFormatted": "25 janv. 2026",
-      "publishedRelative": "il y a 9 mois",
+      "publishedRelative": "il y a 10 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -5214,7 +5322,7 @@
       "publishDate": "2026-01-25",
       "publishedTimestamp": 1769299200,
       "publishedFormatted": "25 janv. 2026",
-      "publishedRelative": "il y a 9 mois",
+      "publishedRelative": "il y a 10 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -5250,7 +5358,7 @@
       "publishDate": "2026-01-25",
       "publishedTimestamp": 1769299200,
       "publishedFormatted": "25 janv. 2026",
-      "publishedRelative": "il y a 9 mois",
+      "publishedRelative": "il y a 10 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -5784,7 +5892,7 @@
       "publishDate": "2025-12-26",
       "publishedTimestamp": 1766707200,
       "publishedFormatted": "26 déc. 2025",
-      "publishedRelative": "il y a 10 mois",
+      "publishedRelative": "il y a 11 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -5820,7 +5928,7 @@
       "publishDate": "2025-12-26",
       "publishedTimestamp": 1766707200,
       "publishedFormatted": "26 déc. 2025",
-      "publishedRelative": "il y a 10 mois",
+      "publishedRelative": "il y a 11 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Natif",
       "availableLanguages": [
@@ -17792,6 +17900,42 @@
       "description": "영화의 자세한 정보를 보려면 아래의 웹주소를 방문하세요.\nFor detailed information on this film, visit :\n(한국어) http://www.kmdb.or.kr/db/kor/detail/movie/K/03525/\n(English) http://www.kmdb.or.kr/eng/db/kor/detail/movie/K/03525\n\n영화글 : https://www.kmdb.or.kr/story/10/5439\n\n감독(Director) : 김수용(Kim Soo-yong )\n출연 : 유지인 , 이영옥 , 금보라 , 김만 , 한소룡\n줄거리: 버스 안내양 이문희는 입금실적이 좋지만 여감독의 몸수색이 그치지않음을 슬퍼하며 정직하게 근무하고, 동료들에게도 따뜻하게 대한다. 문희는 어려운 처지에 있는 동료들을 사랑으로 감싸주고 차내 행상을 하는 광석을 선원을 만들고 내일을 약속한다. 어느날 회사측이 안내원 숙사를 뒤지고 안내원의 몸수색이 행해지면서 문희는 남자 감시인 앞에",
       "youtubeUrl": "https://www.youtube.com/watch?v=QHSN2HJiLIQ",
       "embedUrl": "https://www.youtube.com/embed/QHSN2HJiLIQ?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "dTyNzQHYaX0",
+      "title": "Podcast Filmes Clássicos: Episódio #106 - Os Filmes de Kenji Mizoguchi - Parte 1",
+      "koreanTitle": "",
+      "country": "jp",
+      "countryLabel": "🇯🇵 Japon",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Podcast Filmes Clássicos",
+      "channelUrl": "https://www.youtube.com/@PodcastFilmesCl%C3%A1ssicos",
+      "channelAvatar": "https://yt3.ggpht.com/ytc/AIdro_n1yY-qnhiYoP5MB6G6W5RqaNjx_Ot_AeYIfpDsMRmp1A=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/dTyNzQHYaX0/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/dTyNzQHYaX0/maxresdefault.jpg",
+      "durationSeconds": 7111,
+      "durationFormatted": "1:58:31",
+      "viewCount": 841,
+      "viewCountFormatted": "841 vues",
+      "publishDate": "2019-11-23",
+      "publishedTimestamp": 1574467200,
+      "publishedFormatted": "23 nov. 2019",
+      "publishedRelative": "il y a 7 ans",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Kenji Mizoguchi",
+      "description": "Todas as músicas eventualmente usadas são de propriedade de seus autores ou detentores dos respectivos direitos autorais.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=dTyNzQHYaX0",
+      "embedUrl": "https://www.youtube.com/embed/dTyNzQHYaX0?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "sGI7-kFZX9M",
