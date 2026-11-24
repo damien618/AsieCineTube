@@ -2,13 +2,13 @@
   "status": "ok",
   "source": "github_pages_static",
   "sort": "publishDate_desc",
-  "total": 648,
+  "total": 650,
   "countryCounts": {
-    "kr": 250,
+    "kr": 252,
     "jp": 280,
     "cn": 118
   },
-  "updatedAt": "2026-11-23T03:04:16.560152+00:00",
+  "updatedAt": "2026-11-24T03:03:59.544136+00:00",
   "movies": [
     {
       "videoId": "vnlp4FO__no",
@@ -32,7 +32,7 @@
       "publishDate": "2026-11-18",
       "publishedTimestamp": 1794960000,
       "publishedFormatted": "18 nov. 2026",
-      "publishedRelative": "il y a 5 jours",
+      "publishedRelative": "il y a 6 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -536,7 +536,7 @@
       "publishDate": "2026-11-03",
       "publishedTimestamp": 1793664000,
       "publishedFormatted": "3 nov. 2026",
-      "publishedRelative": "il y a 2 sem.",
+      "publishedRelative": "il y a 3 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Auto",
       "availableLanguages": [
@@ -572,7 +572,7 @@
       "publishDate": "2026-11-03",
       "publishedTimestamp": 1793664000,
       "publishedFormatted": "3 nov. 2026",
-      "publishedRelative": "il y a 2 sem.",
+      "publishedRelative": "il y a 3 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -2614,7 +2614,7 @@
       "publishDate": "2026-07-27",
       "publishedTimestamp": 1785110400,
       "publishedFormatted": "27 juil. 2026",
-      "publishedRelative": "il y a 3 mois",
+      "publishedRelative": "il y a 4 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -6037,7 +6037,7 @@
       "publishDate": "2025-12-29",
       "publishedTimestamp": 1766966400,
       "publishedFormatted": "29 déc. 2025",
-      "publishedRelative": "il y a 10 mois",
+      "publishedRelative": "il y a 11 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -6715,7 +6715,7 @@
       "publishDate": "2025-11-24",
       "publishedTimestamp": 1763942400,
       "publishedFormatted": "24 nov. 2025",
-      "publishedRelative": "il y a 12 mois",
+      "publishedRelative": "il y a 1 an",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -18190,6 +18190,42 @@
       "embedUrl": "https://www.youtube.com/embed/QHSN2HJiLIQ?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
+      "videoId": "1rP5pkH9Xdo",
+      "title": "피아골(1955) /Piagol (Pi-agol)",
+      "koreanTitle": "",
+      "country": "kr",
+      "countryLabel": "🇰🇷 Corée",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "한국고전영화 Korean Classic Film",
+      "channelUrl": "https://www.youtube.com/@KoreanFilm",
+      "channelAvatar": "https://yt3.ggpht.com/ytc/AIdro_ngKclRiL8_hYq7M0Cx8T8pU-_m9aIco2DOghy5t5vo5g=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": true,
+      "thumbnail": "https://i.ytimg.com/vi/1rP5pkH9Xdo/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/1rP5pkH9Xdo/maxresdefault.jpg",
+      "durationSeconds": 6506,
+      "durationFormatted": "1:48:26",
+      "viewCount": 224396,
+      "viewCountFormatted": "224 k vues",
+      "publishDate": "2019-11-26",
+      "publishedTimestamp": 1574726400,
+      "publishedFormatted": "26 nov. 2019",
+      "publishedRelative": "il y a 7 ans",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "kofa",
+      "isAuteur": true,
+      "auteurLabel": "🏛️ KOFA (Patrimoine)",
+      "description": "TBS 영화해설 : https://www.youtube.com/watch?v=Sfdgd0l1PFw 영화의 자세한 정보를 보려면 아래의 웹주소를 방문하세요.",
+      "youtubeUrl": "https://www.youtube.com/watch?v=1rP5pkH9Xdo",
+      "embedUrl": "https://www.youtube.com/embed/1rP5pkH9Xdo?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
       "videoId": "dTyNzQHYaX0",
       "title": "Podcast Filmes Clássicos: Episódio #106 - Os Filmes de Kenji Mizoguchi - Parte 1",
       "koreanTitle": "",
@@ -20457,6 +20493,42 @@
       "description": "영화의 자세한 정보를 보려면 아래의 웹주소를 방문하세요.\nFor detailed information on this film, visit :\n(한국어) https://www.kmdb.or.kr/db/kor/detail/movie/K/00681\n(English) https://www.kmdb.or.kr/eng/db/kor/detail/movie/K/00681\n\n감독(Director) : 한형모(Han Hyeong-Mo)\n출연 : 문정숙,김진규,엄앵란,이대엽,김승호,최남현,안성기,양훈,양석천,후라이보이,김희갑,최성,김정기,조석근,이영,김정옥,이수자\n\n줄거리 : 유안순애(문정숙)는 이름 그대로 `안 순한' 말괄량이이다. 유도도장 사범의 큰 딸인 그녀는 나이가 찼음에도 결혼 생각이 없고 유도에만 취미가 있어 아버지(김승호)의 속을 썩인다. 우여곡절 끝에 동생 선희(엄앵란)와 동시에 결혼식을 치르지만 신혼 초부터 부부싸움을 하다가 남편(김진규)을 마당 바닥에 내동댕이치고 친정으로 와버린다. ",
       "youtubeUrl": "https://www.youtube.com/watch?v=maAQNkLhPrQ",
       "embedUrl": "https://www.youtube.com/embed/maAQNkLhPrQ?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
+      "videoId": "99Qykqxqddc",
+      "title": "What Happens in an Alley ( Golmogan Punggyeong )(1962)",
+      "koreanTitle": "",
+      "country": "kr",
+      "countryLabel": "🇰🇷 Corée",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "한국고전영화 Korean Classic Film",
+      "channelUrl": "https://www.youtube.com/@KoreanFilm",
+      "channelAvatar": "https://yt3.ggpht.com/ytc/AIdro_ngKclRiL8_hYq7M0Cx8T8pU-_m9aIco2DOghy5t5vo5g=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": true,
+      "thumbnail": "https://i.ytimg.com/vi/99Qykqxqddc/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/99Qykqxqddc/maxresdefault.jpg",
+      "durationSeconds": 7130,
+      "durationFormatted": "1:58:50",
+      "viewCount": 396790,
+      "viewCountFormatted": "396 k vues",
+      "publishDate": "2016-11-26",
+      "publishedTimestamp": 1480118400,
+      "publishedFormatted": "26 nov. 2016",
+      "publishedRelative": "il y a 10 ans",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "kofa",
+      "isAuteur": true,
+      "auteurLabel": "🏛️ KOFA (Patrimoine)",
+      "description": "For detailed information on this film, visit : \nhttps://www.kmdb.or.kr/eng/db/kor/detail/movie/K/00750\n\nDirected by Park Jong ...",
+      "youtubeUrl": "https://www.youtube.com/watch?v=99Qykqxqddc",
+      "embedUrl": "https://www.youtube.com/embed/99Qykqxqddc?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
       "videoId": "MRWj-5nZdA8",
