@@ -2,14 +2,50 @@
   "status": "ok",
   "source": "github_pages_static",
   "sort": "publishDate_desc",
-  "total": 650,
+  "total": 652,
   "countryCounts": {
     "kr": 252,
-    "jp": 280,
-    "cn": 118
+    "jp": 281,
+    "cn": 119
   },
-  "updatedAt": "2026-11-24T03:03:59.544136+00:00",
+  "updatedAt": "2026-11-25T03:03:47.729954+00:00",
   "movies": [
+    {
+      "videoId": "H0khqe4LX70",
+      "title": "Hero (英雄) 2002 | A Legendary Epic ! | REACTION | First Time Watching",
+      "koreanTitle": "",
+      "country": "cn",
+      "countryLabel": "🇨🇳 Chine",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "Cinema Mosaic et Syntell",
+      "channelUrl": "https://www.youtube.com/watch?v=H0khqe4LX70",
+      "channelAvatar": "https://yt3.ggpht.com/3t7ycYw853Ktp_K6snaXtMDNRzQWprjjPvri9-soEeIkPjxk6Y2A8L0aDsSYfe01OplAAvvDNg=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/H0khqe4LX70/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/H0khqe4LX70/maxresdefault.jpg",
+      "durationSeconds": 3958,
+      "durationFormatted": "1:05:58",
+      "viewCount": 6546,
+      "viewCountFormatted": "6 k vues",
+      "publishDate": "2026-11-22",
+      "publishedTimestamp": 1795305600,
+      "publishedFormatted": "22 nov. 2026",
+      "publishedRelative": "il y a 3 jours",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "thriller",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Zhang Yimou",
+      "description": "... Rekkai watch Hero (英雄),  Zhang Yimou's  2002 wuxia epic starring Jet Li, Tony Leung, Maggie Cheung, Zhang Ziyi and Donnie ...",
+      "youtubeUrl": "https://www.youtube.com/watch?v=H0khqe4LX70",
+      "embedUrl": "https://www.youtube.com/embed/H0khqe4LX70?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
     {
       "videoId": "vnlp4FO__no",
       "title": "Korean Classic Film",
@@ -32,7 +68,7 @@
       "publishDate": "2026-11-18",
       "publishedTimestamp": 1794960000,
       "publishedFormatted": "18 nov. 2026",
-      "publishedRelative": "il y a 6 jours",
+      "publishedRelative": "il y a 1 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -248,7 +284,7 @@
       "publishDate": "2026-11-11",
       "publishedTimestamp": 1794355200,
       "publishedFormatted": "11 nov. 2026",
-      "publishedRelative": "il y a 1 sem.",
+      "publishedRelative": "il y a 2 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -752,7 +788,7 @@
       "publishDate": "2026-10-28",
       "publishedTimestamp": 1793145600,
       "publishedFormatted": "28 oct. 2026",
-      "publishedRelative": "il y a 3 sem.",
+      "publishedRelative": "il y a 4 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -788,7 +824,7 @@
       "publishDate": "2026-10-28",
       "publishedTimestamp": 1793145600,
       "publishedFormatted": "28 oct. 2026",
-      "publishedRelative": "il y a 3 sem.",
+      "publishedRelative": "il y a 4 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Auto",
       "availableLanguages": [
@@ -2593,6 +2629,42 @@
       "embedUrl": "https://www.youtube.com/embed/pyM89mjyXcU?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
     },
     {
+      "videoId": "q_D89mvHtVs",
+      "title": "Tokarev トカレフ 1994 Junji Sakamoto",
+      "koreanTitle": "",
+      "country": "jp",
+      "countryLabel": "🇯🇵 Japon",
+      "isPaid": false,
+      "paidProvider": "",
+      "paidLabel": "",
+      "channelName": "TheZaliphoneLP",
+      "channelUrl": "https://www.youtube.com/@TheZaliphoneLP",
+      "channelAvatar": "https://yt3.ggpht.com/ytc/AIdro_mgMDz4e13MsOEkyU6ls-7Kz-jA1atMA3lbd68IuH0=s68-c-k-c0x00ffffff-no-rj",
+      "channelVerified": false,
+      "thumbnail": "https://i.ytimg.com/vi/q_D89mvHtVs/hqdefault.jpg",
+      "thumbnailMax": "https://i.ytimg.com/vi/q_D89mvHtVs/maxresdefault.jpg",
+      "durationSeconds": 6161,
+      "durationFormatted": "1:42:41",
+      "viewCount": 1077,
+      "viewCountFormatted": "1 k vues",
+      "publishDate": "2026-07-28",
+      "publishedTimestamp": 1785196800,
+      "publishedFormatted": "28 juil. 2026",
+      "publishedRelative": "il y a 4 mois",
+      "subtitleType": "auto_fr",
+      "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+      "availableLanguages": [
+        "en",
+        "fr (auto)"
+      ],
+      "category": "auteur",
+      "isAuteur": true,
+      "auteurLabel": "🎬 Cinéma d'Auteur",
+      "description": "A school bus driver's life is irrevocably altered when his young son is kidnapped and murdered. Not out of sync this time!",
+      "youtubeUrl": "https://www.youtube.com/watch?v=q_D89mvHtVs",
+      "embedUrl": "https://www.youtube.com/embed/q_D89mvHtVs?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+    },
+    {
       "videoId": "_AZ8Td3vx_8",
       "title": "[4K] 밤하늘의 부르스 (1966) / Night Blues ( Bamhaneurui Blues )",
       "koreanTitle": "",
@@ -3403,7 +3475,7 @@
       "publishDate": "2026-05-29",
       "publishedTimestamp": 1780012800,
       "publishedFormatted": "29 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇨🇳 Chine • Payant (Sooner)",
       "availableLanguages": [
@@ -4860,7 +4932,7 @@
       "publishDate": "2026-03-30",
       "publishedTimestamp": 1774828800,
       "publishedFormatted": "30 mars 2026",
-      "publishedRelative": "il y a 7 mois",
+      "publishedRelative": "il y a 8 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -4895,7 +4967,7 @@
       "publishDate": "2026-03-30",
       "publishedTimestamp": 1774828800,
       "publishedFormatted": "30 mars 2026",
-      "publishedRelative": "il y a 7 mois",
+      "publishedRelative": "il y a 8 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -5253,7 +5325,7 @@
       "publishDate": "2026-02-28",
       "publishedTimestamp": 1772236800,
       "publishedFormatted": "28 févr. 2026",
-      "publishedRelative": "il y a 8 mois",
+      "publishedRelative": "il y a 9 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -6679,7 +6751,7 @@
       "publishDate": "2025-11-25",
       "publishedTimestamp": 1764028800,
       "publishedFormatted": "25 nov. 2025",
-      "publishedRelative": "il y a 12 mois",
+      "publishedRelative": "il y a 1 an",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
