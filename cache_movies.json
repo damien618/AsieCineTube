@@ -1659,7 +1659,7 @@
     "publishDate": "2026-06-29",
     "publishedTimestamp": 1782691200,
     "publishedFormatted": "29 juin 2026",
-    "publishedRelative": "il y a 4 mois",
+    "publishedRelative": "il y a 5 mois",
     "subtitleType": "auto_fr",
     "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
     "availableLanguages": [
@@ -3566,7 +3566,7 @@
     "publishDate": "2025-12-31",
     "publishedTimestamp": 1767139200,
     "publishedFormatted": "31 déc. 2025",
-    "publishedRelative": "il y a 10 mois",
+    "publishedRelative": "il y a 11 mois",
     "subtitleType": "native_fr",
     "subtitleLabel": "🇰🇷 Corée • Payant (Sooner)",
     "availableLanguages": [
@@ -4931,7 +4931,7 @@
     "publishDate": "2025-12-01",
     "publishedTimestamp": 1764547200,
     "publishedFormatted": "1 déc. 2025",
-    "publishedRelative": "il y a 11 mois",
+    "publishedRelative": "il y a 12 mois",
     "subtitleType": "native_fr",
     "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
     "availableLanguages": [
@@ -5106,7 +5106,7 @@
     "publishDate": "2025-12-31",
     "publishedTimestamp": 1767139200,
     "publishedFormatted": "31 déc. 2025",
-    "publishedRelative": "il y a 10 mois",
+    "publishedRelative": "il y a 11 mois",
     "subtitleType": "native_fr",
     "subtitleLabel": "🇨🇳 Chine • Payant (Sooner)",
     "availableLanguages": [
@@ -5176,7 +5176,7 @@
     "publishDate": "2025-12-31",
     "publishedTimestamp": 1767139200,
     "publishedFormatted": "31 déc. 2025",
-    "publishedRelative": "il y a 10 mois",
+    "publishedRelative": "il y a 11 mois",
     "subtitleType": "native_fr",
     "subtitleLabel": "🇨🇳 Chine • Payant (Sooner)",
     "availableLanguages": [
@@ -19313,7 +19313,7 @@
     "publishDate": "2026-11-05",
     "publishedTimestamp": 1793836800,
     "publishedFormatted": "5 nov. 2026",
-    "publishedRelative": "il y a 2 sem.",
+    "publishedRelative": "il y a 3 sem.",
     "subtitleType": "auto_fr",
     "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
     "availableLanguages": [
@@ -21581,7 +21581,7 @@
     "publishDate": "2026-11-05",
     "publishedTimestamp": 1793836800,
     "publishedFormatted": "5 nov. 2026",
-    "publishedRelative": "il y a 2 sem.",
+    "publishedRelative": "il y a 3 sem.",
     "subtitleType": "auto_fr",
     "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
     "availableLanguages": [
@@ -21941,7 +21941,7 @@
     "publishDate": "2026-11-12",
     "publishedTimestamp": 1794441600,
     "publishedFormatted": "12 nov. 2026",
-    "publishedRelative": "il y a 1 sem.",
+    "publishedRelative": "il y a 2 sem.",
     "subtitleType": "auto_fr",
     "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
     "availableLanguages": [
@@ -23381,7 +23381,7 @@
     "publishDate": "2026-11-22",
     "publishedTimestamp": 1795305600,
     "publishedFormatted": "22 nov. 2026",
-    "publishedRelative": "il y a 3 jours",
+    "publishedRelative": "il y a 4 jours",
     "subtitleType": "auto_fr",
     "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
     "availableLanguages": [
@@ -23430,5 +23430,41 @@
     "description": "A school bus driver's life is irrevocably altered when his young son is kidnapped and murdered. Not out of sync this time!",
     "youtubeUrl": "https://www.youtube.com/watch?v=q_D89mvHtVs",
     "embedUrl": "https://www.youtube.com/embed/q_D89mvHtVs?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
+  },
+  "GonJAxYXZRI": {
+    "videoId": "GonJAxYXZRI",
+    "title": "Zatoichi ---Takeshi Kitano  (2003) | Sub español",
+    "koreanTitle": "",
+    "country": "jp",
+    "countryLabel": "🇯🇵 Japon",
+    "isPaid": false,
+    "paidProvider": "",
+    "paidLabel": "",
+    "channelName": "Cinema Zambolillo",
+    "channelUrl": "https://www.youtube.com/@CinemaZambolillo",
+    "channelAvatar": "https://yt3.ggpht.com/XYpiKKcdxP4UblPNdduEPZeZOtySIUdEdFAd4WtqFi6ppUi78eSJCCWavZGxArTKYyWapi4gZd4=s68-c-k-c0x00ffffff-no-rj",
+    "channelVerified": false,
+    "thumbnail": "https://i.ytimg.com/vi/GonJAxYXZRI/hqdefault.jpg",
+    "thumbnailMax": "https://i.ytimg.com/vi/GonJAxYXZRI/maxresdefault.jpg",
+    "durationSeconds": 6952,
+    "durationFormatted": "1:55:52",
+    "viewCount": 298,
+    "viewCountFormatted": "298 vues",
+    "publishDate": "2026-11-19",
+    "publishedTimestamp": 1795046400,
+    "publishedFormatted": "19 nov. 2026",
+    "publishedRelative": "il y a 1 sem.",
+    "subtitleType": "auto_fr",
+    "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
+    "availableLanguages": [
+      "en",
+      "fr (auto)"
+    ],
+    "category": "auteur",
+    "isAuteur": true,
+    "auteurLabel": "🎬 Takeshi Kitano",
+    "description": "Japón, siglo XIX. Zatoichi es un vagabundo ciego que vive del juego y de dar masajes. Pero además es un maestro con la ...",
+    "youtubeUrl": "https://www.youtube.com/watch?v=GonJAxYXZRI",
+    "embedUrl": "https://www.youtube.com/embed/GonJAxYXZRI?autoplay=0&cc_load_policy=1&cc_lang_pref=fr&hl=fr&fs=1&rel=0"
   }
 }
