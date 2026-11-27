@@ -8,7 +8,7 @@
     "jp": 282,
     "cn": 119
   },
-  "updatedAt": "2026-11-26T03:04:00.287710+00:00",
+  "updatedAt": "2026-11-27T03:04:04.591222+00:00",
   "movies": [
     {
       "videoId": "H0khqe4LX70",
@@ -32,7 +32,7 @@
       "publishDate": "2026-11-22",
       "publishedTimestamp": 1795305600,
       "publishedFormatted": "22 nov. 2026",
-      "publishedRelative": "il y a 4 jours",
+      "publishedRelative": "il y a 5 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -212,7 +212,7 @@
       "publishDate": "2026-11-13",
       "publishedTimestamp": 1794528000,
       "publishedFormatted": "13 nov. 2026",
-      "publishedRelative": "il y a 1 sem.",
+      "publishedRelative": "il y a 2 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -248,7 +248,7 @@
       "publishDate": "2026-11-13",
       "publishedTimestamp": 1794528000,
       "publishedFormatted": "13 nov. 2026",
-      "publishedRelative": "il y a 1 sem.",
+      "publishedRelative": "il y a 2 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -464,7 +464,7 @@
       "publishDate": "2026-11-06",
       "publishedTimestamp": 1793923200,
       "publishedFormatted": "6 nov. 2026",
-      "publishedRelative": "il y a 2 sem.",
+      "publishedRelative": "il y a 3 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -500,7 +500,7 @@
       "publishDate": "2026-11-06",
       "publishedTimestamp": 1793923200,
       "publishedFormatted": "6 nov. 2026",
-      "publishedRelative": "il y a 2 sem.",
+      "publishedRelative": "il y a 3 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -788,7 +788,7 @@
       "publishDate": "2026-10-30",
       "publishedTimestamp": 1793318400,
       "publishedFormatted": "30 oct. 2026",
-      "publishedRelative": "il y a 3 sem.",
+      "publishedRelative": "il y a 4 sem.",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -824,7 +824,7 @@
       "publishDate": "2026-10-28",
       "publishedTimestamp": 1793145600,
       "publishedFormatted": "28 oct. 2026",
-      "publishedRelative": "il y a 4 sem.",
+      "publishedRelative": "il y a 1 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -860,7 +860,7 @@
       "publishDate": "2026-10-28",
       "publishedTimestamp": 1793145600,
       "publishedFormatted": "28 oct. 2026",
-      "publishedRelative": "il y a 4 sem.",
+      "publishedRelative": "il y a 1 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Auto",
       "availableLanguages": [
@@ -3476,7 +3476,7 @@
       "publishDate": "2026-05-31",
       "publishedTimestamp": 1780185600,
       "publishedFormatted": "31 mai 2026",
-      "publishedRelative": "il y a 5 mois",
+      "publishedRelative": "il y a 6 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇨🇳 Chine • Payant (Sooner)",
       "availableLanguages": [
@@ -5326,7 +5326,7 @@
       "publishDate": "2026-03-02",
       "publishedTimestamp": 1772409600,
       "publishedFormatted": "2 mars 2026",
-      "publishedRelative": "il y a 8 mois",
+      "publishedRelative": "il y a 9 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Natif",
       "availableLanguages": [
