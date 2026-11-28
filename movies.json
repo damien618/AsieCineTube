@@ -8,7 +8,7 @@
     "jp": 282,
     "cn": 119
   },
-  "updatedAt": "2026-11-27T03:04:04.591222+00:00",
+  "updatedAt": "2026-11-28T03:03:51.631401+00:00",
   "movies": [
     {
       "videoId": "H0khqe4LX70",
@@ -32,7 +32,7 @@
       "publishDate": "2026-11-22",
       "publishedTimestamp": 1795305600,
       "publishedFormatted": "22 nov. 2026",
-      "publishedRelative": "il y a 5 jours",
+      "publishedRelative": "il y a 6 jours",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Auto",
       "availableLanguages": [
@@ -2219,7 +2219,7 @@
       "publishDate": "2026-08-30",
       "publishedTimestamp": 1788048000,
       "publishedFormatted": "30 août 2026",
-      "publishedRelative": "il y a 2 mois",
+      "publishedRelative": "il y a 3 mois",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇨🇳 Chine • ST-FR Natif",
       "availableLanguages": [
@@ -2259,7 +2259,7 @@
       "publishDate": "2026-08-30",
       "publishedTimestamp": 1788048000,
       "publishedFormatted": "30 août 2026",
-      "publishedRelative": "il y a 2 mois",
+      "publishedRelative": "il y a 3 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -4396,7 +4396,7 @@
       "publishDate": "2026-05-02",
       "publishedTimestamp": 1777680000,
       "publishedFormatted": "2 mai 2026",
-      "publishedRelative": "il y a 6 mois",
+      "publishedRelative": "il y a 7 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -4432,7 +4432,7 @@
       "publishDate": "2026-05-02",
       "publishedTimestamp": 1777680000,
       "publishedFormatted": "2 mai 2026",
-      "publishedRelative": "il y a 6 mois",
+      "publishedRelative": "il y a 7 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • ST-FR Auto",
       "availableLanguages": [
@@ -6645,7 +6645,7 @@
       "publishDate": "2025-12-03",
       "publishedTimestamp": 1764720000,
       "publishedFormatted": "3 déc. 2025",
-      "publishedRelative": "il y a 11 mois",
+      "publishedRelative": "il y a 12 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -6681,7 +6681,7 @@
       "publishDate": "2025-12-03",
       "publishedTimestamp": 1764720000,
       "publishedFormatted": "3 déc. 2025",
-      "publishedRelative": "il y a 11 mois",
+      "publishedRelative": "il y a 12 mois",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇯🇵 Japon • ST-FR Auto",
       "availableLanguages": [
@@ -6752,7 +6752,7 @@
       "publishDate": "2025-11-28",
       "publishedTimestamp": 1764288000,
       "publishedFormatted": "28 nov. 2025",
-      "publishedRelative": "il y a 12 mois",
+      "publishedRelative": "il y a 1 an",
       "subtitleType": "native_fr",
       "subtitleLabel": "🇯🇵 Japon • Payant (Sooner)",
       "availableLanguages": [
@@ -18283,7 +18283,7 @@
       "publishDate": "2019-11-30",
       "publishedTimestamp": 1575072000,
       "publishedFormatted": "30 nov. 2019",
-      "publishedRelative": "il y a 6 ans",
+      "publishedRelative": "il y a 7 ans",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -19111,7 +19111,7 @@
       "publishDate": "2018-11-30",
       "publishedTimestamp": 1543536000,
       "publishedFormatted": "30 nov. 2018",
-      "publishedRelative": "il y a 7 ans",
+      "publishedRelative": "il y a 8 ans",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
@@ -21056,7 +21056,7 @@
       "publishDate": "2015-12-01",
       "publishedTimestamp": 1448928000,
       "publishedFormatted": "1 déc. 2015",
-      "publishedRelative": "il y a 10 ans",
+      "publishedRelative": "il y a 11 ans",
       "subtitleType": "auto_fr",
       "subtitleLabel": "🇰🇷 Corée • KOFA (Trad. Auto YT)",
       "availableLanguages": [
